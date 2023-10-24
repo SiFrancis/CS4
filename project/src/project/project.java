@@ -46,8 +46,17 @@ public class project {
                                 System.out.println("c^2 = " + a2 + " + " + b2);
                                 System.out.println("c^2 = " + c2);
                                 System.out.println("c = sqrt(" + c2 + ")");
-                                int coef = (int)Math.sqrt(c2);
-                                System.out.println("c = " + coef);
+                                int root = (int)Math.sqrt(c2);
+                                for (int i = root; i > 1; i--) {
+                                    if (c2 == (i*i)) {
+                                        System.out.println("c = " + i);
+                                        break;
+                                    }
+                                    else if (c2 % (i*i) == 0) {
+                                        System.out.println("c = " + i + "sqrt(" + (c2/(i*i)) + ")");
+                                        break;
+                                    }
+                                }
                                 break;
                             case 2:
                                 System.out.print("Enter Leg A length: ");
@@ -75,23 +84,7 @@ public class project {
                     while (automActive == true);
                     break;
                 case 2:
-                    System.out.println("INSTRUCTIONS:");
-                    System.out.println("Solve for the triangle's missing side to defeat it or something");
-                    int player_hp = 100;
-                    System.out.println("");
-                    System.out.println("");
-                    int enemy1_hp = (int)(Math.random() * 19 + 1);
-                    int enemy1_leg1 = 12;
-                    int enemy1_leg2 = 9;
-                    System.out.println("Leg A of Enemy 1 is " + enemy1_leg1 + "units");
-                    System.out.println("Leg B of Enemy 1 is " + enemy1_leg2 + "units");
-                    System.out.print("Find the hypotenuse: ");
-                    double ans1 = scan.nextDouble();
-                    if (ans1 == Math.sqrt((enemy1_leg1*enemy1_leg1) + (enemy1_leg2*enemy1_leg2))) {
-                        System.out.println("yipeeee");
-                    } else {
-                        System.out.println("L bozo u lost");
-                    }
+                    // game stuff
                     break;
                 case 0:
                     isActive = false;
