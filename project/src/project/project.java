@@ -34,12 +34,12 @@ public class project {
                         switch (input2) {
                             case 1:
                                 System.out.print("Enter length of Leg A: ");
-                                double a = scan.nextDouble();
-                                double a2 = a * a;
+                                int a = scan.nextInt();
+                                int a2 = a * a;
                                 System.out.print("Enter length of Leg B: ");
-                                double b = scan.nextDouble();
-                                double b2 = b * b;
-                                double c2 = a2 + b2;
+                                int b = scan.nextInt();
+                                int b2 = b * b;
+                                int c2 = a2 + b2;
                                 System.out.println("Computation:");
                                 System.out.println("    c^2 = a^2 + b^2");
                                 System.out.println("    c^2 = " + a + "^2 + " + b + "^2");
@@ -81,17 +81,51 @@ public class project {
                                 break;
                             case 2:
                                 System.out.print("Enter Leg A length: ");
-                                double leg = scan.nextDouble();
-                                double leg2 = leg * leg;
-                                System.out.print("Enter hypotenuse length: ");
-                                double hypo = scan.nextDouble();
-                                double hypo2 = hypo * hypo;
-                                System.out.println("Leg A^2: " + leg2);
-                                System.out.println("Hypotenuse^2: " + hypo2);
-                                System.out.println("Leg B length = sqrt(Hypotenuse^2 - Leg A^2)");
-                                double legb2 = hypo2 - leg2;
-                                System.out.println("Hypotenuse^2 - Leg A^2: " + legb2);
-                                System.out.println("Leg B Length: " + Math.sqrt(legb2));
+                                int a1 = scan.nextInt();
+                                int a1_2 = a1 * a1;
+                                System.out.print("Enter hypotenuse (C) length: ");
+                                int c1 = scan.nextInt();
+                                int c1_2 = c1 * c1;
+                                int b1_2 = c1_2 - a1_2;
+                                System.out.println("Computation:");
+                                System.out.println("    c^2 = a^2 + b^2");
+                                System.out.println("    b^2 = c^2 - a^2");
+                                System.out.println("    b^2 = " + c1 + "^2 - " + a1 + "^2");
+                                System.out.println("    b^2 = " + c1_2 + " - " + a1_2);
+                                System.out.println("    b^2 = " + b1_2);
+                                System.out.println("    b = sqrt(" + b1_2 + ")");
+                                int root1 = (int)Math.sqrt(b1_2);
+                                boolean simplifiable_1 = false;
+                                for (int i = root1; i > 1; i--) {
+                                    if (b1_2 == (i*i)) {
+                                        System.out.println("    b = " + i);
+                                        System.out.println("Checking:");
+                                        System.out.println("    c^2 = a^2 + b^2");
+                                        System.out.println("    " + c1 + "^2 = " + a1 + "^2 + " + i + "^2");
+                                        System.out.println("    " + c1_2 + " = " + a1_2 + " + " + i);
+                                        System.out.println("    " + c1_2 + " = " + (a1_2 + b1_2));
+                                        simplifiable_1 = true;
+                                        break;
+                                    }
+                                    else if (b1_2 % (i*i) == 0) {
+                                        System.out.println("    b = " + i + "sqrt(" + (b1_2/(i*i)) + ")");
+                                        System.out.println("Checking:");
+                                        System.out.println("    c^2 = a^2 + b^2");
+                                        System.out.println("    " + c1 + "^2 = " + a1 + "^2 + " + i + "sqrt(" + (b1_2/(i*i)) + ")" + "^2");
+                                        System.out.println("    " + c1_2 + " = " + a1_2 + " + " + i + "^2(" + (b1_2/(i*i)) + ")");
+                                        System.out.println("    " + c1_2 + " = " + a1_2 + " + " + (i*i) + "(" + (b1_2/(i*i)) + ")");
+                                        System.out.println("    " + c1_2 + " = " + (a1_2 + b1_2));
+                                        simplifiable_1 = true;
+                                        break;
+                                    }
+                                }
+                                if (simplifiable_1 != true) {
+                                    System.out.println("Checking: ");
+                                    System.out.println("    c^2 = a^2 + b^2");
+                                    System.out.println("    " + c1_2 + "))^2 = " + a1 + "^2 + sqrt(" + b1_2 + ")" + "^2");
+                                    System.out.println("    " + c1_2 + " = " + a1_2 + " + " + b1_2);
+                                    System.out.println("    " + c1_2 + " = " + (a1_2 + b1_2));
+                                }
                                 break;
                             case 0:
                                 System.out.println("-----------------------------");
@@ -124,5 +158,4 @@ public class project {
         }
         while (isActive == true);
     }   
-}
-    
+} 
