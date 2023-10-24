@@ -140,13 +140,11 @@ public class project {
                     break;
                 case 2:
                     scan.nextLine();
-                    System.out.println("==========PYGOMON (name pending)==========");
-                    System.out.println("pokemon but triangle or something like that\n");
-                    System.out.println("======[At the Pygomon Institute]======");
-                    System.out.println("DR. PYTHA: Ah, welcome to the Institute! I see we have another first-timer over here, eh?");
-                    System.out.println("[Press Enter to move to the next dialogue.]");
-                    scan.nextLine();
-                    System.out.println("YOU: Um, good morning! Yes, I actually found this thing blah blah blah");
+                    System.out.println("\n===================[[Welcome to PYGOMON]]===================\n");
+                    System.out.println("pokemon but triangle or something like that");
+                    System.out.println("NOTE: Press Enter to move to the next dialogue.");
+                    System.out.println("\n============================================================\n");
+                    System.out.println("You're out walking in the grass (for reasons), when you find an odd-looking object.");
                     break;
                 case 0:
                     isActive = false;
