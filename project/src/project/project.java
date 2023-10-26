@@ -10,7 +10,6 @@ import java.util.Scanner;
  * @author d4rkc
  */
 public class project {
-    @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         boolean isActive = true;
@@ -141,10 +140,51 @@ public class project {
                 case 2:
                     scan.nextLine();
                     System.out.println("\n===================[[Welcome to PYGOMON]]===================\n");
-                    System.out.println("pokemon but triangle or something like that");
-                    System.out.println("NOTE: Press Enter to move to the next dialogue.");
+                    System.out.println("(pokemon but triangles or something like that)");
+                    System.out.print("\n\nEnter your name: ");
+                    String name = scan.nextLine().toUpperCase();
+                    String fname = name.split(" ")[0];
+                    System.out.println("\nNOTE: Press Enter to move to the next dialogue.");
                     System.out.println("\n============================================================\n");
-                    System.out.println("You're out walking in the grass (for reasons), when you find an odd-looking object.");
+                    System.out.print("You're out walking in the grass (for reasons), when you find a mysterious object. ");
+                    scan.nextLine(); 
+                    //this is the "Press Enter to progress" mechanic
+                    System.out.println("\nIt's like an odd geometric looking... thing...");
+                    System.out.print("\nIf it is what you think it is... there's only one place to go to. ");
+                    scan.nextLine();
+                    System.out.println("\n[AT THE PYGOMON CENTER]\n");
+                    System.out.println("dialogue");
+                    
+                    System.out.print("\nPROF. PYGO: Alright " + fname + ", let's get you growing your own PYGOMON! ");
+                    scan.nextLine();
+                    System.out.print("\nPROF. PYGO: Right now, you still have an INCOMPLETE PYGOMON, ");
+                    System.out.println("so you'll have to CONSTRUCT its missing geometry to complete it!\n");
+                    System.out.print("            You know the basics of the Pythagorean theorem now, don't you? Try it out! ");
+                    scan.nextLine();
+                    System.out.println("\nPROF. PYGO: Oh look, this is an easy one! Solve for the missing side to construct the PYGOMON!");
+                    int evol_soln = 0;
+                    while (evol_soln != 5) {
+                        System.out.println("");
+                        System.out.println("        .");
+                        System.out.println("        &*O.");
+                        System.out.println("a = 3   &  *O.    c = ???");
+                        System.out.println("        &     *O.");
+                        System.out.println("        &ooooooO&Oo.");
+                        System.out.println("           b = 4\n");
+                        System.out.print("Enter the value of c: ");
+                        evol_soln = scan.nextInt();
+                        scan.nextLine();
+                        if (evol_soln == 5) break;
+                        else {
+                            System.out.print("\nPROF. PYGO: Looks like you constructed it incorrectly... ");
+                            System.out.print("Don't worry, you can always try again! ");
+                            scan.nextLine();
+                            System.out.println("\n            Just remember the formula a^2 + b^2 = c^2!");
+                        }
+                    }
+                    int pygo_lvl = 1;
+                    int pygo_hp = 5;
+                    System.out.println("\nPROF PYGO: Congratulations!! You've now got yourself a [Lvl. 1 PYGOMON]!");
                     break;
                 case 0:
                     isActive = false;
