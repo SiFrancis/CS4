@@ -101,7 +101,7 @@ public class project {
                                         System.out.println("Checking:");
                                         System.out.println("    c^2 = a^2 + b^2");
                                         System.out.println("    " + c1 + "^2 = " + a1 + "^2 + " + i + "^2");
-                                        System.out.println("    " + c1_2 + " = " + a1_2 + " + " + i);
+                                        System.out.println("    " + c1_2 + " = " + a1_2 + " + " + b1_2);
                                         System.out.println("    " + c1_2 + " = " + (a1_2 + b1_2));
                                         simplifiable_1 = true;
                                         break;
