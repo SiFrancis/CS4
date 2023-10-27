@@ -141,7 +141,7 @@ public class project {
                     scan.nextLine();
                     System.out.println("\n===================[[Welcome to PYGOMON]]===================\n");
                     System.out.println("(pokemon but triangles or something like that)");
-                    System.out.print("\n\nEnter your name: ");
+                    System.out.println();
                     System.out.println("\nNOTE: Press Enter to move to the next dialogue.");
                     System.out.println("\n============================================================\n");
                     System.out.print("You're out walking in the grass (for reasons), when you find a mysterious object. ");
@@ -152,12 +152,22 @@ public class project {
                     scan.nextLine();
                     System.out.println("\n[AT THE PYGOMON CENTER]\n");
                     
-                    System.out.println("dialogue");
-                    
-                    System.out.print("\nPROF. PYTHA: Alright, let's get you growing your own PYGOMON! ");
+                    System.out.print("???: Hello, welcome to the PYGOMON CENTER! How may I help you? ");
+                    scan.nextLine();
+                    System.out.print("\n     Oh, I see... it does appear to be a PYGOMON to me... but it's not fully grown just yet. ");
+                    scan.nextLine();
+                    System.out.print("\n     You wanna take care of it, huh? Well, are you ready to handle the responsibility of having a PYGOMON? ");
+                    scan.nextLine();
+                    System.out.print("\n???: Yes? That's good to hear! ");
+                    scan.nextLine();
+                    System.out.println("\n???: By the way, my name's PROFESSOR PYTHA, I'm the PYGOMON researcher in this local facility!\n");
+                    System.out.print("PROF. PYTHA: Anyways, come to the training area with me, and take the PYGOMON with you! ");
+                    scan.nextLine();
+                    System.out.println("\n-----[At the TRAINING AREA]-----\n");
+                    System.out.print("PROF. PYTHA: Alright, let's get you growing your own PYGOMON! ");
                     scan.nextLine();
                     System.out.print("\nPROF. PYTHA: Right now, you still have an INCOMPLETE PYGOMON, ");
-                    System.out.println("so you'll have to CONSTRUCT its missing geometry to complete it!\n");
+                    System.out.println("so you'll have to construct its missing geometry to complete it!\n");
                     System.out.print("             You know the basics of the Pythagorean theorem now, don't you? Try it out! ");
                     scan.nextLine();
                     System.out.println("\nPROF. PYTHA: Oh look, this is an easy one! Solve for the missing side to construct the PYGOMON!");
@@ -216,14 +226,119 @@ public class project {
                     System.out.println("|    [1] LEG SWEEP       |");
                     System.out.println("|    [2] HYPO-DASH       |");
                     System.out.println("*------------------------*");
-                    System.out.println("\nThere, now that's better!");
-                    
-                    System.out.println("\ndialogue ensues");
-                    
-                    System.out.println("TRAINER GORAS: Hey there, neophyte! I'm Goras, the trainer of this facility.\n");
-                    System.out.println("               I'll be teaching you when it comes to your PYGOMON, and PYGOMON battling. Got that?\n");
+                    System.out.print("\nPROF. PYTHA: There, now that's better! ");
                     scan.nextLine();
-                    System.out.println("PROF. PYTHA: 'Neophyte'?");
+                    System.out.println("\n[Someone else enters the training area.]\n");
+                    System.out.print("????: Hey Prof, good morning! ");
+                    scan.nextLine();
+                    System.out.println("\nPROF. PYTHA: Oh, hey Goras! Nice timing, someone new just came in!");
+                    System.out.print("\n             This is Goras, by the way; he's the one who trains aspiring PYGOMON champions, like yourself! ");
+                    scan.nextLine();
+                    System.out.println("\nTRAINER GORAS: Hey there, newbie! I'm Goras, the trainer of this facility.\n");
+                    System.out.print("               I'll be teaching you when it comes to your PYGOMON, and battling with it. Got that? ");
+                    scan.nextLine();
+                    System.out.println("\nTRAINER GORAS: Good. Alright, let's give your new PYGOMON a little warm-up!\n");
+                    System.out.print("               Don't worry! Mine won't hurt you! ");
+                    scan.nextLine();
+                    int enemy_lvl = 1;
+                    int enemy_hp = 11;
+                    int enemy_atk = 0;
+                    System.out.println("\n=======[TIME TO BATTLE!!]=======\n\n");
+                    while (enemy_hp > 0) {
+                        System.out.println(".------------------------.");
+                        System.out.print("|   " + pygo_name);
+                        for (int i = 0; i < 21 - pygo_name.length(); i++) System.out.print(" ");
+                        System.out.println("|");
+                        System.out.println("|------------------------|");
+                        System.out.println(String.format("|   [Lvl. %d PYGOMON]     |", pygo_lvl));
+                        System.out.print(String.format("|   HP: %d   ", pygo_hp));
+                        System.out.println(String.format("    ATK: %d  |", pygo_atk));
+                        System.out.println("|   ATTACKS:             |");
+                        System.out.println("|    [1] LEG SWEEP       |");
+                        System.out.println("|    [2] HYPO-DASH       |");
+                        System.out.println("*------------------------*");
+                        System.out.println("\n------------VS------------\n");
+                        System.out.println(".------------------------.");
+                        System.out.println("|   LITERAL TEST DUMMY   |");
+                        System.out.println("|------------------------|");
+                        System.out.println(String.format("|   [Lvl. %d PYGOMON]     |", enemy_lvl));
+                        System.out.print(String.format("|   HP: %d   ", enemy_hp));
+                        if (enemy_hp >= 10) System.out.println(String.format("    ATK: %d  |", enemy_atk));
+                        else System.out.println(String.format("     ATK: %d  |", enemy_atk));
+                        System.out.println("|   ATTACKS:             |");
+                        System.out.println("|    [1] STAND THERE     |");
+                        System.out.println("*------------------------*\n");    
+                        System.out.println("It's your turn! What do you do?");
+                        int choice = 0;
+                        while (choice != 1 && choice != 2) {
+                            System.out.println("[1] LEG SWEEP");
+                            System.out.println("[2] HYPO-DASH");
+                            System.out.print("Enter your choice: ");
+                            choice = scan.nextInt();
+                            if (choice != 1 && choice != 2) System.out.println("\nERROR: Invalid input; try again!\n");
+                        }
+                        switch (choice) {
+                            case 1:
+                                System.out.println("\nFind the enemy's geometry in order to successfully target it!");
+                                int leg_soln = 0;
+                                while (leg_soln != 15) {
+                                    System.out.println("");
+                                    System.out.println("          .");
+                                    System.out.println("          &???");
+                                    System.out.println("  a = ??? ?   ??.    c = 17");
+                                    System.out.println("          ?     ?O.");
+                                    System.out.println("          &?oo?ooO??o.");
+                                    System.out.println("             b = 8\n");
+                                    System.out.print("Enter the value of c: ");
+                                    leg_soln = scan.nextInt();
+                                    if (leg_soln == 15) break;
+                                    else {
+                                        System.out.print("\nTRAINER GORAS: Ooh, you missed that one! Come on buddy, you can do it! ");
+                                        scan.nextLine();
+                                        System.out.println("\n               Just remember the formula a^2 + b^2 = c^2!");
+                                    }
+                                }
+                                System.out.println("\n" + pygo_name + " does LEG SWEEP!\n");
+                                System.out.println("It deals " + pygo_atk + " damage!\n");
+                                enemy_hp -= pygo_atk;
+                                break;
+                            case 2:
+                                System.out.println("\nFind the enemy's geometry to target them with your attack!");
+                                int hypo_soln = 0;
+                                while (hypo_soln != 17) {
+                                    System.out.println("");
+                                    System.out.println("          .");
+                                    System.out.println("          &???");
+                                    System.out.println("  a = 15  ?   ??.    c = ???");
+                                    System.out.println("          ?     ?O.");
+                                    System.out.println("          &?oo?ooO??o.");
+                                    System.out.println("             b = 8\n");
+                                    System.out.print("Enter the value of c: ");
+                                    hypo_soln = scan.nextInt();
+                                    if (hypo_soln == 17) break;
+                                    else {
+                                        System.out.print("\nTRAINER GORAS: Ooh, you missed that one! Come on buddy, you can do it! ");
+                                        scan.nextLine();
+                                        System.out.println("\n               Just remember the formula a^2 + b^2 = c^2!");
+                                    }
+                                }
+                                System.out.println("\n" + pygo_name + " does HYPO-DASH!\n");
+                                System.out.println("It deals " + pygo_atk + " damage!\n");
+                                enemy_hp -= pygo_atk;
+                                break;
+                        }
+                    }
+                    System.out.print("\nTRAINER GORAS: Nice one, kid! Now that you know how to do proper PYGOMON battle, you're ready to go out and explore! ");
+                    scan.nextLine();
+                    scan.nextLine();
+                    System.out.print("\nPROF. PYTHA: That's right! Just keep growing and evolving your PYGOMON, and you'll be winning battles in no time! ");
+                    scan.nextLine();
+                    System.out.print("\nPROF. PYTHA: Oh, looks like I'm needed for something.. guess I'll see you again sometime. Bye!! ");
+                    scan.nextLine();
+                    System.out.print("\nTRAINER GORAS: Alright, now go on and explore with your new PYGOMON! You can do this, kid! ");
+                    scan.nextLine();
+                    System.out.println("\n               Oh, looks like I also have other stuff to take care of... Well, see ya soon!");
+                    System.out.println("\n========[GAME END :DD]========\n");
                     break;
                 case 0:
                     isActive = false;
