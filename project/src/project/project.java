@@ -142,8 +142,6 @@ public class project {
                     System.out.println("\n===================[[Welcome to PYGOMON]]===================\n");
                     System.out.println("(pokemon but triangles or something like that)");
                     System.out.print("\n\nEnter your name: ");
-                    String name = scan.nextLine().toUpperCase();
-                    String fname = name.split(" ")[0];
                     System.out.println("\nNOTE: Press Enter to move to the next dialogue.");
                     System.out.println("\n============================================================\n");
                     System.out.print("You're out walking in the grass (for reasons), when you find a mysterious object. ");
@@ -153,38 +151,79 @@ public class project {
                     System.out.print("\nIf it is what you think it is... there's only one place to go to. ");
                     scan.nextLine();
                     System.out.println("\n[AT THE PYGOMON CENTER]\n");
+                    
                     System.out.println("dialogue");
                     
-                    System.out.print("\nPROF. PYGO: Alright " + fname + ", let's get you growing your own PYGOMON! ");
+                    System.out.print("\nPROF. PYTHA: Alright, let's get you growing your own PYGOMON! ");
                     scan.nextLine();
-                    System.out.print("\nPROF. PYGO: Right now, you still have an INCOMPLETE PYGOMON, ");
+                    System.out.print("\nPROF. PYTHA: Right now, you still have an INCOMPLETE PYGOMON, ");
                     System.out.println("so you'll have to CONSTRUCT its missing geometry to complete it!\n");
-                    System.out.print("            You know the basics of the Pythagorean theorem now, don't you? Try it out! ");
+                    System.out.print("             You know the basics of the Pythagorean theorem now, don't you? Try it out! ");
                     scan.nextLine();
-                    System.out.println("\nPROF. PYGO: Oh look, this is an easy one! Solve for the missing side to construct the PYGOMON!");
+                    System.out.println("\nPROF. PYTHA: Oh look, this is an easy one! Solve for the missing side to construct the PYGOMON!");
                     int evol_soln = 0;
                     while (evol_soln != 5) {
                         System.out.println("");
-                        System.out.println("        .");
-                        System.out.println("        &*O.");
-                        System.out.println("a = 3   &  *O.    c = ???");
-                        System.out.println("        &     *O.");
-                        System.out.println("        &ooooooO&Oo.");
-                        System.out.println("           b = 4\n");
+                        System.out.println("          .");
+                        System.out.println("          &???");
+                        System.out.println("  a = 3   ?   ??.    c = ???");
+                        System.out.println("          ?     ?O.");
+                        System.out.println("          &?oo?ooO??o.");
+                        System.out.println("             b = 4\n");
                         System.out.print("Enter the value of c: ");
                         evol_soln = scan.nextInt();
                         scan.nextLine();
                         if (evol_soln == 5) break;
                         else {
-                            System.out.print("\nPROF. PYGO: Looks like you constructed it incorrectly... ");
+                            System.out.print("\nPROF. PYTHA: Looks like you constructed it incorrectly... ");
                             System.out.print("Don't worry, you can always try again! ");
                             scan.nextLine();
-                            System.out.println("\n            Just remember the formula a^2 + b^2 = c^2!");
+                            System.out.println("\n             Just remember the formula a^2 + b^2 = c^2!");
                         }
                     }
                     int pygo_lvl = 1;
-                    int pygo_hp = 5;
-                    System.out.println("\nPROF PYGO: Congratulations!! You've now got yourself a [Lvl. 1 PYGOMON]!");
+                    int pygo_hp = 15 + 5 * (pygo_lvl - 1);
+                    int pygo_atk = 4;
+                    System.out.println("\nPROF PYTHA: Congratulations!! You've now got yourself a [Lvl. 1 PYGOMON]!\n");
+                    System.out.println(".------------------------.");
+                    System.out.println("|   ????                 |");
+                    System.out.println("|------------------------|");
+                    System.out.println(String.format("|   [Lvl. %d PYGOMON]     |", pygo_lvl));
+                    System.out.print(String.format("|   HP: %d   ", pygo_hp));
+                    System.out.println(String.format("    ATK: %d  |", pygo_atk));
+                    System.out.println("|   ATTACKS:             |");
+                    System.out.println("|    [1] LEG SWEEP       |");
+                    System.out.println("|    [2] HYPO-DASH       |");
+                    System.out.println("*------------------------*");
+                    scan.nextLine();
+                    System.out.print("PROF. PYTHA: Oh, hang on, there seems to be something missing... ");
+                    scan.nextLine();
+                    System.out.println("\n             Oh right, we need to give your PYGOMON a name!\n");
+                    System.out.println("             Well, what would you like to name it?\n");
+                    System.out.print("Enter the name of your PYGOMON here: ");
+                    String pygo_name = scan.nextLine().toUpperCase();
+                    System.out.println("\nPROF. PYTHA: " + pygo_name + ", such a nice name! Good job!\n");
+                    System.out.println("              Hang on, it should update now...\n");
+                    System.out.println(".------------------------.");
+                    System.out.print("|   " + pygo_name);
+                    for (int i = 0; i < 21 - pygo_name.length(); i++) System.out.print(" ");
+                    System.out.println("|");
+                    System.out.println("|------------------------|");
+                    System.out.println(String.format("|   [Lvl. %d PYGOMON]     |", pygo_lvl));
+                    System.out.print(String.format("|   HP: %d   ", pygo_hp));
+                    System.out.println(String.format("    ATK: %d  |", pygo_atk));
+                    System.out.println("|   ATTACKS:             |");
+                    System.out.println("|    [1] LEG SWEEP       |");
+                    System.out.println("|    [2] HYPO-DASH       |");
+                    System.out.println("*------------------------*");
+                    System.out.println("\nThere, now that's better!");
+                    
+                    System.out.println("\ndialogue ensues");
+                    
+                    System.out.println("TRAINER GORAS: Hey there, neophyte! I'm Goras, the trainer of this facility.\n");
+                    System.out.println("               I'll be teaching you when it comes to your PYGOMON, and PYGOMON battling. Got that?\n");
+                    scan.nextLine();
+                    System.out.println("PROF. PYTHA: 'Neophyte'?");
                     break;
                 case 0:
                     isActive = false;
