@@ -1,0 +1,1 @@
+Testing out the **GUI Builder** feature of NetBeans, unsure if the .java files can be run by themselves; to be safe, place the .java and .form files in the same package and run in NetBeans
