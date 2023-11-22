@@ -127,13 +127,38 @@ public class AutomGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int a = Integer.parseInt(jTextField1.getText());
+        int a2 = a * a;
+        int b = Integer.parseInt(jTextField2.getText());
+        int b2 = b * b;
+        int c2 = a2 + b2;
+        findHypotenuse(a, b, a2, b2, c2);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void findHypotenuse(int a, int b, int a2, int b2, int c2) {
+        int root = (int)Math.sqrt(c2);
+        boolean simplifiable = false;
+        for (int i = root; i > 1; i--) {
+            if (c2 == (i*i)) {
+                jLabel5.setText("OUTPUT: The hypotenuse is " + i);
+                simplifiable = true;
+                break;
+            }
+            else if (c2 % (i*i) == 0) {
+                jLabel5.setText("OUTPUT: The hypotenuse is " + i + "sqrt(" + (c2/(i*i)) + ")");
+                simplifiable = true;
+                break;
+            }
+        }
+        if (simplifiable != true) {
+                jLabel5.setText("OUTPUT: The hypotenuse is sqrt(" + c2 + ")");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
