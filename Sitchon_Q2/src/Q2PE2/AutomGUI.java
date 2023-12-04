@@ -32,8 +32,8 @@ public class AutomGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        findHyp = new javax.swing.JButton();
+        findLeg = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
 
@@ -55,19 +55,19 @@ public class AutomGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setText("Choose your calculation:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Find Hypotenuse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        findHyp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        findHyp.setText("Find Hypotenuse");
+        findHyp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                findHypActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Find Leg Length");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        findLeg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        findLeg.setText("Find Leg Length");
+        findLeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                findLegActionPerformed(evt);
             }
         });
 
@@ -76,6 +76,11 @@ public class AutomGUI extends javax.swing.JFrame {
 
         backButton.setText("<< Back");
         backButton.setMargin(new java.awt.Insets(2, 8, 3, 8));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,9 +90,9 @@ public class AutomGUI extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(findHyp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                        .addComponent(findLeg))
                     .addComponent(jLabel4)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -124,8 +129,8 @@ public class AutomGUI extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(findHyp)
+                    .addComponent(findLeg))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -134,18 +139,23 @@ public class AutomGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void findHypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findHypActionPerformed
         int a = Integer.parseInt(jTextField1.getText());
         int a2 = a * a;
         int b = Integer.parseInt(jTextField2.getText());
         int b2 = b * b;
         int c2 = a2 + b2;
         findHypotenuse(a, b, a2, b2, c2);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_findHypActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void findLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findLegActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_findLegActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        dispose();
+        new MenuGUI().setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     public void findHypotenuse(int a, int b, int a2, int b2, int c2) {
         int root = (int)Math.sqrt(c2);
@@ -204,8 +214,8 @@ public class AutomGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton findHyp;
+    private javax.swing.JButton findLeg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

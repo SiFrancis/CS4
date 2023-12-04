@@ -31,6 +31,8 @@ public class MenuGUI extends javax.swing.JFrame {
         gameButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusCycleRoot(false);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jLabel1.setText("Choose a thing:");
@@ -82,12 +84,12 @@ public class MenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void automButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_automButtonActionPerformed
-        setVisible(false);
+        dispose();
         new AutomGUI().setVisible(true);
     }//GEN-LAST:event_automButtonActionPerformed
 
     private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
-        setVisible(false);
+        dispose();
         new GameGUI().setVisible(true);
     }//GEN-LAST:event_gameButtonActionPerformed
 
