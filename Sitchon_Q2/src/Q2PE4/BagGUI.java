@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Q2PE2;
+package Q2PE4;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.logging.Level;
@@ -183,7 +183,7 @@ public class BagGUI extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         dispose();
-        new MenuGUI().setVisible(true);
+        new GameGUI().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**

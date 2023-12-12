@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Q2PE2;
+package Q2PE4;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.logging.Level;
@@ -33,6 +33,7 @@ public class MenuGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         automButton = new javax.swing.JButton();
         gameButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bicbic, Rosalejos, Sitchon - CS PE4");
@@ -58,6 +59,14 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
 
+        quitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        quitButton.setText("QUIT");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,8 +78,13 @@ public class MenuGUI extends javax.swing.JFrame {
                 .addComponent(gameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,7 +96,9 @@ public class MenuGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(automButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -97,6 +113,10 @@ public class MenuGUI extends javax.swing.JFrame {
         dispose();
         new GameGUI().setVisible(true);
     }//GEN-LAST:event_gameButtonActionPerformed
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_quitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,5 +139,6 @@ public class MenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton automButton;
     private javax.swing.JButton gameButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton quitButton;
     // End of variables declaration//GEN-END:variables
 }

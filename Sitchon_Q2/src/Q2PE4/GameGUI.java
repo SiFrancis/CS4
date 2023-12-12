@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Q2PE2;
+package Q2PE4;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.logging.Level;
@@ -97,6 +97,11 @@ public class GameGUI extends javax.swing.JFrame {
         });
 
         pygoBtn.setText("PYGOMON");
+        pygoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pygoBtnActionPerformed(evt);
+            }
+        });
 
         runBtn.setText("RUN");
         runBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +197,8 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField5ActionPerformed
 
     private void fightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightBtnActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new moves().setVisible(true);
     }//GEN-LAST:event_fightBtnActionPerformed
 
     private void runBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runBtnActionPerformed
@@ -204,6 +210,11 @@ public class GameGUI extends javax.swing.JFrame {
         dispose();
         new BagGUI().setVisible(true);
     }//GEN-LAST:event_bagBtnActionPerformed
+
+    private void pygoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pygoBtnActionPerformed
+        dispose();
+        new pygomon().setVisible(true);
+    }//GEN-LAST:event_pygoBtnActionPerformed
 
     /**
      * @param args the command line arguments
