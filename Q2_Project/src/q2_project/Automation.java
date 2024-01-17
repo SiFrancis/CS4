@@ -188,13 +188,27 @@ public class Automation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private static String sqrtize(int x) {
+        int root = (int)Math.sqrt(x);
+        for (int i = root; i > 1; i--) {
+            if (x == (i*i)) {
+                return Integer.toString(i);
+            }
+            else if (x % (i*i) == 0) {
+//                return Integer.toString(i) + "sqrt(" + (x/(i*i)) + ")";
+                return String.format("%1$dsqrt(%2$d)", i, (x/(i*i)));
+            }
+        }
+        return String.format("sqrt(%d)", x);
+    }
+    
     private void updateOutputs(){
         float a2 = a*a;
         float b2 = b*b;
-        float c = (float)Math.sqrt(a2 + b2);
-        float x = a2/c;
-        float y = b2/c;
-        float h = (float)Math.sqrt(x*y);
+        c = (float)Math.sqrt(a2 + b2);
+        x = a2/c;
+        y = b2/c;
+        h = (float)Math.sqrt(x*y);
         jLabelX.setText(String.format("x = %.2f", x));
         jLabelY.setText(String.format("y = %.2f", y));
         jLabelC.setText(String.format("c = %.2f", c));
@@ -212,6 +226,7 @@ public class Automation extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         try {
+            System.out.println(sqrtize(496));
             javax.swing.UIManager.setLookAndFeel(new FlatIntelliJLaf());
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
