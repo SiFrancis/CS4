@@ -32,6 +32,7 @@ public class Numpad extends javax.swing.JFrame {
     String defaultString = "----";
     String currentString = defaultString; //what is displayed
     String answerString = "1234"; //the answer
+    boolean solved = false;
     
     private void resetScreen() {
         jTextField1.setForeground(Color.white);
@@ -53,6 +54,7 @@ public class Numpad extends javax.swing.JFrame {
             });
             timer.setRepeats(false);
             timer.start();
+            solved = true;
         } 
         else {
             jTextField1.setForeground(Color.red);
@@ -62,6 +64,10 @@ public class Numpad extends javax.swing.JFrame {
             timer.setRepeats(false);
             timer.start();
         }
+    }
+    
+    public boolean returnSolved(){
+        return solved;
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,7 +87,7 @@ public class Numpad extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButtonEnter = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));

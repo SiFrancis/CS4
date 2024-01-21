@@ -33,7 +33,6 @@ public class Automation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelSolnTitle = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -48,14 +47,9 @@ public class Automation extends javax.swing.JFrame {
         jLabelH = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        jButtonFormula = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Automation - CS4 Project");
-
-        jLabelSolnTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelSolnTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSolnTitle.setText("SOLUTION");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/autom_triangle.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -105,20 +99,10 @@ public class Automation extends javax.swing.JFrame {
             }
         });
 
-        jButtonFormula.setText("Show Formula");
-        jButtonFormula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFormulaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelSolnTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,10 +139,6 @@ public class Automation extends javax.swing.JFrame {
                                 .addGap(0, 16, Short.MAX_VALUE))
                             .addComponent(jLabelH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(17, 17, 17))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(252, 252, 252)
-                .addComponent(jButtonFormula)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,11 +175,7 @@ public class Automation extends javax.swing.JFrame {
                         .addComponent(jLabelY)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelH)))
-                .addGap(45, 45, 45)
-                .addComponent(jLabelSolnTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonFormula)
-                .addGap(209, 209, 209))
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -266,11 +242,6 @@ public class Automation extends javax.swing.JFrame {
         new MainMenu().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jButtonFormulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFormulaActionPerformed
-        showFormula = !(showFormula);
-        new Formula().setVisible(showFormula);
-    }//GEN-LAST:event_jButtonFormulaActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -290,7 +261,6 @@ public class Automation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButtonFormula;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -298,7 +268,6 @@ public class Automation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelB;
     private javax.swing.JLabel jLabelC;
     private javax.swing.JLabel jLabelH;
-    private javax.swing.JLabel jLabelSolnTitle;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelX;
     private javax.swing.JLabel jLabelY;
