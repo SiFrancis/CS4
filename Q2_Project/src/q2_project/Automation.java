@@ -33,150 +33,77 @@ public class Automation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabelA = new javax.swing.JLabel();
-        jLabelB = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         submitButton = new javax.swing.JButton();
         jLabelX = new javax.swing.JLabel();
         jLabelY = new javax.swing.JLabel();
         jLabelC = new javax.swing.JLabel();
         jLabelH = new javax.swing.JLabel();
-        jLabelTitle = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Automation - CS4 Project");
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/autom_triangle.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
+        jTextField1.setBackground(new java.awt.Color(0, 0, 0, 0));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setBorder(null);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 145, 40, 40));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("INPUTS");
+        jTextField2.setBackground(new java.awt.Color(0,0,0,0));
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField2.setBorder(null);
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 202, 40, 40));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("OUTPUTS");
-
-        jLabelA.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelA.setText("a =");
-
-        jLabelB.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelB.setText("b =");
-
-        submitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        submitButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        submitButton.setForeground(new java.awt.Color(255, 255, 255));
+        submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HOME_Game.png"))); // NOI18N
         submitButton.setText("SUBMIT");
+        submitButton.setContentAreaFilled(false);
+        submitButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 120, 60));
 
-        jLabelX.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelX.setText("x = 0");
+        jLabelX.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabelX.setText("0");
+        getContentPane().add(jLabelX, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 110, 40));
 
-        jLabelY.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelY.setText("y = 0");
+        jLabelY.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabelY.setText("0");
+        getContentPane().add(jLabelY, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 90, 40));
 
-        jLabelC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelC.setText("c = 0");
+        jLabelC.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabelC.setText("0");
+        getContentPane().add(jLabelC, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 235, 80, 40));
 
-        jLabelH.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelH.setText("h = 0");
+        jLabelH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelH.setText("0");
+        getContentPane().add(jLabelH, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 120, 30));
 
-        jLabelTitle.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitle.setText("AUTOMATION");
-
+        backButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HOME_Automation.png"))); // NOI18N
         backButton.setText("<< Back");
+        backButton.setContentAreaFilled(false);
+        backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 120, 60));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabelA, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelB, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelY, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 16, Short.MAX_VALUE))
-                            .addComponent(jLabelH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(17, 17, 17))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(28, 28, 28)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelX)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelY)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelH)))
-                .addGap(60, 60, 60))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/AUTOMATION_upscaled.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,22 +139,22 @@ public class Automation extends javax.swing.JFrame {
         int b2 = b*b;
         int[] c = sqrtize(a2 + b2);
         if (c.length == 1) {
-            jLabelC.setText(String.format("c = %d", c[0]));
+            jLabelC.setText(String.format("%d", c[0]));
             int gcd_x = GCD(a2, c[0]);
-            jLabelX.setText(String.format("x = %1$d/%2$d", a2/gcd_x, c[0]/gcd_x));
+            jLabelX.setText(String.format("%1$d/%2$d", a2/gcd_x, c[0]/gcd_x));
             int gcd_y = GCD(b2, c[0]);
-            jLabelY.setText(String.format("y = %1$d/%2$d", b2/gcd_x, c[0]/gcd_x));
+            jLabelY.setText(String.format("%1$d/%2$d", b2/gcd_x, c[0]/gcd_x));
             int gcd_h = GCD((a*b), c[0]);
-            jLabelH.setText(String.format("h = %1$d/%2$d", (a*b)/gcd_x, c[0]/gcd_x));
+            jLabelH.setText(String.format("%1$d/%2$d", (a*b)/gcd_x, c[0]/gcd_x));
         } 
         else {
-            jLabelC.setText(String.format("c = %1$dsqrt(%2$d)", c[0], c[1]));
+            jLabelC.setText(String.format("%1$d√(%2$d)", c[0], c[1]));
             int x_coeff = (a2/c[0]);
-            jLabelX.setText(String.format("x = [%1$dsqrt(%2$d)]/%2$d", x_coeff, c[1]));
+            jLabelX.setText(String.format("[%1$d√(%2$d)]/%2$d", x_coeff, c[1]));
             int y_coeff = (b2/c[0]);
-            jLabelY.setText(String.format("y = [%1$dsqrt(%2$d)]/%2$d", y_coeff, c[1]));
+            jLabelY.setText(String.format("[%1$d√(%2$d)]/%2$d", y_coeff, c[1]));
             int h_coeff = ((a*b)/c[0]);
-            jLabelH.setText(String.format("h = [%1$dsqrt(%2$d)]/%2$d", h_coeff, c[1]));
+            jLabelH.setText(String.format("[%1$d√(%2$d)]/%2$d", h_coeff, c[1]));
         }
     }
     
@@ -261,14 +188,9 @@ public class Automation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelA;
-    private javax.swing.JLabel jLabelB;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelC;
     private javax.swing.JLabel jLabelH;
-    private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelX;
     private javax.swing.JLabel jLabelY;
     private javax.swing.JTextField jTextField1;

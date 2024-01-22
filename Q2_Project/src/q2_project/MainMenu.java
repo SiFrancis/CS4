@@ -36,60 +36,43 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CS4 Project (Bicbic, Rosalejos, Sitchon)");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gameButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        gameButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        gameButton.setForeground(new java.awt.Color(255, 255, 255));
+        gameButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HOME_Game.png"))); // NOI18N
         gameButton.setText("GAME");
+        gameButton.setContentAreaFilled(false);
+        gameButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         gameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gameButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(gameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 120, 60));
 
-        automButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        automButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        automButton.setForeground(new java.awt.Color(255, 255, 255));
+        automButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HOME_Automation.png"))); // NOI18N
         automButton.setText("AUTOMATION");
+        automButton.setContentAreaFilled(false);
+        automButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         automButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 automButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(automButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 140, 60));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TRI-ESCAPE");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(gameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(51, 51, 51)
-                            .addComponent(automButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(gameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(automButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HOME_BG.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new GameLevel().setVisible(true);
     }//GEN-LAST:event_gameButtonActionPerformed
 
     private void automButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_automButtonActionPerformed
