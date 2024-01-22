@@ -6,6 +6,8 @@ package q2_project;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.Color;
+import java.awt.Font;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +22,25 @@ public class Numpad extends javax.swing.JFrame {
      */
     public Numpad() {
         initComponents();
+        try {
+            InputStream pixelTTF = MainMenu.class.getResourceAsStream("fonts/DalekPinpoint.ttf");
+            Font myFont = Font.createFont(Font.TRUETYPE_FONT, pixelTTF);
+            jButton1.setFont(myFont.deriveFont(20f));
+            jButton2.setFont(myFont.deriveFont(20f));
+            jButton3.setFont(myFont.deriveFont(20f));
+            jButton4.setFont(myFont.deriveFont(20f));
+            jButton5.setFont(myFont.deriveFont(20f));
+            jButton6.setFont(myFont.deriveFont(20f));
+            jButton7.setFont(myFont.deriveFont(20f));
+            jButton8.setFont(myFont.deriveFont(20f));
+            jButton9.setFont(myFont.deriveFont(20f));
+            jButton10.setFont(myFont.deriveFont(20f));
+            jButtonClear.setFont(myFont.deriveFont(20f));
+            jButtonEnter.setFont(myFont.deriveFont(20f));
+            jTextField1.setFont(myFont.deriveFont(30f));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -7,6 +7,8 @@ package q2_project;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.InputStream;
+import java.awt.Font;
 
 /**
  *
@@ -19,6 +21,14 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
+        try {
+            InputStream pixelTTF = MainMenu.class.getResourceAsStream("fonts/DalekPinpoint.ttf");
+            Font myFont = Font.createFont(Font.TRUETYPE_FONT, pixelTTF);
+            gameButton.setFont(myFont.deriveFont(20f));
+            automButton.setFont(myFont.deriveFont(16f));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

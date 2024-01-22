@@ -5,6 +5,8 @@
 package q2_project;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.awt.Font;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +21,17 @@ public class Automation extends javax.swing.JFrame {
      */
     public Automation() {
         initComponents();
+        try {
+            InputStream pixelTTF = MainMenu.class.getResourceAsStream("fonts/DalekPinpoint.ttf");
+            Font myFont = Font.createFont(Font.TRUETYPE_FONT, pixelTTF);
+            backButton.setFont(myFont.deriveFont(20f));
+            formulaButton.setFont(myFont.deriveFont(20f));
+            solutionButton.setFont(myFont.deriveFont(20f));
+            jTextField1.setFont(myFont.deriveFont(16f));
+            jTextField2.setFont(myFont.deriveFont(16f));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     int a, b;
@@ -41,6 +54,8 @@ public class Automation extends javax.swing.JFrame {
         jLabelC = new javax.swing.JLabel();
         jLabelH = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        formulaButton = new javax.swing.JButton();
+        solutionButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,19 +66,20 @@ public class Automation extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(0, 0, 0, 0));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setBorder(null);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 145, 40, 40));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 145, 40, 40));
 
         jTextField2.setBackground(new java.awt.Color(0,0,0,0));
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setBorder(null);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 202, 40, 40));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 202, 40, 40));
 
         submitButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         submitButton.setForeground(new java.awt.Color(255, 255, 255));
-        submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HOME_Game.png"))); // NOI18N
-        submitButton.setText("SUBMIT");
+        submitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/AUTOMATION_CHECKMARK.png"))); // NOI18N
         submitButton.setContentAreaFilled(false);
         submitButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +116,34 @@ public class Automation extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 120, 60));
+        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 120, 60));
+
+        formulaButton.setBackground(new java.awt.Color(72, 133, 141));
+        formulaButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        formulaButton.setForeground(new java.awt.Color(255, 255, 255));
+        formulaButton.setText("Formulas");
+        formulaButton.setBorder(null);
+        formulaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        formulaButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        formulaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formulaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(formulaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 120, 50));
+
+        solutionButton.setBackground(new java.awt.Color(72, 133, 141));
+        solutionButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        solutionButton.setForeground(new java.awt.Color(255, 255, 255));
+        solutionButton.setText("Show");
+        solutionButton.setBorder(null);
+        solutionButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        solutionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solutionButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(solutionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 70, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/AUTOMATION_upscaled.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 450));
@@ -108,7 +151,7 @@ public class Automation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private int[] sqrtize(int x) {
+    public int[] sqrtize(int x) {
         int root = (int)Math.sqrt(x);
         for (int i = root; i > 1; i--) {
             if (x == (i*i)) {
@@ -148,7 +191,8 @@ public class Automation extends javax.swing.JFrame {
             jLabelH.setText(String.format("%1$d/%2$d", (a*b)/gcd_x, c[0]/gcd_x));
         } 
         else {
-            jLabelC.setText(String.format("%1$d√(%2$d)", c[0], c[1]));
+            if (c[0] == 1) jLabelC.setText(String.format("√(%d)", c[1]));
+            else jLabelC.setText(String.format("%1$d√(%2$d)", c[0], c[1]));
             int x_coeff = (a2/c[0]);
             jLabelX.setText(String.format("[%1$d√(%2$d)]/%2$d", x_coeff, c[1]));
             int y_coeff = (b2/c[0]);
@@ -169,6 +213,14 @@ public class Automation extends javax.swing.JFrame {
         new MainMenu().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void formulaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formulaButtonActionPerformed
+        new Formulas().setVisible(true);
+    }//GEN-LAST:event_formulaButtonActionPerformed
+
+    private void solutionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solutionButtonActionPerformed
+        new Solutions(a,b,jLabelC.getText(),jLabelX.getText(),jLabelY.getText(),jLabelH.getText()).setVisible(true);
+    }//GEN-LAST:event_solutionButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -188,6 +240,7 @@ public class Automation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JButton formulaButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelC;
     private javax.swing.JLabel jLabelH;
@@ -195,6 +248,7 @@ public class Automation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelY;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton solutionButton;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
 }
