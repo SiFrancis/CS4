@@ -12,12 +12,13 @@ import java.util.logging.Logger;
  *
  * @author PC
  */
-public class pygomon extends javax.swing.JFrame {
+
+public class pygo_view extends javax.swing.JFrame {
 
     /**
-     * Creates new form pygomon
+     * Creates new form pygo_view
      */
-    public pygomon() {
+    public pygo_view() {
         initComponents();
     }
 
@@ -253,11 +254,11 @@ public class pygomon extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new pygomon().setVisible(true);
+                    new pygo_view().setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(pygomon.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pygo_view.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

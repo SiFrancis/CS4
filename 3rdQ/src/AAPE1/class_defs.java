@@ -16,8 +16,13 @@ class Pygomon {
     private int level = 1;
     private int max_hp = 15 + 5 * (level - 1);
     private int current_hp = max_hp;
-    private int dmg = 4;
+    public int base_dmg = 4;
     public HashMap<String, Integer> attackSet = new HashMap<>();
+    
+    public Pygomon(String name, int level) {
+        this.name = name;
+        this.level = level;
+    }
     
     public void setName(String name){this.name = name;}
     public void setLevel(int level) {this.level = level;}
@@ -30,4 +35,8 @@ class Pygomon {
     public int getLevel(){return this.level;}
     public int getCurrentHP(){return this.current_hp;}
     public HashMap getAttacks(){return this.attackSet;}
+}
+
+public class class_defs {
+    Pygomon triwhale = new Pygomon("Triwhale", 1);
 }
