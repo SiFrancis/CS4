@@ -14,9 +14,11 @@ import java.util.logging.Logger;
  */
 public class GameGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GameGUI
-     */
+    class_defs defs = new class_defs();
+    Pygomon current_pygomon = defs.current_pygomon;
+    Pygomon triwhale = defs.triwhale;
+    Pygomon trat = defs.trat;
+    Pygomon obama = defs.obama;
     public GameGUI() {
         initComponents();
     }
@@ -65,16 +67,16 @@ public class GameGUI extends javax.swing.JFrame {
         jLabel2.setText("HP BAR");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel3.setText("TRIWHALE");
+        jLabel3.setText(current_pygomon.getName());
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setText("HP BAR");
+        jLabel4.setText(String.format("%1$d/%2$d HP", current_pygomon.getCurrentHP(), current_pygomon.getMaxHP()));
         jLabel4.setToolTipText("");
 
         jFormattedTextField5.setEditable(false);
         jFormattedTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField5.setText("What will TRIWHALE do?");
+        jFormattedTextField5.setText(String.format("What will %s do?", current_pygomon.getName()));
         jFormattedTextField5.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +114,7 @@ public class GameGUI extends javax.swing.JFrame {
         });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Whale.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource(current_pygomon.getImageLink())));
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel5.setDoubleBuffered(true);
 
