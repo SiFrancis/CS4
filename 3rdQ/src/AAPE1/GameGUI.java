@@ -15,11 +15,25 @@ import java.util.logging.Logger;
 public class GameGUI extends javax.swing.JFrame {
 
     class_defs defs = new class_defs();
-    Pygomon current_pygomon = defs.current_pygomon;
+    private void setCurrentPygomon(String name){
+        Pygomon[] pygo_arr = {triwhale, trat, obama};
+        String[] name_arr = {"TRIWHALE", "TRAT", "OBAMA"};
+        for (Pygomon p : pygo_arr) {
+            if (name.equals(p.getName())){
+                current_pygomon = p;
+            }
+        }
+    }
     Pygomon triwhale = defs.triwhale;
     Pygomon trat = defs.trat;
     Pygomon obama = defs.obama;
-    public GameGUI() {
+    Pygomon current_pygomon = triwhale;
+    public GameGUI(String name) {
+        setCurrentPygomon(name);
+        initComponents();
+    }
+    
+    public GameGUI(){
         initComponents();
     }
 

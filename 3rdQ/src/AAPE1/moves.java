@@ -13,12 +13,7 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class moves extends javax.swing.JFrame {
-
-    class_defs defs = new class_defs();
-    Pygomon current_pygomon = defs.current_pygomon;
-    Pygomon triwhale = defs.triwhale;
-    Pygomon trat = defs.trat;
-    Pygomon obama = defs.obama;
+    
     public moves() {
         initComponents();
     }

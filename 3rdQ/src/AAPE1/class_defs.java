@@ -44,25 +44,24 @@ class Pygomon {
 public class class_defs {
     Random rand = new Random();
     
+//  PLAYER PYGOMON MOVES
     Map<String, Integer> triwhale_atks = Map.of(
         "TRIPLE SPLASH", (5 + rand.nextInt(3) - 1), //dmg: 4-6
         "PYTHAGO-WAVE", (7 + rand.nextInt(5) - 1) //dmg: 4-8
     );
-    Pygomon triwhale = new Pygomon("TRIWHALE", 15, triwhale_atks);
-    
     Map<String, Integer> trat_atks = Map.of(
         "TRI-TAIL CUT", 3, //dmg: 3
         "VICIOUS BITE", (9 + rand.nextInt(6) - 6) //dmg: 3-8
     );
-    Pygomon trat = new Pygomon("TRAT", 8, trat_atks);
-    
-    int obama_dmg = 5;
     Map<String, Integer> obama_atks = Map.of(
-        "MYSTERIOUS GAZE", (obama_dmg + rand.nextInt(3) - 1), //dmg (default): 4-6
-        "PRISMIC BEAM", (obama_dmg + rand.nextInt(obama_dmg)), //dmg (default): 5-10
-        "RECONFIGURE", 0 //no damage; changes base damage to a random value from 2-7
+        "MYSTERIOUS GAZE", (5 + rand.nextInt(3) - 1), //dmg: 4-6
+        "PRISMIC BEAM", (5 + rand.nextInt(6)) //dmg: 5-10
     );
+//  PLAYER PYGOMON
+    Pygomon triwhale = new Pygomon("TRIWHALE", 15, triwhale_atks);
+    Pygomon trat = new Pygomon("TRAT", 8, trat_atks);
     Pygomon obama = new Pygomon("OBAMA", 10, obama_atks);
     
-    Pygomon current_pygomon = triwhale; // used for switching Pygomon
+//  ENEMY PYGOMON
+    Map<String, Integer> enemy_atks = Map.of("STAND THERE", 0);
 }

@@ -35,7 +35,6 @@ public class pygo_view extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         selectButton1 = new javax.swing.JButton();
         selectButton2 = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -51,6 +50,7 @@ public class pygo_view extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         selectButton1.setText("SELECT");
+        selectButton1.setName("TRIWHALE"); // NOI18N
         selectButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectButtonActionPerformed(evt);
@@ -58,16 +58,10 @@ public class pygo_view extends javax.swing.JFrame {
         });
 
         selectButton2.setText("SELECT");
+        selectButton2.setName("TRAT"); // NOI18N
         selectButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectButtonActionPerformed(evt);
-            }
-        });
-
-        backButton.setText("<< Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
             }
         });
 
@@ -138,6 +132,7 @@ public class pygo_view extends javax.swing.JFrame {
         );
 
         selectButton3.setText("SELECT");
+        selectButton3.setName("OBAMA"); // NOI18N
         selectButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectButtonActionPerformed(evt);
@@ -195,20 +190,14 @@ public class pygo_view extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(54, 54, 54))))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,18 +220,10 @@ public class pygo_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        dispose();
-        new GameGUI().setVisible(true);
-    }//GEN-LAST:event_backButtonActionPerformed
-
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        /**
-         * Yes it currently does the same thing as back but in a functional game
-         * this would have extra functionality
-         */
         dispose();
-        new GameGUI().setVisible(true);
+        GameGUI ggui = new GameGUI(((javax.swing.JButton) evt.getSource()).getName().toUpperCase());
+        ggui.setVisible(true);
     }//GEN-LAST:event_selectButtonActionPerformed
 
     /**
@@ -263,7 +244,6 @@ public class pygo_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
