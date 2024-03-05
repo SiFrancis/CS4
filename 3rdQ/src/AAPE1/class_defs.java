@@ -38,6 +38,7 @@ class Pygomon {
     public int getCurrentHP(){return this.current_hp;}
     public int getMaxHP(){return this.max_hp;}
     public Map getAttackSet(){return this.attackSet;}
+    public String getAttackName(int atk_num) {return (String)this.attackSet.keySet().toArray()[atk_num];}
     public int getAttackDmg(String atk_name){return attackSet.get(atk_name);}
 }
 
@@ -57,11 +58,11 @@ public class class_defs {
         "MYSTERIOUS GAZE", (5 + rand.nextInt(3) - 1), //dmg: 4-6
         "PRISMIC BEAM", (5 + rand.nextInt(6)) //dmg: 5-10
     );
-//  PLAYER PYGOMON
+//  PLAYER PYGOMON              
     Pygomon triwhale = new Pygomon("TRIWHALE", 15, triwhale_atks);
     Pygomon trat = new Pygomon("TRAT", 8, trat_atks);
     Pygomon obama = new Pygomon("OBAMA", 10, obama_atks);
     
 //  ENEMY PYGOMON
-    Map<String, Integer> enemy_atks = Map.of("STAND THERE", 0);
+    Pygomon enemy =new Pygomon("LITERAL TEST DUMMY", 25, Map.of("STAND THERE", 0));
 }

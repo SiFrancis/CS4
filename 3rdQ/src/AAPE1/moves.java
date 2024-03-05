@@ -14,7 +14,24 @@ import java.util.logging.Logger;
  */
 public class moves extends javax.swing.JFrame {
     
+    class_defs defs = new class_defs();
+    private void setCurrentPygomon(String name){
+        Pygomon[] pygo_arr = {triwhale, trat, obama};
+        for (Pygomon p : pygo_arr) {
+            if (name.equals(p.getName())){current_pygomon = p;}
+        }
+    }
+    Pygomon triwhale = defs.triwhale;
+    Pygomon trat = defs.trat;
+    Pygomon obama = defs.obama;
+    Pygomon current_pygomon = triwhale;
+    
     public moves() {
+        initComponents();
+    }
+    
+    public moves(String name) {
+        setCurrentPygomon(name);
         initComponents();
     }
 
@@ -34,7 +51,7 @@ public class moves extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         attackButton1.setBackground(new java.awt.Color(255, 255, 204));
-        attackButton1.setText("attack 1");
+        attackButton1.setText(current_pygomon.getAttackName(0));
         attackButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attackButton1ActionPerformed(evt);
@@ -44,7 +61,7 @@ public class moves extends javax.swing.JFrame {
         jLabel1.setText("Choose an attack:");
 
         attackButton2.setBackground(new java.awt.Color(255, 255, 204));
-        attackButton2.setText("attack 2");
+        attackButton2.setText(current_pygomon.getAttackName(1));
         attackButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attackButton2ActionPerformed(evt);

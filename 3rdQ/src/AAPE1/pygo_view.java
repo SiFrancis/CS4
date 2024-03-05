@@ -222,7 +222,7 @@ public class pygo_view extends javax.swing.JFrame {
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
         dispose();
-        GameGUI ggui = new GameGUI(((javax.swing.JButton) evt.getSource()).getName().toUpperCase());
+        GameGUI ggui = new GameGUI(((javax.swing.JButton) evt.getSource()).getName());
         ggui.setVisible(true);
     }//GEN-LAST:event_selectButtonActionPerformed
 
