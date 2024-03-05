@@ -231,7 +231,7 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void bagBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagBtnActionPerformed
         dispose();
-        new BagGUI().setVisible(true);
+        new BagGUI(current_pygomon.getName(), enemy.getCurrentHP()).setVisible(true);
     }//GEN-LAST:event_bagBtnActionPerformed
 
     private void pygoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pygoBtnActionPerformed
