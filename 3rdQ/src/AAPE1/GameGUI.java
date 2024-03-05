@@ -36,12 +36,21 @@ public class GameGUI extends javax.swing.JFrame {
         initComponents();
     }
     
-    public GameGUI(String current_pygo, int atk_num, int atk_dmg) {
+    public GameGUI(String name, int enemy_hp) {
+        setCurrentPygomon(name);
+        enemy.setCurrentHP(enemy_hp);
+        initComponents();
+    }
+    
+    public GameGUI(String current_pygo, int atk_num, int enemy_hp) {
         setCurrentPygomon(current_pygo);
+        String atk = current_pygomon.getAttackName(atk_num);
+        int dmg = current_pygomon.getAttackDmg(atk);
+        enemy.setCurrentHP(enemy_hp - dmg);
         initComponents();
         jTextField.setText(
-                String.format("%1$s used %2$s, dealing %3$d damage", 
-                        current_pygo, current_pygomon.getAttackName(atk_num), atk_dmg)
+                String.format("%1$s used %2$s, dealing %3$d damage!", 
+                        current_pygo, atk, dmg)
         );
     }
 
@@ -127,8 +136,8 @@ public class GameGUI extends javax.swing.JFrame {
 
         jTextField.setEditable(false);
         jTextField.setColumns(20);
+        jTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField.setLineWrap(true);
-        jTextField.setRows(5);
         jTextField.setText(String.format("What will %s do?", current_pygomon.getName()));
         jTextField.setWrapStyleWord(true);
         jTextField.setCaretColor(new java.awt.Color(242, 242, 242));
@@ -186,7 +195,7 @@ public class GameGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -212,7 +221,7 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void fightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightBtnActionPerformed
         dispose();
-        new moves(current_pygomon.getName()).setVisible(true);
+        new moves(current_pygomon.getName(), enemy.getCurrentHP()).setVisible(true);
     }//GEN-LAST:event_fightBtnActionPerformed
 
     private void runBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runBtnActionPerformed
@@ -227,7 +236,7 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void pygoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pygoBtnActionPerformed
         dispose();
-        new pygo_view().setVisible(true);
+        new pygo_view(enemy.getCurrentHP()).setVisible(true);
     }//GEN-LAST:event_pygoBtnActionPerformed
 
     /**

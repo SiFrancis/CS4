@@ -14,10 +14,21 @@ import java.util.logging.Logger;
  */
 public class attack extends javax.swing.JFrame {
 
+    String pygo_name;
+    int num;
+    int enemy_hp;
+    
     /**
      * Creates new form attack
+     * @param name
+     * @param n
+     * @param hp
      */
-    public attack() {
+    
+    public attack(String name, int n, int hp){
+        pygo_name = name;
+        num = n;
+        enemy_hp = hp;
         initComponents();
     }
 
@@ -109,12 +120,12 @@ public class attack extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         dispose();
-        new GameGUI().setVisible(true);
+        new GameGUI(pygo_name, num, enemy_hp).setVisible(true);
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         dispose();
-        new moves().setVisible(true);
+        new moves(pygo_name, enemy_hp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -126,7 +137,7 @@ public class attack extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new attack().setVisible(true);
+                    new attack("TRIWHALE", 0, 25).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

@@ -15,10 +15,14 @@ import java.util.logging.Logger;
 
 public class pygo_view extends javax.swing.JFrame {
 
+    int enemy_hp;
+    
     /**
      * Creates new form pygo_view
+     * @param hp
      */
-    public pygo_view() {
+    public pygo_view(int hp) {
+        enemy_hp = hp;
         initComponents();
     }
 
@@ -222,7 +226,7 @@ public class pygo_view extends javax.swing.JFrame {
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
         dispose();
-        GameGUI ggui = new GameGUI(((javax.swing.JButton) evt.getSource()).getName());
+        GameGUI ggui = new GameGUI(((javax.swing.JButton) evt.getSource()).getName(), enemy_hp);
         ggui.setVisible(true);
     }//GEN-LAST:event_selectButtonActionPerformed
 
@@ -235,7 +239,7 @@ public class pygo_view extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new pygo_view().setVisible(true);
+                    new pygo_view(25).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

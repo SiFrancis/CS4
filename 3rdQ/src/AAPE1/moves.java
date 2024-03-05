@@ -26,11 +26,14 @@ public class moves extends javax.swing.JFrame {
     Pygomon obama = defs.obama;
     Pygomon current_pygomon = triwhale;
     
+    int enemy_hp;
+    
     public moves() {
         initComponents();
     }
     
-    public moves(String name) {
+    public moves(String name, int hp) {
+        enemy_hp = hp;
         setCurrentPygomon(name);
         initComponents();
     }
@@ -100,12 +103,12 @@ public class moves extends javax.swing.JFrame {
 
     private void attackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButton1ActionPerformed
         dispose();
-        new attack().setVisible(true);
+        new attack(current_pygomon.getName(), 0, enemy_hp).setVisible(true);
     }//GEN-LAST:event_attackButton1ActionPerformed
 
     private void attackButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButton2ActionPerformed
         dispose();
-        new attack().setVisible(true);
+        new attack(current_pygomon.getName(), 1, enemy_hp).setVisible(true);
     }//GEN-LAST:event_attackButton2ActionPerformed
 
     /**
