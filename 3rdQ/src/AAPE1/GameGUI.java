@@ -46,12 +46,21 @@ public class GameGUI extends javax.swing.JFrame {
         setCurrentPygomon(current_pygo);
         String atk = current_pygomon.getAttackName(atk_num);
         int dmg = current_pygomon.getAttackDmg(atk);
-        enemy.setCurrentHP(enemy_hp - dmg);
+        enemy.setCurrentHP(Math.max(0, enemy_hp - dmg));
         initComponents();
-        jTextField.setText(
+        if (enemy.getCurrentHP() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    null, "You defeated " + enemy.getName() + "!", 
+                    "YOU WIN!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            new GameGUI().setVisible(true);
+            
+        } else {
+            jTextField.setText(
                 String.format("%1$s used %2$s, dealing %3$d damage!", 
                         current_pygo, atk, dmg)
-        );
+            );
+        }
     }
 
     /**
@@ -64,6 +73,7 @@ public class GameGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -265,6 +275,7 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextField;
     private javax.swing.JButton pygoBtn;
