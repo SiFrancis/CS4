@@ -53,7 +53,7 @@ public class GameGUI extends javax.swing.JFrame {
                     null, "You defeated " + enemy.getName() + "!", 
                     "YOU WIN!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             dispose();
-            new GameGUI().setVisible(true);
+            new MenuGUI().setVisible(true);
             
         } else {
             jTextField.setText(
