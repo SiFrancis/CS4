@@ -150,11 +150,16 @@ public class AutomGUI extends javax.swing.JFrame {
         int b = Integer.parseInt(jTextField2.getText());
         int b2 = b * b;
         int c2 = a2 + b2;
-        findHypotenuse(a, b, a2, b2, c2);
+        sqrtize(c2, "hypotenuse");
     }//GEN-LAST:event_findHypActionPerformed
 
     private void findLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findLegActionPerformed
-        // TODO add your handling code here:
+        int hyp = Integer.parseInt(jTextField1.getText());
+        int hyp2 = hyp * hyp;
+        int leg = Integer.parseInt(jTextField2.getText());
+        int leg2 = leg * leg;
+        int ans2 = Math.abs(hyp2 - leg2);
+        sqrtize(ans2, "missing leg");
     }//GEN-LAST:event_findLegActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -162,23 +167,23 @@ public class AutomGUI extends javax.swing.JFrame {
         new MenuGUI().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    public void findHypotenuse(int a, int b, int a2, int b2, int c2) {
+    public void sqrtize(int c2, String part) {
         int root = (int)Math.sqrt(c2);
         boolean simplifiable = false;
         for (int i = root; i > 1; i--) {
             if (c2 == (i*i)) {
-                jLabel5.setText("OUTPUT: The hypotenuse is " + i);
+                jLabel5.setText("OUTPUT: The " + part + " is " + i);
                 simplifiable = true;
                 break;
             }
             else if (c2 % (i*i) == 0) {
-                jLabel5.setText("OUTPUT: The hypotenuse is " + i + "sqrt(" + (c2/(i*i)) + ")");
+                jLabel5.setText("OUTPUT: The " + part + " is " + i + "sqrt(" + (c2/(i*i)) + ")");
                 simplifiable = true;
                 break;
             }
         }
         if (simplifiable != true) {
-                jLabel5.setText("OUTPUT: The hypotenuse is sqrt(" + c2 + ")");
+                jLabel5.setText("OUTPUT: The " + part + " is sqrt(" + c2 + ")");
         }
     }
     
