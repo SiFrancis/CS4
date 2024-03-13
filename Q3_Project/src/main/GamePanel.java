@@ -18,8 +18,8 @@ public class GamePanel extends JPanel {
     final int FINAL_TILE_SIZE = (int) (BASE_SIZE * TILE_SCALE);
     
     //screen display settings
-    final int SCREEN_COLS = 16;
-    final int SCREEN_ROWS = 12;
+    final int SCREEN_COLS = 12;
+    final int SCREEN_ROWS = 9;
     final int SCREEN_W = FINAL_TILE_SIZE * SCREEN_COLS; //768px wide
     final int SCREEN_H = FINAL_TILE_SIZE * SCREEN_ROWS; //576 px tall
     
@@ -27,9 +27,5 @@ public class GamePanel extends JPanel {
         this.setPreferredSize(new Dimension(SCREEN_W, SCREEN_H));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-    }
-    
-    public static void main(String[] args) {
-        new GamePanel().setVisible(true);
     }
 }
