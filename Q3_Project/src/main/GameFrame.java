@@ -24,6 +24,8 @@ public class GameFrame extends JFrame {
         
         gwindow.setVisible(true);
         gwindow.setLocationRelativeTo(null);
+        
+        gpanel.startGameThread();
     }
     
     public static void main(String args[]) {
