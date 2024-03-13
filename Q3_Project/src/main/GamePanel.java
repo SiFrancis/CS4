@@ -14,7 +14,7 @@ import java.awt.*;
 public class GamePanel extends JPanel {
     //tile settings
     final int BASE_SIZE = 32; //32x32 tiles
-    final float TILE_SCALE = 1.5f;
+    final float TILE_SCALE = 2;
     final int FINAL_TILE_SIZE = (int) (BASE_SIZE * TILE_SCALE);
     
     //screen display settings
@@ -27,5 +27,9 @@ public class GamePanel extends JPanel {
         this.setPreferredSize(new Dimension(SCREEN_W, SCREEN_H));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+    }
+    
+    public static void main(String[] args) {
+        new GamePanel().setVisible(true);
     }
 }
