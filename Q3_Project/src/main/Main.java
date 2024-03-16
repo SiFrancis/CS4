@@ -4,6 +4,8 @@
  */
 package main;
 
+import game.GameFrame;
+
 /**
  *
  * @author Acer
