@@ -19,10 +19,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int FINAL_SIZE = (int) (BASE_SIZE * TILE_SCALE);
     
     //screen display settings
-    final int SCREEN_COLS = 12;
-    final int SCREEN_ROWS = 9;
-    public final int SCREEN_W = FINAL_SIZE * SCREEN_COLS; //768px wide
-    public final int SCREEN_H = FINAL_SIZE * SCREEN_ROWS; //576 px tall
+    final int SCREEN_COLS = 16;
+    final int SCREEN_ROWS = 12;
+    public final int SCREEN_W = FINAL_SIZE * SCREEN_COLS;
+    public final int SCREEN_H = FINAL_SIZE * SCREEN_ROWS;
     
     // game loop related
     Thread gameThread;
