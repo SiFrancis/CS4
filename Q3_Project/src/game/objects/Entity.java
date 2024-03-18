@@ -14,5 +14,7 @@ public class Entity {
      * might remove this if final game has no NPCs
      */
     
-    public int initX, initY, speed;
+    public int x, y, speed;
+    public String direction;
+    public boolean colliding = false;
 }

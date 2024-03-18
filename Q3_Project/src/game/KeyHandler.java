@@ -22,18 +22,6 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-//        int code = e.getKeyCode();
-//        
-//        switch (code) {
-//            case KeyEvent.VK_W -> upPress = true;
-//            case KeyEvent.VK_S -> downPress = true;
-//            case KeyEvent.VK_A -> leftPress = true;
-//            case KeyEvent.VK_D -> rightPress = true;
-//        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         
         switch (code) {
@@ -42,5 +30,17 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_A -> leftPress = true;
             case KeyEvent.VK_D -> rightPress = true;
         }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+//        int code = e.getKeyCode();
+//        
+//        switch (code) {
+//            case KeyEvent.VK_W -> upPress = false;
+//            case KeyEvent.VK_S -> downPress = false;
+//            case KeyEvent.VK_A -> leftPress = false;
+//            case KeyEvent.VK_D -> rightPress = false;
+//        }
     } 
 }
