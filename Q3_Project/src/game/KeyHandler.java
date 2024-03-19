@@ -34,13 +34,13 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-//        int code = e.getKeyCode();
-//        
-//        switch (code) {
-//            case KeyEvent.VK_W -> upPress = false;
-//            case KeyEvent.VK_S -> downPress = false;
-//            case KeyEvent.VK_A -> leftPress = false;
-//            case KeyEvent.VK_D -> rightPress = false;
-//        }
+        int code = e.getKeyCode();
+        
+        switch (code) {
+            case KeyEvent.VK_W -> upPress = false;
+            case KeyEvent.VK_S -> downPress = false;
+            case KeyEvent.VK_A -> leftPress = false;
+            case KeyEvent.VK_D -> rightPress = false;
+        }
     } 
 }
