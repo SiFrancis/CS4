@@ -19,14 +19,14 @@ public class CollisionHandler {
     }
     
     public void checkTile(Entity entity) {
-        int entityCol = entity.x/gp.FINAL_SIZE;
-        int entityRow = entity.y/gp.FINAL_SIZE;
+        int entityCol = entity.worldX/gp.FINAL_SIZE;
+        int entityRow = entity.worldY/gp.FINAL_SIZE;
         int checkNum = 0;
         switch (entity.direction) {
             case "up"    -> checkNum = gp.tileM.mapData[entityCol][Math.max(0, entityRow-1)];
-            case "down"  -> checkNum = gp.tileM.mapData[entityCol][Math.min(gp.SCREEN_ROWS - 1, entityRow+1)];
+            case "down"  -> checkNum = gp.tileM.mapData[entityCol][Math.min(gp.WORLD_ROWS - 1, entityRow+1)];
             case "left"  -> checkNum = gp.tileM.mapData[Math.max(0, entityCol-1)][entityRow];
-            case "right" -> checkNum = gp.tileM.mapData[Math.min(gp.SCREEN_COLS - 1, entityCol+1)][entityRow];
+            case "right" -> checkNum = gp.tileM.mapData[Math.min(gp.WORLD_COLS - 1, entityCol+1)][entityRow];
         }
         entity.colliding = (gp.tileM.tileset[checkNum].collision == true);
     }

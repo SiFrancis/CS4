@@ -28,9 +28,15 @@ public class GamePanel extends JPanel implements Runnable {
     // game loop related
     Thread gameThread;
     KeyHandler keyH = new KeyHandler();
-    Player player = new Player(this, keyH);
-    TileManager tileM = new TileManager(this);
+    public Player player = new Player(this, keyH);
+    TileManager tileM = new TileManager(this, "bigmap00.txt");
     public CollisionHandler collH = new CollisionHandler(this);
+    
+    //world settings
+    public final int WORLD_COLS = 25;
+    public final int WORLD_ROWS = 20;
+    public final int WORLD_W = WORLD_COLS * FINAL_SIZE;
+    public final int WORLD_H = WORLD_ROWS * FINAL_SIZE;
     
     //FPS
     int FPS = 60;

@@ -23,17 +23,24 @@ public class Player extends Entity {
     
     public BufferedImage up, down, left, right;
     
+    public final int screenX;
+    public final int screenY;
+    
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
+        
+        screenX = (gp.SCREEN_W - gp.FINAL_SIZE)/2;
+        screenY = (gp.SCREEN_H - gp.FINAL_SIZE)/2;
+        
         setDefaults();
         getImage();
     }
     
     public void setDefaults() {
         //player movement (initial position and speed)
-        x = gp.FINAL_SIZE;
-        y = gp.FINAL_SIZE;
+        worldX = 10*gp.FINAL_SIZE;
+        worldY = 9*gp.FINAL_SIZE;
         speed = gp.FINAL_SIZE;
         direction = "right";
     }
@@ -74,19 +81,30 @@ public class Player extends Entity {
         
         gp.collH.checkTile(this);
         
+//        if (colliding == false && moving == true) {
+//            switch (direction) {
+//                case "up" -> {worldY -= speed;}
+//                case "down" -> {worldY += speed;}
+//                case "left" -> {worldX -= speed;}
+//                case "right" -> {worldX += speed;}
+//            }
+//        }
+        
         if (colliding == false && moving == true) {
             switch (direction) {
-                case "up" -> {y -= speed; keyH.upPress = false; moving = false;}
-                case "down" -> {y += speed; keyH.downPress = false; moving = false;}
-                case "left" -> {x -= speed; keyH.leftPress = false; moving = false;}
-                case "right" -> {x += speed; keyH.rightPress = false; moving = false;}
+                case "up" -> {worldY -= speed; keyH.upPress = false; moving = false;}
+                case "down" -> {worldY += speed; keyH.downPress = false; moving = false;}
+                case "left" -> {worldX -= speed; keyH.leftPress = false; moving = false;}
+                case "right" -> {worldX += speed; keyH.rightPress = false; moving = false;}
             }
         }
+
         
-        if (x > gp.SCREEN_W - gp.FINAL_SIZE) {x = gp.SCREEN_W - gp.FINAL_SIZE;}
-        if (y > gp.SCREEN_H - gp.FINAL_SIZE) {y = gp.SCREEN_H - gp.FINAL_SIZE;}
-        if (x < 0) {x = 0;}
-        if (y < 0) {y = 0;}
+        if (worldX > gp.WORLD_W - gp.FINAL_SIZE) {worldX = gp.SCREEN_W - gp.FINAL_SIZE;}
+        if (worldY > gp.WORLD_H - gp.FINAL_SIZE) {worldY = gp.SCREEN_H - gp.FINAL_SIZE;}
+        if (worldX < 0) {worldX = 0;}
+        if (worldY < 0) {worldY = 0;}
+        System.out.println(worldX/gp.FINAL_SIZE+" "+worldY/gp.FINAL_SIZE);
     }
     
     public void draw(Graphics2D g2){
@@ -97,6 +115,6 @@ public class Player extends Entity {
             case "left" -> img = left;
             case "right" -> img = right;
         }
-        g2.drawImage(img, x, y, gp.FINAL_SIZE, gp.FINAL_SIZE, null);
+        g2.drawImage(img, screenX, screenY, gp.FINAL_SIZE, gp.FINAL_SIZE, null);
     }
 }

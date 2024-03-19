@@ -20,12 +20,12 @@ public class TileManager {
     public Tile[] tileset;
     public int mapData[][];
     
-    public TileManager(GamePanel gp) {
+    public TileManager(GamePanel gp, String map) {
         this.gp = gp;
         tileset = new Tile[2]; //2 total tiles in tile set
-        mapData = new int[gp.SCREEN_COLS][gp.SCREEN_ROWS];
+        mapData = new int[gp.WORLD_COLS][gp.WORLD_ROWS];
         getTileImage();
-        loadMap("map00.txt");
+        loadMap(map);
     }
     
     public void getTileImage() {
@@ -39,15 +39,15 @@ public class TileManager {
             InputStream inp = getClass().getResourceAsStream("/game/res/maps/"+map);
             BufferedReader br = new BufferedReader(new InputStreamReader(inp));
             int col = 0, row = 0;
-            while (col < gp.SCREEN_COLS && row < gp.SCREEN_ROWS) {
+            while (col < gp.WORLD_COLS && row < gp.WORLD_ROWS) {
                 String line = br.readLine();
-                while (col < gp.SCREEN_COLS) {
+                while (col < gp.WORLD_COLS) {
                     String nums[] = line.split(" ");
                     int num = Integer.parseInt(nums[col]);
                     mapData[col][row] = num;
                     col++;
                 }
-                if (col == gp.SCREEN_COLS) {col = 0; row++;}
+                if (col == gp.WORLD_COLS) {col = 0; row++;}
             }
             br.close();
         } catch (Exception e) {
@@ -55,21 +55,30 @@ public class TileManager {
     }
     
     public void draw(Graphics2D g2) {
-        int col = 0, row = 0, tileX = 0, tileY = 0;
-        while (col < gp.SCREEN_COLS && row < gp.SCREEN_ROWS) {
+        int col = 0, row = 0;
+        while (col < gp.WORLD_COLS && row < gp.WORLD_ROWS) {
             int tileData = mapData[col][row];
             
-            g2.drawImage(
-                    tileset[tileData].image, tileX, tileY, 
-                    gp.FINAL_SIZE, gp.FINAL_SIZE, null
-            );
-            col++;
-            tileX += gp.FINAL_SIZE;
+            int mapX = col * gp.FINAL_SIZE;
+            int mapY = row * gp.FINAL_SIZE;
+            int camX = mapX - gp.player.worldX + gp.player.screenX;
+            int camY = mapY - gp.player.worldY + gp.player.screenY;
             
-            if (col == gp.SCREEN_COLS) {
-                col = 0; tileX = 0;
+            if (mapX + gp.FINAL_SIZE > gp.player.worldX - gp.player.screenX &&
+                mapX - gp.FINAL_SIZE < gp.player.worldX + gp.player.screenX &&
+                mapY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
+                mapY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
+                g2.drawImage(
+                    tileset[tileData].image, camX, camY, 
+                    gp.FINAL_SIZE, gp.FINAL_SIZE, null
+                );
+            }
+            
+            col++;
+            
+            if (col == gp.WORLD_COLS) {
+                col = 0;
                 row++;
-                tileY += gp.FINAL_SIZE;
             }
         }
     }
