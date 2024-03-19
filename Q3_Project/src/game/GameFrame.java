@@ -12,6 +12,7 @@ import javax.swing.*;
  * @author Acer
  */
 public class GameFrame extends JFrame {
+    //GameFrame's sole purpose is to run GamePanel
     public GameFrame() {
         JFrame gwindow = new JFrame();
         gwindow.setDefaultCloseOperation(EXIT_ON_CLOSE);

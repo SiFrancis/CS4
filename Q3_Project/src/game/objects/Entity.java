@@ -14,7 +14,12 @@ public class Entity {
      * might remove this if final game has no NPCs
      */
     
+    //world coordinates
     public int worldX, worldY, speed;
+    
+    //direction of motion
     public String direction;
+    
+    //collision status
     public boolean colliding = false;
 }

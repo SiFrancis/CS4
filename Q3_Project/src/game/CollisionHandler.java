@@ -19,6 +19,7 @@ public class CollisionHandler {
     }
     
     public void checkTile(Entity entity) {
+        //whenever the entity moves, checks if the tile it will move into has collision
         int entityCol = entity.worldX/gp.FINAL_SIZE;
         int entityRow = entity.worldY/gp.FINAL_SIZE;
         int checkNum = 0;
@@ -28,7 +29,7 @@ public class CollisionHandler {
             case "left"  -> checkNum = gp.tileM.mapData[Math.max(0, entityCol-1)][entityRow];
             case "right" -> checkNum = gp.tileM.mapData[Math.min(gp.WORLD_COLS - 1, entityCol+1)][entityRow];
         }
-        entity.colliding = (gp.tileM.tileset[checkNum].collision == true);
+        entity.colliding = (gp.tileM.tileSet[checkNum].collision == true);
     }
     
 }

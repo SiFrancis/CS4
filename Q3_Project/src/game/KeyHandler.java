@@ -13,12 +13,15 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener {
     
+    //act as 'signals' to tell other classes that the WASD keys are pressed
     public boolean upPress, downPress, leftPress, rightPress;
 
     @Override
     public void keyTyped(KeyEvent e) {
         
     }
+    
+    //starts motion upon pressing keys
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -31,6 +34,8 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_D -> rightPress = true;
         }
     }
+    
+    //stops motion upon releasing keys
 
     @Override
     public void keyReleased(KeyEvent e) {

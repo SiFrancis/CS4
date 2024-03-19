@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
  * @author user
  */
 public class Tile {
+    //Tiles have two proeprties; tile image and collision
+    //If collision = true, entities can collide with the tile (and thus cannot pass through)
     public BufferedImage image;
     public boolean collision;
     
