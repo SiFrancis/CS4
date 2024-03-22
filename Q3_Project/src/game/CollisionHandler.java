@@ -4,7 +4,7 @@
  */
 package game;
 
-import game.objects.Entity;
+import game.entity.Entity;
 
 /**
  *

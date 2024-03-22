@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package game.objects;
+package game;
 
 import game.GamePanel;
 import java.awt.Graphics2D;
@@ -30,7 +30,7 @@ public class TileManager {
     
     public TileManager(GamePanel gp, String map) {
         this.gp = gp;
-        tileSet = new Tile[2]; //2 total tiles in tile set
+        tileSet = new Tile[3]; //2 total tiles in tile set
         mapData = new int[gp.WORLD_COLS][gp.WORLD_ROWS];
         getTileImage();
         loadMap(map);
@@ -38,8 +38,9 @@ public class TileManager {
     
     public void getTileImage() {
         //reads tile images from file
-        tileSet[0] = new Tile("00_grass.png", false);
-        tileSet[1] = new Tile("01_wall.png", true);
+        tileSet[0] = new Tile("00_void.png", false);
+        tileSet[1] = new Tile("01_grass.png", false);
+        tileSet[2] = new Tile("02_wall.png", true);
     }
     
     public void loadMap(String map) {

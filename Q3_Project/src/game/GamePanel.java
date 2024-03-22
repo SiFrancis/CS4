@@ -4,8 +4,7 @@
  */
 package game;
 
-import game.objects.Player;
-import game.objects.TileManager;
+import game.entity.Player;
 import javax.swing.*;
 import java.awt.*;
 
@@ -41,7 +40,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     
     //instantiates tile manager
-    TileManager tileM = new TileManager(this, "bigmap00.txt");
+    public String map = "room.txt";
+    TileManager tileM = new TileManager(this, map);
     
     //instantiates new collision handler
     public CollisionHandler collH = new CollisionHandler(this);
@@ -49,8 +49,8 @@ public class GamePanel extends JPanel implements Runnable {
     //settings for world map
     //all maps will have this fixed size
     //very inflexible pero sige nalang
-    public final int WORLD_COLS = 25;
-    public final int WORLD_ROWS = 20;
+    public final int WORLD_COLS = 50;
+    public final int WORLD_ROWS = 50;
     public final int WORLD_W = WORLD_COLS * FINAL_SIZE;
     public final int WORLD_H = WORLD_ROWS * FINAL_SIZE;
     

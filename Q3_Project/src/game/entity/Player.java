@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package game.objects;
+package game.entity;
 
 import game.GamePanel;
 import game.KeyHandler;
@@ -42,8 +42,8 @@ public class Player extends Entity {
     
     public void setDefaults() {
         //sets player position and speed
-        worldX = 10*gp.FINAL_SIZE;
-        worldY = 9*gp.FINAL_SIZE;
+        worldX = 4*gp.FINAL_SIZE;
+        worldY = 4*gp.FINAL_SIZE;
         speed = gp.FINAL_SIZE;
         direction = "right";
     }
