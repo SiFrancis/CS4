@@ -7,6 +7,7 @@ package game;
 import game.entity.Player;
 import javax.swing.*;
 import java.awt.*;
+import game.objects.SuperObject;
 
 /**
  *
@@ -36,6 +37,10 @@ public class GamePanel extends JPanel implements Runnable {
     //instantiates key handler
     KeyHandler keyH = new KeyHandler();
     
+    //new object manager
+    public SuperObject obj[] = new SuperObject[1];
+    ObjectManager objM = new ObjectManager(this);
+    
     //instantiates new Player object
     public Player player = new Player(this, keyH);
     
@@ -57,6 +62,10 @@ public class GamePanel extends JPanel implements Runnable {
     //FPS
     int FPS = 60;
     
+    public void setup() {
+        objM.placeObjects();
+    }
+    
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
@@ -73,6 +82,11 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         
         tileM.draw(g2);
+        
+        for (SuperObject obj1 : obj) {
+            obj1.draw(g2, this);
+        }
+        
         player.draw(g2);
         
         g2.dispose();

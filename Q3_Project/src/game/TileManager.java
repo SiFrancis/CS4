@@ -73,15 +73,15 @@ public class TileManager {
             
             int mapX = col * gp.FINAL_SIZE;
             int mapY = row * gp.FINAL_SIZE;
-            int camX = mapX - gp.player.worldX + gp.player.screenX;
-            int camY = mapY - gp.player.worldY + gp.player.screenY;
+            int screenX = mapX - gp.player.worldX + gp.player.screenX;
+            int screenY = mapY - gp.player.worldY + gp.player.screenY;
             
             //TileManager only renders visible portion of the map for better performance
             if (mapX + gp.FINAL_SIZE > gp.player.worldX - gp.player.screenX &&
                 mapX - gp.FINAL_SIZE < gp.player.worldX + gp.player.screenX &&
                 mapY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
                 mapY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
-                g2.drawImage(tileSet[tileData].image, camX, camY, 
+                g2.drawImage(tileSet[tileData].image, screenX, screenY, 
                     gp.FINAL_SIZE, gp.FINAL_SIZE, null
                 );
             }
