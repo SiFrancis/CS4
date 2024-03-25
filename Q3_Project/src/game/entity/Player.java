@@ -24,8 +24,6 @@ public class Player extends Entity {
     //sprites for four directions
     public BufferedImage up, down, left, right;
     
-    public boolean exits = false;
-    
     //determines camera position
     public final int screenX;
     public final int screenY;
@@ -68,7 +66,6 @@ public class Player extends Entity {
             switch (objName) {
                 case "Bed" -> {
                     //exit dialog?
-                    System.out.println(Math.random());
                 }
                 case "Start Door" -> {
                     // enter game

@@ -13,9 +13,15 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener {
     
+    GamePanel gp;
+    
     //act as 'signals' to tell other classes that the WASD keys are pressed
     public boolean upPress, downPress, leftPress, rightPress;
 
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
+    
     @Override
     public void keyTyped(KeyEvent e) {
         
@@ -32,6 +38,10 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_S -> downPress = true;
             case KeyEvent.VK_A -> leftPress = true;
             case KeyEvent.VK_D -> rightPress = true;
+            case KeyEvent.VK_ESCAPE -> {
+                if (gp.gameState == gp.PLAY_STATE) gp.gameState = gp.PAUSE_STATE;
+                else if (gp.gameState == gp.PAUSE_STATE) gp.gameState = gp.PLAY_STATE;
+            }
         }
     }
     

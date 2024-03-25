@@ -30,16 +30,29 @@ public class GamePanel extends JPanel implements Runnable {
     public final int SCREEN_H = FINAL_SIZE * SCREEN_ROWS; // 768 px tall
     
     // game loop related
-    Thread gameThread;
+    public Thread gameThread;
+    
+    //settings for world map
+    //all maps will have this fixed size
+    //very inflexible pero sige nalang
+    public final int WORLD_COLS = 50;
+    public final int WORLD_ROWS = 50;
+    public final int WORLD_W = WORLD_COLS * FINAL_SIZE;
+    public final int WORLD_H = WORLD_ROWS * FINAL_SIZE;
     
     //see classes for description
     
     //instantiates key handler
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     
-    //new object manager
+    //object manager
     public SuperObject obj[] = new SuperObject[10];
     ObjectManager objM = new ObjectManager(this);
+    
+    //game states
+    public int gameState;
+    public final int PLAY_STATE = 1;
+    public final int PAUSE_STATE = 2;
     
     //instantiates new Player object
     public Player player = new Player(this, keyH);
@@ -51,19 +64,14 @@ public class GamePanel extends JPanel implements Runnable {
     //instantiates new collision handler
     public CollisionHandler collH = new CollisionHandler(this);
     
-    //settings for world map
-    //all maps will have this fixed size
-    //very inflexible pero sige nalang
-    public final int WORLD_COLS = 50;
-    public final int WORLD_ROWS = 50;
-    public final int WORLD_W = WORLD_COLS * FINAL_SIZE;
-    public final int WORLD_H = WORLD_ROWS * FINAL_SIZE;
+    public UI ui = new UI(this);
     
     //FPS
     int FPS = 60;
     
     public void setup() {
         objM.placeObjects();
+        gameState = PLAY_STATE;
     }
     
     public void startGameThread() {
@@ -71,13 +79,14 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
     
-    public void endGameThread() {
-        gameThread.interrupt();
-    }
-    
     //updates player position
     public void update(){
-        player.update();
+        if (gameState == PLAY_STATE) {
+            player.update();
+        }
+        if (gameState == PAUSE_STATE) {
+            //do nothing (yet)
+        }
     }
     
     //updates graphics
@@ -92,6 +101,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
         
         player.draw(g2);
+        
+        ui.draw(g2);
         
         g2.dispose();
     }
