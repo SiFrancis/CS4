@@ -13,9 +13,11 @@ import javax.imageio.ImageIO;
  */
 public class BedObject extends SuperObject {
     public BedObject() {
+        collision = true;
         name = "Bed";
+        sizeX = 96;
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/bed.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/bed2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

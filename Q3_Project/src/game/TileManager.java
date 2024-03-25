@@ -71,16 +71,16 @@ public class TileManager {
         while (col < gp.WORLD_COLS && row < gp.WORLD_ROWS) {
             int tileData = mapData[col][row];
             
-            int mapX = col * gp.FINAL_SIZE;
-            int mapY = row * gp.FINAL_SIZE;
-            int screenX = mapX - gp.player.worldX + gp.player.screenX;
-            int screenY = mapY - gp.player.worldY + gp.player.screenY;
+            int worldX = col * gp.FINAL_SIZE;
+            int worldY = row * gp.FINAL_SIZE;
+            int screenX = worldX - gp.player.worldX + gp.player.screenX;
+            int screenY = worldY - gp.player.worldY + gp.player.screenY;
             
             //TileManager only renders visible portion of the map for better performance
-            if (mapX + gp.FINAL_SIZE > gp.player.worldX - gp.player.screenX &&
-                mapX - gp.FINAL_SIZE < gp.player.worldX + gp.player.screenX &&
-                mapY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
-                mapY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
+            if (worldX + gp.FINAL_SIZE > gp.player.worldX - gp.player.screenX &&
+                worldX - gp.FINAL_SIZE < gp.player.worldX + gp.player.screenX &&
+                worldY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
+                worldY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
                 g2.drawImage(tileSet[tileData].image, screenX, screenY, 
                     gp.FINAL_SIZE, gp.FINAL_SIZE, null
                 );

@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     
     //new object manager
-    public SuperObject obj[] = new SuperObject[1];
+    public SuperObject obj[] = new SuperObject[10];
     ObjectManager objM = new ObjectManager(this);
     
     //instantiates new Player object
@@ -71,6 +71,10 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
     
+    public void endGameThread() {
+        gameThread.interrupt();
+    }
+    
     //updates player position
     public void update(){
         player.update();
@@ -83,8 +87,8 @@ public class GamePanel extends JPanel implements Runnable {
         
         tileM.draw(g2);
         
-        for (SuperObject obj1 : obj) {
-            obj1.draw(g2, this);
+        for (SuperObject o : obj) {
+            if (o != null) {o.draw(g2, this);}
         }
         
         player.draw(g2);

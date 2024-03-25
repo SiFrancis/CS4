@@ -5,6 +5,7 @@
 package game;
 
 import game.entity.Entity;
+import game.entity.Player;
 
 /**
  *
@@ -29,7 +30,47 @@ public class CollisionHandler {
             case "left"  -> checkNum = gp.tileM.mapData[Math.max(0, entityCol-1)][entityRow];
             case "right" -> checkNum = gp.tileM.mapData[Math.min(gp.WORLD_COLS - 1, entityCol+1)][entityRow];
         }
-        entity.colliding = (gp.tileM.tileSet[checkNum].collision == true);
+        entity.colliding = (gp.tileM.tileSet[checkNum].collision);
+    }
+    
+    public int checkObject(Entity entity) {
+        int index = 999;
+        for (int i = 0; i < gp.obj.length; i++) {
+            int entityCol = entity.worldX/gp.FINAL_SIZE;
+            int entityRow = entity.worldY/gp.FINAL_SIZE;
+            if (gp.obj[i] != null) {
+                int objCol = gp.obj[i].worldX/gp.FINAL_SIZE;
+                int objRow = gp.obj[i].worldY/gp.FINAL_SIZE;
+                
+                switch (entity.direction) {
+                    case "up" -> {
+                        if (objCol == entityCol && (objRow == Math.max(0, entityRow-1) || objRow == entityRow)) {
+                            entity.colliding = gp.obj[i].collision;  
+                            if (entity instanceof Player && gp.keyH.upPress) {index = i;}
+                        }
+                    }
+                    case "down" -> {
+                        if (objCol == entityCol && (objRow == Math.min(gp.WORLD_ROWS - 1, entityRow+1) || objRow == entityRow)) {
+                            entity.colliding = gp.obj[i].collision;  
+                            if (entity instanceof Player && gp.keyH.downPress) {index = i;}
+                        }
+                    }
+                    case "left" -> {
+                        if ((objCol == Math.max(0, entityCol-1) || objCol == entityCol) && objRow == entityRow) {
+                            entity.colliding = gp.obj[i].collision;  
+                            if (entity instanceof Player && gp.keyH.leftPress) {index = i;}
+                        }
+                    }
+                    case "right" -> {
+                        if ((objCol == Math.min(gp.WORLD_COLS - 1, entityCol+1) || objCol == entityCol) && objRow == entityRow) {
+                            entity.colliding = gp.obj[i].collision;  
+                            if (entity instanceof Player && gp.keyH.rightPress) {index = i;}
+                        }
+                    }
+                }
+            }
+        }
+        return index;
     }
     
 }

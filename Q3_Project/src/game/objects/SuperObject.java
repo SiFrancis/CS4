@@ -17,18 +17,19 @@ public class SuperObject {
     public BufferedImage image;
     public String name;
     public boolean collision = false;
-    public int mapX, mapY;
+    public int worldX, worldY;
+    public int sizeX = 64, sizeY = 64;
     
     public void draw(Graphics2D g2, GamePanel gp) {
-        int screenX = mapX - gp.player.worldX + gp.player.screenX;
-        int screenY = mapY - gp.player.worldY + gp.player.screenY;
+        int screenX = worldX - gp.player.worldX + gp.player.screenX;
+        int screenY = worldY - gp.player.worldY + gp.player.screenY;
         // similar code to TileManager
-        if (mapX + gp.FINAL_SIZE > gp.player.worldX - gp.player.screenX &&
-            mapX - gp.FINAL_SIZE < gp.player.worldX + gp.player.screenX &&
-            mapY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
-            mapY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
+        if (worldX + gp.FINAL_SIZE > gp.player.worldX - gp.player.screenX &&
+            worldX - gp.FINAL_SIZE < gp.player.worldX + gp.player.screenX &&
+            worldY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
+            worldY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
             g2.drawImage(image, screenX, screenY, 
-                gp.FINAL_SIZE, gp.FINAL_SIZE, null
+                sizeX, sizeY, null
             );
         }
     }

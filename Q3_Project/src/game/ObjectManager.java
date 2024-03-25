@@ -19,10 +19,8 @@ public class ObjectManager {
     
     public void placeObjects() {
         gp.obj[0] = new BedObject();
-        gp.obj[0].mapX = gp.FINAL_SIZE;
-        gp.obj[0].mapY = gp.FINAL_SIZE;
+        gp.obj[0].worldX = gp.FINAL_SIZE;
+        gp.obj[0].worldY = gp.FINAL_SIZE;
         
-//        gp.obj[1] = new BedObject();
-//        gp.obj[1].setPosition(5*gp.FINAL_SIZE, 3*gp.FINAL_SIZE);
     }
 }

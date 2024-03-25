@@ -24,6 +24,8 @@ public class Player extends Entity {
     //sprites for four directions
     public BufferedImage up, down, left, right;
     
+    public boolean exits = false;
+    
     //determines camera position
     public final int screenX;
     public final int screenY;
@@ -60,6 +62,24 @@ public class Player extends Entity {
         }
     }
     
+    public void interactObject(int i) {
+        if (i != 999) {
+            String objName = gp.obj[i].name;
+            switch (objName) {
+                case "Bed" -> {
+                    //exit dialog?
+                    System.out.println(Math.random());
+                }
+                case "Start Door" -> {
+                    // enter game
+                }
+                case "Desk" -> {
+                    //go to automations
+                }
+            }
+        }
+    }
+    
     public void update(){
         //handles player movement
         
@@ -87,6 +107,10 @@ public class Player extends Entity {
         }
         //checks for collision before moving, using the direction indicated by above if ladder
         gp.collH.checkTile(this);
+        
+        //object collision handling
+        int objIndex = gp.collH.checkObject(this);
+        interactObject(objIndex);
         
         //will only move player if there is no collision and WASD keys are being pressed
         if (colliding == false && moving == true) {
