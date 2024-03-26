@@ -20,7 +20,7 @@ public class UI {
     public UI (GamePanel gp) {
         this.gp = gp;
         
-        pause_txt = new Font("Arial", Font.PLAIN, 50);
+        pause_txt = new Font("Arial", Font.PLAIN, 100);
     }
     
     public void draw(Graphics2D g2) {
