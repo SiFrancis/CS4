@@ -9,6 +9,7 @@ import game.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -35,6 +36,14 @@ public class Player extends Entity {
         //centers camera on screen
         screenX = (gp.SCREEN_W - gp.FINAL_SIZE)/2;
         screenY = (gp.SCREEN_H - gp.FINAL_SIZE)/2;
+        
+        solidArea = new Rectangle();
+        solidArea.x = 0;
+        solidArea.y = 0;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = gp.FINAL_SIZE;
+        solidArea.height = gp.FINAL_SIZE;
         
         setDefaults();
         getImage();
@@ -64,13 +73,13 @@ public class Player extends Entity {
         if (i != 999) {
             String objName = gp.obj[i].name;
             switch (objName) {
-                case "Bed" -> {
+                case "Start Bed" -> {
                     //exit dialog?
                 }
                 case "Start Door" -> {
                     // enter game
                 }
-                case "Desk" -> {
+                case "StartDesk" -> {
                     //go to automations
                 }
             }

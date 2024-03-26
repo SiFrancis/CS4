@@ -40,6 +40,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int WORLD_W = WORLD_COLS * FINAL_SIZE;
     public final int WORLD_H = WORLD_ROWS * FINAL_SIZE;
     
+    public final int MAX_MAPS = 10;
+    public int currentMap = 0;
+    
     //see classes for description
     
     //instantiates key handler
@@ -58,8 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     
     //instantiates tile manager
-    public String map = "room.txt";
-    TileManager tileM = new TileManager(this, map);
+    TileManager tileM = new TileManager(this);
     
     //instantiates new collision handler
     public CollisionHandler collH = new CollisionHandler(this);

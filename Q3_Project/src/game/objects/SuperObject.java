@@ -6,6 +6,7 @@ package game.objects;
 
 import game.GamePanel;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
@@ -18,7 +19,15 @@ public class SuperObject {
     public String name;
     public boolean collision = false;
     public int worldX, worldY;
-    public int sizeX = 64, sizeY = 64;
+    public int sizeW = 64, sizeH = 64;
+    public Rectangle solidArea;
+    public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
+    
+    public void placeAndSize(int x, int y, int width, int height) {
+        this.worldX = x; this.worldY = y;
+        this.sizeW = width; this.sizeH = height;
+        solidArea = new Rectangle(0, 0, sizeW, sizeH);
+    }
     
     public void draw(Graphics2D g2, GamePanel gp) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
@@ -29,7 +38,7 @@ public class SuperObject {
             worldY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
             worldY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
             g2.drawImage(image, screenX, screenY, 
-                sizeX, sizeY, null
+                sizeW, sizeH, null
             );
         }
     }

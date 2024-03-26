@@ -18,9 +18,12 @@ public class ObjectManager {
     }
     
     public void placeObjects() {
-        gp.obj[0] = new BedObject();
-        gp.obj[0].worldX = gp.FINAL_SIZE;
-        gp.obj[0].worldY = gp.FINAL_SIZE;
+        gp.obj[0] = new StartBedObject();
+        gp.obj[0].placeAndSize(gp.FINAL_SIZE, gp.FINAL_SIZE, 
+                gp.FINAL_SIZE*2, gp.FINAL_SIZE);
         
+        gp.obj[1] = new StartDeskObject();
+        gp.obj[1].placeAndSize(gp.FINAL_SIZE, 6*gp.FINAL_SIZE, 
+                gp.FINAL_SIZE, 2*gp.FINAL_SIZE);
     }
 }

@@ -26,14 +26,15 @@ public class TileManager {
     /**
      * mapData[3][4] = 1 means that at x = 4 and y = 5, tileSet[1] will display
      */
-    public int mapData[][];
+    public int mapData[][][];
     
-    public TileManager(GamePanel gp, String map) {
+    public TileManager(GamePanel gp) {
         this.gp = gp;
         tileSet = new Tile[3]; //2 total tiles in tile set
-        mapData = new int[gp.WORLD_COLS][gp.WORLD_ROWS];
+        mapData = new int[gp.MAX_MAPS][gp.WORLD_COLS][gp.WORLD_ROWS];
         getTileImage();
-        loadMap(map);
+        loadMap("room.txt", 0);
+        loadMap("automation.txt", 1);
     }
     
     public void getTileImage() {
@@ -43,11 +44,11 @@ public class TileManager {
         tileSet[2] = new Tile("02_wall.png", true);
     }
     
-    public void loadMap(String map) {
+    public void loadMap(String maptext, int mapnum) {
         //reads the map text file and loads it into mapData[][]
         try {
             // NOTE: map00 and bigmap00 are for testing purposes only
-            InputStream inp = getClass().getResourceAsStream("/game/res/maps/"+map);
+            InputStream inp = getClass().getResourceAsStream("/game/res/maps/"+maptext);
             BufferedReader br = new BufferedReader(new InputStreamReader(inp));
             int col = 0, row = 0;
             while (col < gp.WORLD_COLS && row < gp.WORLD_ROWS) {
@@ -55,7 +56,7 @@ public class TileManager {
                 while (col < gp.WORLD_COLS) {
                     String nums[] = line.split(" ");
                     int num = Integer.parseInt(nums[col]);
-                    mapData[col][row] = num;
+                    mapData[mapnum][col][row] = num;
                     col++;
                 }
                 if (col == gp.WORLD_COLS) {col = 0; row++;}
@@ -69,7 +70,7 @@ public class TileManager {
         //uses mapData to draw the tiles
         int col = 0, row = 0;
         while (col < gp.WORLD_COLS && row < gp.WORLD_ROWS) {
-            int tileData = mapData[col][row];
+            int tileData = mapData[gp.currentMap][col][row];
             
             int worldX = col * gp.FINAL_SIZE;
             int worldY = row * gp.FINAL_SIZE;

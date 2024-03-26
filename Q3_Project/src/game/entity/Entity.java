@@ -4,6 +4,8 @@
  */
 package game.entity;
 
+import java.awt.Rectangle;
+
 /**
  *
  * @author Acer
@@ -22,4 +24,7 @@ public class Entity {
     
     //collision status
     public boolean colliding = false;
+    
+    public Rectangle solidArea;
+    public int solidAreaDefaultX, solidAreaDefaultY;
 }

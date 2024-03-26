@@ -11,13 +11,12 @@ import javax.imageio.ImageIO;
  *
  * @author Acer
  */
-public class BedObject extends SuperObject {
-    public BedObject() {
+public class StartDeskObject extends SuperObject {
+    public StartDeskObject() {
         collision = true;
-        name = "Bed";
-        sizeX = 96;
+        name = "StartDesk";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/bed2.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/table-1.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
