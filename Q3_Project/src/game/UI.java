@@ -20,7 +20,7 @@ public class UI {
     public UI (GamePanel gp) {
         this.gp = gp;
         
-        pause_txt = new Font("Arial", Font.PLAIN, 100);
+        pause_txt = new Font("Arial", Font.PLAIN, 50);
     }
     
     public void draw(Graphics2D g2) {
@@ -30,7 +30,8 @@ public class UI {
         g2.setColor(Color.white);
         
         if (gp.gameState == gp.PLAY_STATE) {
-            
+            String text = gp.player.worldX/gp.TILE_SIZE + " " + gp.player.worldY/gp.TILE_SIZE;
+            g2.drawString(text, 100, 100);
         }
         if (gp.gameState == gp.PAUSE_STATE) {
             String text = "PAUSED";

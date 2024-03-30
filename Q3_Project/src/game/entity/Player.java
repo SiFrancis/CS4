@@ -13,6 +13,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import main.automations.*;
 
 /**
  *
@@ -21,6 +22,8 @@ import javax.imageio.ImageIO;
 public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
+    
+    boolean moving;
     
     //sprites for four directions
     public BufferedImage up, down, left, right;
@@ -34,16 +37,16 @@ public class Player extends Entity {
         this.keyH = keyH;
         
         //centers camera on screen
-        screenX = (gp.SCREEN_W - gp.FINAL_SIZE)/2;
-        screenY = (gp.SCREEN_H - gp.FINAL_SIZE)/2;
+        screenX = (gp.SCREEN_W - gp.TILE_SIZE)/2;
+        screenY = (gp.SCREEN_H - gp.TILE_SIZE)/2;
         
         solidArea = new Rectangle();
         solidArea.x = 0;
         solidArea.y = 0;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = gp.FINAL_SIZE;
-        solidArea.height = gp.FINAL_SIZE;
+        solidArea.width = gp.TILE_SIZE;
+        solidArea.height = gp.TILE_SIZE;
         
         setDefaults();
         getImage();
@@ -51,9 +54,9 @@ public class Player extends Entity {
     
     public void setDefaults() {
         //sets player position and speed
-        worldX = 4*gp.FINAL_SIZE;
-        worldY = 4*gp.FINAL_SIZE;
-        speed = gp.FINAL_SIZE;
+        worldX = 4*gp.TILE_SIZE;
+        worldY = 4*gp.TILE_SIZE;
+        speed = gp.TILE_SIZE;
         direction = "right";
     }
     
@@ -69,9 +72,18 @@ public class Player extends Entity {
         }
     }
     
+    public void stopMoving () {
+        switch (direction) {
+            case "up" -> {keyH.upPress = false; moving = false;}
+            case "down" -> {keyH.downPress = false; moving = false;}
+            case "left" -> {keyH.leftPress = false; moving = false;}
+            case "right" -> {keyH.rightPress = false; moving = false;}
+        }
+    }
+    
     public void interactObject(int i) {
         if (i != 999) {
-            String objName = gp.obj[i].name;
+            String objName = gp.obj[gp.currentMap][i].name;
             switch (objName) {
                 case "Start Bed" -> {
                     //exit dialog?
@@ -79,8 +91,27 @@ public class Player extends Entity {
                 case "Start Door" -> {
                     // enter game
                 }
-                case "StartDesk" -> {
+                case "Start Desk" -> {
                     //go to automations
+                    gp.currentMap = 1;
+                    this.worldX = 6*gp.TILE_SIZE; this.worldY = 6*gp.TILE_SIZE;
+                    stopMoving();
+                }
+                case "Automation Icon" -> {
+                    switch (gp.obj[gp.currentMap][i].type) {
+                        case 0 -> {
+                            gp.currentMap = 0;
+                            this.worldX = 4*gp.TILE_SIZE; this.worldY = 4*gp.TILE_SIZE;
+                            stopMoving();
+                        }
+                        case 1 -> {
+                            stopMoving();
+                            gp.gameState = gp.PAUSE_STATE;
+                            new Automation1().setVisible(true);
+                        }
+                        case 2 -> {System.out.println("autom2");}
+                        case 3 -> {System.out.println("autom3");}
+                    }
                 }
             }
         }
@@ -92,7 +123,7 @@ public class Player extends Entity {
         //collision status
         colliding = false;
         //movement status
-        boolean moving = false;
+        moving = false;
         
         //pressing WASD keys immediately changes the direction of the player
         if (keyH.upPress) {
@@ -130,8 +161,8 @@ public class Player extends Entity {
         }
 
         //prevents player from going out of bounds
-        if (worldX > gp.WORLD_W - gp.FINAL_SIZE) {worldX = gp.WORLD_W - gp.FINAL_SIZE;}
-        if (worldY > gp.WORLD_H - gp.FINAL_SIZE) {worldY = gp.WORLD_H - gp.FINAL_SIZE;}
+        if (worldX > gp.WORLD_W - gp.TILE_SIZE) {worldX = gp.WORLD_W - gp.TILE_SIZE;}
+        if (worldY > gp.WORLD_H - gp.TILE_SIZE) {worldY = gp.WORLD_H - gp.TILE_SIZE;}
         if (worldX < 0) {worldX = 0;}
         if (worldY < 0) {worldY = 0;}
     }
@@ -147,6 +178,6 @@ public class Player extends Entity {
         }
         
         //draws player character
-        g2.drawImage(img, screenX, screenY, gp.FINAL_SIZE, gp.FINAL_SIZE, null);
+        g2.drawImage(img, screenX, screenY, gp.TILE_SIZE, gp.TILE_SIZE, null);
     }
 }

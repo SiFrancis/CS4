@@ -22,10 +22,12 @@ public class SuperObject {
     public int sizeW = 64, sizeH = 64;
     public Rectangle solidArea;
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
+    //used for automation icon for now; might be useful for other things
+    public int type = 0;
     
-    public void placeAndSize(int x, int y, int width, int height) {
-        this.worldX = x; this.worldY = y;
-        this.sizeW = width; this.sizeH = height;
+    public void placeAndSize(GamePanel gp, int x, int y, int width, int height) {
+        this.worldX = x*gp.TILE_SIZE; this.worldY = y*gp.TILE_SIZE;
+        this.sizeW = width*gp.TILE_SIZE; this.sizeH = height*gp.TILE_SIZE;
         solidArea = new Rectangle(0, 0, sizeW, sizeH);
     }
     
@@ -33,10 +35,10 @@ public class SuperObject {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
         // similar code to TileManager
-        if (worldX + gp.FINAL_SIZE > gp.player.worldX - gp.player.screenX &&
-            worldX - gp.FINAL_SIZE < gp.player.worldX + gp.player.screenX &&
-            worldY + gp.FINAL_SIZE > gp.player.worldY - gp.player.screenY &&
-            worldY - gp.FINAL_SIZE < gp.player.worldY + gp.player.screenY) {
+        if (worldX + gp.TILE_SIZE > gp.player.worldX - gp.player.screenX &&
+            worldX - gp.TILE_SIZE < gp.player.worldX + gp.player.screenX &&
+            worldY + gp.TILE_SIZE > gp.player.worldY - gp.player.screenY &&
+            worldY - gp.TILE_SIZE < gp.player.worldY + gp.player.screenY) {
             g2.drawImage(image, screenX, screenY, 
                 sizeW, sizeH, null
             );

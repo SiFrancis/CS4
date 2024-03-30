@@ -21,13 +21,13 @@ public class GamePanel extends JPanel implements Runnable {
     //tile settings
     final int BASE_SIZE = 32; //32x32 tile textures
     final float TILE_SCALE = 2;
-    public final int FINAL_SIZE = (int) (BASE_SIZE * TILE_SCALE); //scaled tiles
+    public final int TILE_SIZE = (int) (BASE_SIZE * TILE_SCALE); //scaled tiles
     
     //screen display settings
     public final int SCREEN_COLS = 16; //screen is 16 grid spaces wide
     public final int SCREEN_ROWS = 12; //screen is 12 grid spaces tall
-    public final int SCREEN_W = FINAL_SIZE * SCREEN_COLS; // 1024 px wide
-    public final int SCREEN_H = FINAL_SIZE * SCREEN_ROWS; // 768 px tall
+    public final int SCREEN_W = TILE_SIZE * SCREEN_COLS; // 1024 px wide
+    public final int SCREEN_H = TILE_SIZE * SCREEN_ROWS; // 768 px tall
     
     // game loop related
     public Thread gameThread;
@@ -37,8 +37,8 @@ public class GamePanel extends JPanel implements Runnable {
     //very inflexible pero sige nalang
     public final int WORLD_COLS = 50;
     public final int WORLD_ROWS = 50;
-    public final int WORLD_W = WORLD_COLS * FINAL_SIZE;
-    public final int WORLD_H = WORLD_ROWS * FINAL_SIZE;
+    public final int WORLD_W = WORLD_COLS * TILE_SIZE;
+    public final int WORLD_H = WORLD_ROWS * TILE_SIZE;
     
     public final int MAX_MAPS = 10;
     public int currentMap = 0;
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler(this);
     
     //object manager
-    public SuperObject obj[] = new SuperObject[10];
+    public SuperObject obj[][] = new SuperObject[MAX_MAPS][10];
     ObjectManager objM = new ObjectManager(this);
     
     //game states
@@ -98,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
         
         tileM.draw(g2);
         
-        for (SuperObject o : obj) {
+        for (SuperObject o : obj[currentMap]) {
             if (o != null) {o.draw(g2, this);}
         }
         

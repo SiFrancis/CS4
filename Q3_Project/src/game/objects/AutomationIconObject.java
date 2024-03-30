@@ -11,12 +11,16 @@ import javax.imageio.ImageIO;
  *
  * @author Acer
  */
-public class StartDeskObject extends SuperObject {
-    public StartDeskObject() {
+public class AutomationIconObject extends SuperObject {
+    // 0 = exit, 1, 2, 3 = respective automation numbers (on math doc)
+    
+    public AutomationIconObject(int type) {
         collision = true;
-        name = "Start Desk";
+        this.type = type;
+        name = "Automation Icon";
+        String filepath = String.format("/game/res/objects/autom_icons/icon%d.png", type);
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/table-1.png"));
+            image = ImageIO.read(getClass().getResourceAsStream(filepath));
         } catch (IOException e) {
             e.printStackTrace();
         }

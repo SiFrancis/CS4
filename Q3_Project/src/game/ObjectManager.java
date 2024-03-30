@@ -18,12 +18,24 @@ public class ObjectManager {
     }
     
     public void placeObjects() {
-        gp.obj[0] = new StartBedObject();
-        gp.obj[0].placeAndSize(gp.FINAL_SIZE, gp.FINAL_SIZE, 
-                gp.FINAL_SIZE*2, gp.FINAL_SIZE);
+        //MAP 0 (ROOM)
+        gp.obj[0][0] = new StartBedObject();
+        gp.obj[0][0].placeAndSize(gp, 1, 1, 2, 1);
         
-        gp.obj[1] = new StartDeskObject();
-        gp.obj[1].placeAndSize(gp.FINAL_SIZE, 6*gp.FINAL_SIZE, 
-                gp.FINAL_SIZE, 2*gp.FINAL_SIZE);
+        gp.obj[0][1] = new StartDeskObject();
+        gp.obj[0][1].placeAndSize(gp, 1, 6, 1, 2);
+        
+        //MAP 1 (AUTOMATIONS)
+        gp.obj[1][0] = new AutomationIconObject(0);
+        gp.obj[1][0].placeAndSize(gp, 6, 11, 1, 1);
+        
+        gp.obj[1][1] = new AutomationIconObject(1);
+        gp.obj[1][1].placeAndSize(gp, 1, 6, 1, 1);
+        
+        gp.obj[1][2] = new AutomationIconObject(2);
+        gp.obj[1][2].placeAndSize(gp, 6, 1, 1, 1);
+        
+        gp.obj[1][3] = new AutomationIconObject(3);
+        gp.obj[1][3].placeAndSize(gp, 11, 6, 1, 1);
     }
 }
