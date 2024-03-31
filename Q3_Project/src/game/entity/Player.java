@@ -109,7 +109,11 @@ public class Player extends Entity {
                             gp.gameState = gp.PAUSE_STATE;
                             new Automation1().setVisible(true);
                         }
-                        case 2 -> {System.out.println("autom2");}
+                        case 2 -> {
+                            stopMoving();
+                            gp.gameState = gp.PAUSE_STATE;
+                            new Automation2().setVisible(true);
+                        }
                         case 3 -> {System.out.println("autom3");}
                     }
                 }
