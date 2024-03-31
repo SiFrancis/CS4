@@ -36,6 +36,7 @@ public class Automation2 extends javax.swing.JFrame {
         ansLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         titleLabel1 = new javax.swing.JLabel();
+        formulaLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Automation");
@@ -90,6 +91,10 @@ public class Automation2 extends javax.swing.JFrame {
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel1.setText("RADIUS AT DIYAMETRO");
 
+        formulaLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        formulaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formulaLabel.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,7 +118,8 @@ public class Automation2 extends javax.swing.JFrame {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(ansLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ansLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formulaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,7 +131,9 @@ public class Automation2 extends javax.swing.JFrame {
                 .addComponent(titleLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(iconLabel)
-                .addGap(18, 18, 18)
+                .addGap(2, 2, 2)
+                .addComponent(formulaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +146,7 @@ public class Automation2 extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ansLabel)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,10 +168,18 @@ public class Automation2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int val = Integer.parseInt(jTextField1.getText());
+        float val = Float.parseFloat(jTextField1.getText());
         switch (jComboBox1.getSelectedIndex()) {
-            case 0 -> ansLabel.setText(String.valueOf(val/2)+"/π");
-            case 1 -> ansLabel.setText(String.valueOf(val)+"/π");
+            case 0 -> {
+                formulaLabel.setText("Pormula: r = C/2π");
+                if (val%1.0==0) {ansLabel.setText(String.valueOf((int)(val/2))+"/π");}
+                else {ansLabel.setText(String.valueOf(val/2)+"/π");}
+            }
+            case 1 -> {
+                formulaLabel.setText("Pormula: r = C/d");
+                if (val%1.0==0) {ansLabel.setText(String.valueOf((int)val)+"/π");}
+                else {ansLabel.setText(String.valueOf(val)+"/π");}
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -207,6 +223,7 @@ public class Automation2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ansLabel;
+    private javax.swing.JLabel formulaLabel;
     private javax.swing.JLabel iconLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
