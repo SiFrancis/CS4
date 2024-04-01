@@ -30,10 +30,10 @@ public class TileManager {
     
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tileSet = new Tile[3]; //2 total tiles in tile set
+        tileSet = new Tile[4]; //2 total tiles in tile set
         mapData = new int[gp.MAX_MAPS][gp.WORLD_COLS][gp.WORLD_ROWS];
         getTileImage();
-        loadMap("room.txt", 0);
+        loadMap("house.txt", 0);
         loadMap("automation.txt", 1);
     }
     
@@ -42,6 +42,7 @@ public class TileManager {
         tileSet[0] = new Tile("00_void.png", false);
         tileSet[1] = new Tile("01_grass.png", false);
         tileSet[2] = new Tile("02_wall.png", true);
+        tileSet[3] = new Tile("03_stairs.png", false);
     }
     
     public void loadMap(String maptext, int mapnum) {

@@ -24,12 +24,16 @@ public class SuperObject {
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
     //used for automation icon for now; might be useful for other things
     public int type = 0;
+    String[] dialogs = new String[20];
     
     public void placeAndSize(GamePanel gp, int x, int y, int width, int height) {
         this.worldX = x*gp.TILE_SIZE; this.worldY = y*gp.TILE_SIZE;
         this.sizeW = width*gp.TILE_SIZE; this.sizeH = height*gp.TILE_SIZE;
         solidArea = new Rectangle(0, 0, sizeW, sizeH);
     }
+    
+    public void setDialog(int i, String text) {dialogs[i] = text;}
+    public void speak(GamePanel gp, int i) {gp.ui.currentDialog = dialogs[i];}
     
     public void draw(Graphics2D g2, GamePanel gp) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;

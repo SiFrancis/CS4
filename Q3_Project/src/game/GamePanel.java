@@ -43,8 +43,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int MAX_MAPS = 10;
     public int currentMap = 0;
     
-    //see classes for description
-    
     //instantiates key handler
     KeyHandler keyH = new KeyHandler(this);
     
@@ -56,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState;
     public final int PLAY_STATE = 1;
     public final int PAUSE_STATE = 2;
+    public final int DIALOGUE_STATE = 3;
     
     //instantiates new Player object
     public Player player = new Player(this, keyH);

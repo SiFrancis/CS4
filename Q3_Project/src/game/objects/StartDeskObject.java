@@ -16,7 +16,7 @@ public class StartDeskObject extends SuperObject {
         collision = true;
         name = "Start Desk";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/table-1.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/table.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

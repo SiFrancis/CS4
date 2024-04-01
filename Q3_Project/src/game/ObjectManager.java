@@ -25,6 +25,14 @@ public class ObjectManager {
         gp.obj[0][1] = new StartDeskObject();
         gp.obj[0][1].placeAndSize(gp, 1, 6, 1, 2);
         
+        gp.obj[0][2] = new StairObject(0);
+        gp.obj[0][2].placeAndSize(gp, 0, 14, 1, 1);
+        
+        gp.obj[0][3] = new StairObject(1);
+        gp.obj[0][3].placeAndSize(gp, 30, 15, 1, 1);
+        
+        //====================================================================//
+        
         //MAP 1 (AUTOMATIONS)
         gp.obj[1][0] = new AutomationIconObject(0);
         gp.obj[1][0].placeAndSize(gp, 6, 11, 1, 1);

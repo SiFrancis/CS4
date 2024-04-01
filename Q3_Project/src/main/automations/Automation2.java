@@ -155,9 +155,11 @@ public class Automation2 extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         switch (jComboBox1.getSelectedIndex()) {
             case 0 -> {
+                formulaLabel.setText("Pormula: r = C/2π");
                 iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/automations/assets/autom_radcirc.png")));
             }
             case 1 -> {
+                formulaLabel.setText("Pormula: r = C/d");
                 iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/automations/assets/autom_diamcirc.png")));
             }
         }
@@ -171,12 +173,10 @@ public class Automation2 extends javax.swing.JFrame {
         float val = Float.parseFloat(jTextField1.getText());
         switch (jComboBox1.getSelectedIndex()) {
             case 0 -> {
-                formulaLabel.setText("Pormula: r = C/2π");
-                if (val%1.0==0) {ansLabel.setText(String.valueOf((int)(val/2))+"/π");}
+                if ((val/2)%1.0==0) {ansLabel.setText(String.valueOf((int)(val/2))+"/π");}
                 else {ansLabel.setText(String.valueOf(val/2)+"/π");}
             }
             case 1 -> {
-                formulaLabel.setText("Pormula: r = C/d");
                 if (val%1.0==0) {ansLabel.setText(String.valueOf((int)val)+"/π");}
                 else {ansLabel.setText(String.valueOf(val)+"/π");}
             }

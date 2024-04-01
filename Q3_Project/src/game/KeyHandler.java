@@ -40,7 +40,7 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_D -> rightPress = true;
             case KeyEvent.VK_ESCAPE -> {
                 if (gp.gameState == gp.PLAY_STATE) gp.gameState = gp.PAUSE_STATE;
-                else if (gp.gameState == gp.PAUSE_STATE) gp.gameState = gp.PLAY_STATE;
+                else if (gp.gameState == gp.PAUSE_STATE || gp.gameState == gp.DIALOGUE_STATE) gp.gameState = gp.PLAY_STATE;
             }
         }
     }

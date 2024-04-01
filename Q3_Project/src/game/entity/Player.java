@@ -97,11 +97,30 @@ public class Player extends Entity {
                     this.worldX = 6*gp.TILE_SIZE; this.worldY = 6*gp.TILE_SIZE;
                     stopMoving();
                 }
-                case "Automation Icon" -> {
+                case "Stairs" -> {
                     switch (gp.obj[gp.currentMap][i].type) {
                         case 0 -> {
-                            gp.currentMap = 0;
-                            this.worldX = 4*gp.TILE_SIZE; this.worldY = 4*gp.TILE_SIZE;
+                            stopMoving();
+                            if (this.worldX == 1*gp.TILE_SIZE && this.worldY == 14*gp.TILE_SIZE) {
+                                this.worldX = 29*gp.TILE_SIZE; this.worldY = 15*gp.TILE_SIZE;
+                            }
+                        }
+                        case 1 -> {
+                            stopMoving();
+                            if (this.worldX == 29*gp.TILE_SIZE && this.worldY == 15*gp.TILE_SIZE) {
+                                this.worldX = 1*gp.TILE_SIZE; this.worldY = 14*gp.TILE_SIZE;
+                            }
+                        }
+                    }
+                    gp.obj[gp.currentMap][i].speak(gp, gp.obj[gp.currentMap][i].type);
+                    gp.gameState = gp.DIALOGUE_STATE;
+                }
+                case "Automation Icon" -> {
+                    switch (gp.obj[gp.currentMap][i].type) {
+                        // 0 = exit, 1, 2, 3 = respective automation numbers (on math doc)
+                        case 0 -> {
+                                gp.currentMap = 0;
+                                this.worldX = 4*gp.TILE_SIZE; this.worldY = 4*gp.TILE_SIZE;
                             stopMoving();
                         }
                         case 1 -> {
@@ -114,7 +133,11 @@ public class Player extends Entity {
                             gp.gameState = gp.PAUSE_STATE;
                             new Automation2().setVisible(true);
                         }
-                        case 3 -> {System.out.println("autom3");}
+                        case 3 -> {
+                            stopMoving();
+                            gp.gameState = gp.PAUSE_STATE;
+                            new Automation2().setVisible(true);
+                        }
                     }
                 }
             }
