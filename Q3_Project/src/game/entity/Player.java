@@ -6,21 +6,17 @@ package game.entity;
 
 import game.GamePanel;
 import game.KeyHandler;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import main.automations.*;
 
 /**
  *
  * @author Acer
  */
 public class Player extends Entity {
-    GamePanel gp;
+    //for key events (e.g. motion)
     KeyHandler keyH;
     
     boolean moving;
@@ -33,40 +29,30 @@ public class Player extends Entity {
     public final int screenY;
     
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        super(gp);
+        
         this.keyH = keyH;
         
         //centers camera on screen
         screenX = (gp.SCREEN_W - gp.TILE_SIZE)/2;
         screenY = (gp.SCREEN_H - gp.TILE_SIZE)/2;
         
-        solidArea = new Rectangle();
-        solidArea.x = 0;
-        solidArea.y = 0;
+        setDefaults(4, 4, gp.TILE_SIZE, "right");
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = gp.TILE_SIZE;
-        solidArea.height = gp.TILE_SIZE;
         
-        setDefaults();
         getImage();
     }
     
-    public void setDefaults() {
-        //sets player position and speed
-        worldX = 4*gp.TILE_SIZE;
-        worldY = 4*gp.TILE_SIZE;
-        speed = gp.TILE_SIZE;
-        direction = "right";
-    }
+    
     
     public void getImage(){
         // reads the image sprite files
         try {
-            up = ImageIO.read(getClass().getResourceAsStream("/game/res/player/up.png"));
-            down = ImageIO.read(getClass().getResourceAsStream("/game/res/player/down.png"));
-            left = ImageIO.read(getClass().getResourceAsStream("/game/res/player/left.png"));
-            right = ImageIO.read(getClass().getResourceAsStream("/game/res/player/right.png"));
+            up = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up.png"));
+            down = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down.png"));
+            left = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left.png"));
+            right = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,15 +74,6 @@ public class Player extends Entity {
                 case "Start Bed" -> {
                     //exit dialog?
                 }
-                case "Start Door" -> {
-                    // enter game
-                }
-                case "Start Desk" -> {
-                    //go to automations
-                    gp.currentMap = 1;
-                    this.worldX = 6*gp.TILE_SIZE; this.worldY = 6*gp.TILE_SIZE;
-                    stopMoving();
-                }
                 case "Stairs" -> {
                     switch (gp.obj[gp.currentMap][i].type) {
                         case 0 -> {
@@ -112,33 +89,28 @@ public class Player extends Entity {
                             }
                         }
                     }
-                    gp.obj[gp.currentMap][i].speak(gp, gp.obj[gp.currentMap][i].type);
-                    gp.gameState = gp.DIALOGUE_STATE;
                 }
-                case "Automation Icon" -> {
+                case "Dad" -> {
+                    gp.obj[gp.currentMap][i].showTalkDialog(gp);
+                }
+                case "Door" -> {
                     switch (gp.obj[gp.currentMap][i].type) {
-                        // 0 = exit, 1, 2, 3 = respective automation numbers (on math doc)
                         case 0 -> {
-                                gp.currentMap = 0;
-                                this.worldX = 4*gp.TILE_SIZE; this.worldY = 4*gp.TILE_SIZE;
                             stopMoving();
+                            if (this.worldX == 6*gp.TILE_SIZE && this.worldY == 2*gp.TILE_SIZE) {
+                                this.worldX = 26*gp.TILE_SIZE; this.worldY = 5*gp.TILE_SIZE;
+                            } else if (this.worldX == 26*gp.TILE_SIZE && this.worldY == 3*gp.TILE_SIZE) {
+                                System.out.println("coming soon");
+                            } 
                         }
                         case 1 -> {
                             stopMoving();
-                            gp.gameState = gp.PAUSE_STATE;
-                            new Automation1().setVisible(true);
-                        }
-                        case 2 -> {
-                            stopMoving();
-                            gp.gameState = gp.PAUSE_STATE;
-                            new Automation2().setVisible(true);
-                        }
-                        case 3 -> {
-                            stopMoving();
-                            gp.gameState = gp.PAUSE_STATE;
-                            new Automation2().setVisible(true);
+                            if (this.worldX == 26*gp.TILE_SIZE && this.worldY == 5*gp.TILE_SIZE) {
+                                this.worldX = 6*gp.TILE_SIZE; this.worldY = 2*gp.TILE_SIZE;
+                            } 
                         }
                     }
+                    
                 }
             }
         }
@@ -171,6 +143,9 @@ public class Player extends Entity {
         }
         //checks for collision before moving, using the direction indicated by above if ladder
         gp.collH.checkTile(this);
+        
+        //event handling
+        gp.eventH.checkEvent();
         
         //object collision handling
         int objIndex = gp.collH.checkObject(this);

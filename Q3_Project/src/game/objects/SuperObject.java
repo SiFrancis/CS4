@@ -8,6 +8,7 @@ import game.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
@@ -25,6 +26,8 @@ public class SuperObject {
     //used for automation icon for now; might be useful for other things
     public int type = 0;
     String[] dialogs = new String[20];
+    int dialogIndex = 0;
+    String hintText;
     
     public void placeAndSize(GamePanel gp, int x, int y, int width, int height) {
         this.worldX = x*gp.TILE_SIZE; this.worldY = y*gp.TILE_SIZE;
@@ -33,7 +36,23 @@ public class SuperObject {
     }
     
     public void setDialog(int i, String text) {dialogs[i] = text;}
-    public void speak(GamePanel gp, int i) {gp.ui.currentDialog = dialogs[i];}
+    public void showHintDialog(GamePanel gp, int i) {gp.ui.currentDialog = dialogs[i]; gp.gameState = gp.HINT_STATE;}
+    public void showTalkDialog(GamePanel gp) {
+//        dialogIndex = (dialogs[dialogIndex] == null) ? 0 : dialogIndex;
+        if (dialogs[dialogIndex] != null) {
+            gp.ui.currentDialog = dialogs[dialogIndex]; 
+            dialogIndex++;
+            gp.gameState = gp.DIALOGUE_STATE;
+        }
+    }
+    
+    public void getImage(String imageName) {
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream("/assets/game/objects/"+imageName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     public void draw(Graphics2D g2, GamePanel gp) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;

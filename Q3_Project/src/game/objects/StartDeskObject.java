@@ -15,10 +15,7 @@ public class StartDeskObject extends SuperObject {
     public StartDeskObject() {
         collision = true;
         name = "Start Desk";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/table.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        getImage("table.png");
+        setDialog(0, "Pindutin ang [E] upang gamitin ang mga\nautomation.");
     }
 }

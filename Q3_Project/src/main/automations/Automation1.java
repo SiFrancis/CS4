@@ -46,7 +46,7 @@ public class Automation1 extends javax.swing.JFrame {
         titleLabel.setText("TAGAHANAP NG");
 
         iconLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/automations/assets/autom_circrad.png"))); // NOI18N
+        iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/automations/autom_circrad.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -99,9 +99,6 @@ public class Automation1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(titleLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
@@ -122,6 +119,10 @@ public class Automation1 extends javax.swing.JFrame {
                             .addComponent(jButton1)))
                     .addComponent(formulaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,17 +152,18 @@ public class Automation1 extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         switch (jComboBox1.getSelectedIndex()) {
             case 0 -> {
                 formulaLabel.setText("Pormula: C = 2πr");
-                iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/automations/assets/autom_circrad.png")));
+                iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/automations/autom_circrad.png")));
             }
             case 1 -> {
                 formulaLabel.setText("Pormula: C = πd");
-                iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/automations/assets/autom_circdia.png")));
+                iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/automations/autom_circdia.png")));
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

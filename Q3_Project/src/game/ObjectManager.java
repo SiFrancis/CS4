@@ -20,16 +20,19 @@ public class ObjectManager {
     public void placeObjects() {
         //MAP 0 (ROOM)
         gp.obj[0][0] = new StartBedObject();
-        gp.obj[0][0].placeAndSize(gp, 1, 1, 2, 1);
+        gp.obj[0][0].placeAndSize(gp, 1, 2, 2, 1);
         
         gp.obj[0][1] = new StartDeskObject();
-        gp.obj[0][1].placeAndSize(gp, 1, 6, 1, 2);
+        gp.obj[0][1].placeAndSize(gp, 1, 8, 2, 1);
         
-        gp.obj[0][2] = new StairObject(0);
-        gp.obj[0][2].placeAndSize(gp, 0, 14, 1, 1);
+        gp.obj[0][2] = new DoorObject(0);
+        gp.obj[0][2].placeAndSize(gp, 6, 1, 1, 1);
         
-        gp.obj[0][3] = new StairObject(1);
-        gp.obj[0][3].placeAndSize(gp, 30, 15, 1, 1);
+        gp.obj[0][3] = new DoorObject(1);
+        gp.obj[0][3].placeAndSize(gp, 26, 6, 1, 1);
+        
+        gp.obj[0][3] = new DadObject();
+        gp.obj[0][3].placeAndSize(gp, 5, 6, 1, 1);
         
         //====================================================================//
         

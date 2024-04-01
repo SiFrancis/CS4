@@ -17,7 +17,7 @@ public class Main extends JFrame {
         JFrame gwindow = new JFrame();
         gwindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
         gwindow.setResizable(false);
-        gwindow.setTitle("Game Window");
+        gwindow.setTitle("Grupong Proyekto sa CS, Math, Fili, at VE - Bicbic, Rosalejos, Sitchon");
         
         GamePanel gpanel = new GamePanel();
         gwindow.add(gpanel);

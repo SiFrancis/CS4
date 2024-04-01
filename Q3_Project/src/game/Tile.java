@@ -22,7 +22,7 @@ public class Tile {
         this.collision = collision;
         try {
             this.image = ImageIO.read(
-                getClass().getResourceAsStream("/game/res/tiles/"+path)
+                getClass().getResourceAsStream("/assets/game/tiles/"+path)
             );
         } catch (IOException e) {
             e.printStackTrace();

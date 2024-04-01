@@ -18,10 +18,10 @@ public class StairObject extends SuperObject {
         collision = false;
         this.type = type;
         name = "Stairs";
-        setDialog(0, "Bumaba ka patungo sa kusina.");
-        setDialog(1, "Umakyat ka sa itaas na palapag.");
+        setDialog(0, "Ikaw ay bumaba sa unang palapag.");
+        setDialog(1, "Ikaw ay umakyat sa itaas na palapag.");
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/game/res/tiles/02_wall.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/assets/game/tiles/02_wall.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

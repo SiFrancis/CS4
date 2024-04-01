@@ -7,7 +7,12 @@ package game;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,12 +28,19 @@ public class UI {
     
     public UI (GamePanel gp) {
         this.gp = gp;
-        base_font = new Font("Arial", Font.PLAIN, 30);
+        
+        try {
+            InputStream is = getClass().getResourceAsStream("/assets/font/_bitmap_font____romulus_by_pix3m-d6aokem.ttf");
+            base_font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void drawPauseScreen(){
-        Font pause_bigfont = base_font.deriveFont(70f);
-        g2.setFont(pause_bigfont);
+        g2.setFont(base_font.deriveFont(90f));
         g2.setColor(new Color(0, 0, 0, 200));
         g2.fillRect(0, 0, gp.SCREEN_W, gp.SCREEN_H);
         g2.setColor(Color.white);
@@ -38,13 +50,13 @@ public class UI {
         int y = gp.SCREEN_H/2;
         g2.drawString(maintxt, x, y);
 
-        Font pause_subfont = base_font.deriveFont(25f);
-        g2.setFont(pause_subfont);
+        g2.setFont(base_font.deriveFont(35f));
         int x2 = getCenteredX(subtxt);
         g2.drawString(subtxt, x2, y+50);
     }
     
-    public void drawDialogWindow() {
+    public void drawDialogWindow(String customText) {
+        g2.setFont(base_font.deriveFont(35f));
         int win_w = gp.SCREEN_W - (gp.TILE_SIZE * 4);
         int win_h = gp.TILE_SIZE*4;
         int x = 2*gp.TILE_SIZE;
@@ -55,7 +67,32 @@ public class UI {
         int dialogX = x + gp.TILE_SIZE/2;
         int dialogY = y + 3*gp.TILE_SIZE/4;
         g2.setColor(dialog_acc);
-        g2.drawString(currentDialog, dialogX, dialogY);
+        g2.drawString(customText, dialogX, dialogY);
+    }
+    
+    public void drawDialogWindow() {
+        g2.setFont(base_font.deriveFont(35f));
+        int win_w = gp.SCREEN_W - (gp.TILE_SIZE * 4);
+        int win_h = gp.TILE_SIZE*4;
+        int x = 2*gp.TILE_SIZE;
+        int y = gp.SCREEN_H - (win_h + gp.TILE_SIZE/2);
+        
+        drawSubWindow(x, y, win_w, win_h);
+        
+        int dialogX = x + gp.TILE_SIZE/4;
+        int dialogY = y + 3*gp.TILE_SIZE/4;
+        g2.setColor(dialog_acc);
+        
+        for (String line : currentDialog.split("\n")) {
+            g2.drawString(line, dialogX, dialogY);
+            dialogY += 40;
+        }
+        
+        if (gp.gameState == gp.DIALOGUE_STATE) {
+            g2.setFont(base_font.deriveFont(22f));
+            dialogY = y + win_h - 30;
+            g2.drawString("Pindutin ang [Esc] upang isara ang dayalogo", dialogX, dialogY);
+        }
     }
     
     public void drawSubWindow(int x, int y, int width, int height) {
@@ -71,16 +108,19 @@ public class UI {
     
     public void draw(Graphics2D g2) {
         this.g2 = g2;
+        
         g2.setFont(base_font);
         g2.setColor(Color.white);
+        
         if (gp.gameState == gp.PLAY_STATE) {
+            g2.setFont(base_font.deriveFont(50f));
             String text = gp.player.worldX/gp.TILE_SIZE + " " + gp.player.worldY/gp.TILE_SIZE;
             g2.drawString(text, 100, 100);
         }
         if (gp.gameState == gp.PAUSE_STATE) {
             drawPauseScreen();
         }
-        if (gp.gameState == gp.DIALOGUE_STATE) {
+        if ((gp.gameState == gp.DIALOGUE_STATE) || (gp.gameState == gp.HINT_STATE)) {
             drawDialogWindow();
         }
     }

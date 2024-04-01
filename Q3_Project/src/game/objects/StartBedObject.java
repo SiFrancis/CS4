@@ -15,10 +15,6 @@ public class StartBedObject extends SuperObject {
     public StartBedObject() {
         collision = true;
         name = "Start Bed";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/game/res/objects/bed.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        getImage("bed.png");
     }
 }

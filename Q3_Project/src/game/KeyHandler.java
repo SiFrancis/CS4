@@ -17,6 +17,9 @@ public class KeyHandler implements KeyListener {
     
     //act as 'signals' to tell other classes that the WASD keys are pressed
     public boolean upPress, downPress, leftPress, rightPress;
+    
+    //trigger for object interaction in some objects (e.g. puzzles)
+    public boolean interactPress;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -38,9 +41,12 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_S -> downPress = true;
             case KeyEvent.VK_A -> leftPress = true;
             case KeyEvent.VK_D -> rightPress = true;
+            case KeyEvent.VK_E -> interactPress = true;
             case KeyEvent.VK_ESCAPE -> {
+                interactPress = false;
                 if (gp.gameState == gp.PLAY_STATE) gp.gameState = gp.PAUSE_STATE;
-                else if (gp.gameState == gp.PAUSE_STATE || gp.gameState == gp.DIALOGUE_STATE) gp.gameState = gp.PLAY_STATE;
+                else if (gp.gameState == gp.PAUSE_STATE || gp.gameState == gp.DIALOGUE_STATE || gp.gameState == gp.HINT_STATE) 
+                    gp.gameState = gp.PLAY_STATE;
             }
         }
     }
@@ -56,6 +62,7 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_S -> downPress = false;
             case KeyEvent.VK_A -> leftPress = false;
             case KeyEvent.VK_D -> rightPress = false;
+            case KeyEvent.VK_E -> interactPress = false;
         }
     } 
 }

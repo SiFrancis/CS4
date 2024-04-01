@@ -18,11 +18,10 @@ public class AutomationIconObject extends SuperObject {
         collision = true;
         this.type = type;
         name = "Automation Icon";
-        String filepath = String.format("/game/res/objects/autom_icons/icon%d.png", type);
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream(filepath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String imgname = String.format("/autom_icons/icon%d.png", type);
+        getImage(imgname);
+        
+        hintText = (type == 0) ? "Pindutin ang [E] upang bumalik sa ." : String.format("Pindutin ang [E] upang buksan ang Automation %d.", type);
+        setDialog(0, hintText);
     }
 }
