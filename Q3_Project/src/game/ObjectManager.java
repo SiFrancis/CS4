@@ -43,6 +43,9 @@ public class ObjectManager {
         gp.obj[0][7] = new DoorObject(1);
         gp.obj[0][7].placeAndSize(gp, 27, 25, 1, 1);
         
+        gp.obj[0][8] = new DialogueGiver();
+        gp.obj[0][8].placeAndSize(gp, 0, 0, 0, 0);
+        
         //====================================================================//
         
         //MAP 1 (AUTOMATIONS)

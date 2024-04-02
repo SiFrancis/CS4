@@ -18,8 +18,8 @@ public class StairObject extends SuperObject {
         collision = false;
         this.type = type;
         name = "Stairs";
-        setDialog(0, "Ikaw ay bumaba sa unang palapag.");
-        setDialog(1, "Ikaw ay umakyat sa itaas na palapag.");
+        setDialogue(0, "Ikaw ay bumaba sa unang palapag.");
+        setDialogue(1, "Ikaw ay umakyat sa itaas na palapag.");
         try {
             switch (type) {
                 case 0 -> image = ImageIO.read(getClass().getResourceAsStream("/assets/game/tiles/render/055.png"));

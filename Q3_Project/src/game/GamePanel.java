@@ -48,7 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler(this);
     
     //object and entity manager
-    public SuperObject obj[][] = new SuperObject[MAX_MAPS][10];
+    public SuperObject obj[][] = new SuperObject[MAX_MAPS][20];
     ObjectManager assetM = new ObjectManager(this);
     
     //game states

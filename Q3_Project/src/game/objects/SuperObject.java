@@ -25,8 +25,8 @@ public class SuperObject {
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
     //used for automation icon for now; might be useful for other things
     public int type = 0;
-    String[] dialogs = new String[20];
-    int dialogIndex = 0;
+    String[] dialogues = new String[20];
+    int dialogueIndex = 0;
     String hintText;
     
     public void placeAndSize(GamePanel gp, int x, int y, int width, int height) {
@@ -35,13 +35,14 @@ public class SuperObject {
         solidArea = new Rectangle(0, 0, sizeW, sizeH);
     }
     
-    public void setDialog(int i, String text) {dialogs[i] = text;}
-    public void showHintDialog(GamePanel gp, int i) {gp.ui.currentDialog = dialogs[i]; gp.gameState = gp.HINT_STATE;}
-    public void showTalkDialog(GamePanel gp) {
-//        dialogIndex = (dialogs[dialogIndex] == null) ? 0 : dialogIndex;
-        if (dialogs[dialogIndex] != null) {
-            gp.ui.currentDialog = dialogs[dialogIndex]; 
-            dialogIndex++;
+    public void setDialogue(int i, String text) {dialogues[i] = text;}
+    
+    public void hintDialogue(GamePanel gp, int i) {gp.ui.currentDialog = dialogues[i]; gp.gameState = gp.HINT_STATE;}
+    
+    public void talkDialogue(GamePanel gp, int end) {
+        if (dialogues[dialogueIndex] != null && dialogueIndex <= end) {
+            gp.ui.currentDialog = dialogues[dialogueIndex]; 
+            dialogueIndex++;
             gp.gameState = gp.DIALOGUE_STATE;
         }
     }

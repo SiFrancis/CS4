@@ -31,6 +31,8 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     
+    public int progress = 0;
+    
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         
@@ -40,7 +42,7 @@ public class Player extends Entity {
         screenX = (gp.SCREEN_W - gp.TILE_SIZE)/2;
         screenY = (gp.SCREEN_H - gp.TILE_SIZE)/2;
         
-        setDefaults(4, 4, gp.TILE_SIZE, "right");
+        setDefaults(2, 3, gp.TILE_SIZE, "down");
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
@@ -107,9 +109,6 @@ public class Player extends Entity {
                             }
                         }
                     }
-                }
-                case "Dad" -> {
-                    gp.obj[gp.currentMap][i].showTalkDialog(gp);
                 }
                 case "Door" -> {    
                     switch (gp.obj[gp.currentMap][i].type) {
@@ -189,13 +188,14 @@ public class Player extends Entity {
         if (worldX < 0) {worldX = 0;}
         if (worldY < 0) {worldY = 0;}
         
-        spriteCounter++;
-        if (spriteCounter > 10) {
-            if (spriteNum == 1) spriteNum = 2;
-            if (spriteNum == 2) spriteNum = 3;
-            if (spriteNum == 3) spriteNum = 1;
-            spriteCounter = 0;
-        }
+
+        if (keyH.movePress) {
+            spriteCounter++;
+            if (spriteCounter > 10) {
+                spriteNum = (spriteNum % 4) + 1;
+                spriteCounter = 0;
+            }
+        } else spriteCounter = 0;
     }
     
     public void draw(Graphics2D g2){
@@ -203,32 +203,44 @@ public class Player extends Entity {
         BufferedImage img = null;
         switch (direction) {
             case "up" -> {
-                switch (spriteNum) {
-                    case 1 -> img = up_01;
-                    case 2 -> img = up_02;
-                    case 3 -> img = up_03;
-                }
+                if (keyH.movePress) {
+                    switch (spriteNum) {
+                        case 1 -> img = up_01;
+                        case 2 -> img = up_02;
+                        case 3 -> img = up_03;
+                        case 4 -> img = up_00;
+                    }
+                } else img = up_00;
             }
             case "down" -> {
-                switch (spriteNum) {
-                    case 1 -> img = down_01;
-                    case 2 -> img = down_02;
-                    case 3 -> img = down_03;
-                }
+                if (keyH.movePress) {
+                    switch (spriteNum) {
+                        case 1 -> img = down_01;
+                        case 2 -> img = down_02;
+                        case 3 -> img = down_03;
+                        case 4 -> img = down_00;
+                    }
+                } else img = down_00;
             }
             case "left" -> {
-                switch (spriteNum) {
-                    case 1 -> img = left_01;
-                    case 2 -> img = left_02;
-                    case 3 -> img = left_03;
-                }
+                if (keyH.movePress) {
+                    switch (spriteNum) {
+                        case 1 -> img = left_01;
+                        case 2 -> img = left_02;
+                        case 3 -> img = left_03;
+                        case 4 -> img = left_00;
+                    }
+                } else img = left_00;
             }
             case "right" -> {
-                switch (spriteNum) {
-                    case 1 -> img = right_01;
-                    case 2 -> img = right_02;
-                    case 3 -> img = right_03;
-                }
+                if (keyH.movePress) {
+                    switch (spriteNum) {
+                        case 1 -> img = right_01;
+                        case 2 -> img = right_02;
+                        case 3 -> img = right_03;
+                        case 4 -> img = right_00;
+                    }
+                } else img = right_00;
             }
         }
         

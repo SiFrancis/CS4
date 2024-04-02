@@ -20,6 +20,9 @@ public class KeyHandler implements KeyListener {
     
     //trigger for object interaction in some objects (e.g. puzzles)
     public boolean interactPress;
+    
+    //sprite animation trigger
+    public boolean movePress;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -37,10 +40,10 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
         
         switch (code) {
-            case KeyEvent.VK_W -> upPress = true;
-            case KeyEvent.VK_S -> downPress = true;
-            case KeyEvent.VK_A -> leftPress = true;
-            case KeyEvent.VK_D -> rightPress = true;
+            case KeyEvent.VK_W -> {upPress = true; movePress = true;}
+            case KeyEvent.VK_S -> {downPress = true; movePress = true;}
+            case KeyEvent.VK_A -> {leftPress = true; movePress = true;}
+            case KeyEvent.VK_D -> {rightPress = true; movePress = true;}
             case KeyEvent.VK_E -> interactPress = true;
             case KeyEvent.VK_ESCAPE -> {
                 interactPress = false;
@@ -58,10 +61,10 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
         
         switch (code) {
-            case KeyEvent.VK_W -> upPress = false;
-            case KeyEvent.VK_S -> downPress = false;
-            case KeyEvent.VK_A -> leftPress = false;
-            case KeyEvent.VK_D -> rightPress = false;
+            case KeyEvent.VK_W -> {upPress = false; movePress = false;}
+            case KeyEvent.VK_S -> {downPress = false; movePress = false;}
+            case KeyEvent.VK_A -> {leftPress = false; movePress = false;}
+            case KeyEvent.VK_D -> {rightPress = false; movePress = false;}
             case KeyEvent.VK_E -> interactPress = false;
         }
     } 

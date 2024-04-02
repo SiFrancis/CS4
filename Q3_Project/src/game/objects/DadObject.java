@@ -13,8 +13,8 @@ public class DadObject extends SuperObject {
         name = "Dad";
         collision = true;
         getImage("/npc/npc0.png");
-        setDialog(0, "AMA:\nNak, nasaan na yung papeles na hiningi ko?");
-        setDialog(1, "IKAW:\nNandito po.. may nakita din po akong libro\nsa kuwarto niyo.");
-        setDialog(2, "IKAW:\nTalagang gisi at sira, at halos walang \npahinang naiwan...");
+        setDialogue(0, "AMA:\nNak, nasaan na yung papeles na hiningi ko?");
+        setDialogue(1, "IKAW:\nNandito po.. may nakita din po akong libro\nsa kuwarto niyo.");
+        setDialogue(2, "IKAW:\nTalagang gisi at sira, at halos walang \npahinang naiwan...");
     }
 }

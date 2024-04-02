@@ -22,6 +22,6 @@ public class AutomationIconObject extends SuperObject {
         getImage(imgname);
         
         hintText = (type == 0) ? "Pindutin ang [E] upang bumalik sa silid." : String.format("Pindutin ang [E] upang buksan ang Automation %d.", type);
-        setDialog(0, hintText);
+        setDialogue(0, hintText);
     }
 }
