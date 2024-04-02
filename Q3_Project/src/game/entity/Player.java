@@ -22,7 +22,10 @@ public class Player extends Entity {
     boolean moving;
     
     //sprites for four directions
-    public BufferedImage up, down, left, right;
+    public BufferedImage up_00, down_00, left_00, right_00;
+    public BufferedImage up_01, down_01, left_01, right_01;
+    public BufferedImage up_02, down_02, left_02, right_02;
+    public BufferedImage up_03, down_03, left_03, right_03;
     
     //determines camera position
     public final int screenX;
@@ -49,10 +52,25 @@ public class Player extends Entity {
     public void getImage(){
         // reads the image sprite files
         try {
-            up = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up.png"));
-            down = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down.png"));
-            left = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left.png"));
-            right = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right.png"));
+            up_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_00.png"));
+            down_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_00.png"));
+            left_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_00.png"));
+            right_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_00.png"));
+            
+            up_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_01.png"));
+            down_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_01.png"));
+            left_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_01.png"));
+            right_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_01.png"));
+            
+            up_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_02.png"));
+            down_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_02.png"));
+            left_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_02.png"));
+            right_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_02.png"));
+            
+            up_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_03.png"));
+            down_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_03.png"));
+            left_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_03.png"));
+            right_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_03.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,14 +96,14 @@ public class Player extends Entity {
                     switch (gp.obj[gp.currentMap][i].type) {
                         case 0 -> {
                             stopMoving();
-                            if (this.worldX == 1*gp.TILE_SIZE && this.worldY == 14*gp.TILE_SIZE) {
-                                this.worldX = 29*gp.TILE_SIZE; this.worldY = 15*gp.TILE_SIZE;
+                            if (this.worldX == 24*gp.TILE_SIZE && this.worldY == 5*gp.TILE_SIZE && direction.equals("left")) {
+                                this.worldX = 3*gp.TILE_SIZE; this.worldY = 17*gp.TILE_SIZE;
                             }
                         }
                         case 1 -> {
                             stopMoving();
-                            if (this.worldX == 29*gp.TILE_SIZE && this.worldY == 15*gp.TILE_SIZE) {
-                                this.worldX = 1*gp.TILE_SIZE; this.worldY = 14*gp.TILE_SIZE;
+                            if (this.worldX == 3*gp.TILE_SIZE && this.worldY == 17*gp.TILE_SIZE && direction.equals("right")) {
+                                this.worldX = 24*gp.TILE_SIZE; this.worldY = 5*gp.TILE_SIZE;
                             }
                         }
                     }
@@ -93,20 +111,23 @@ public class Player extends Entity {
                 case "Dad" -> {
                     gp.obj[gp.currentMap][i].showTalkDialog(gp);
                 }
-                case "Door" -> {
+                case "Door" -> {    
                     switch (gp.obj[gp.currentMap][i].type) {
                         case 0 -> {
                             stopMoving();
+                            //first room to downstairs
                             if (this.worldX == 6*gp.TILE_SIZE && this.worldY == 2*gp.TILE_SIZE) {
                                 this.worldX = 26*gp.TILE_SIZE; this.worldY = 5*gp.TILE_SIZE;
                             } else if (this.worldX == 26*gp.TILE_SIZE && this.worldY == 3*gp.TILE_SIZE) {
-                                System.out.println("coming soon");
+                                this.worldX = 27*gp.TILE_SIZE; this.worldY = 24*gp.TILE_SIZE;
                             } 
                         }
                         case 1 -> {
                             stopMoving();
                             if (this.worldX == 26*gp.TILE_SIZE && this.worldY == 5*gp.TILE_SIZE) {
                                 this.worldX = 6*gp.TILE_SIZE; this.worldY = 2*gp.TILE_SIZE;
+                            } else if (this.worldX == 27*gp.TILE_SIZE && this.worldY == 24*gp.TILE_SIZE) {
+                                this.worldX = 26*gp.TILE_SIZE; this.worldY = 3*gp.TILE_SIZE;
                             } 
                         }
                     }
@@ -167,16 +188,48 @@ public class Player extends Entity {
         if (worldY > gp.WORLD_H - gp.TILE_SIZE) {worldY = gp.WORLD_H - gp.TILE_SIZE;}
         if (worldX < 0) {worldX = 0;}
         if (worldY < 0) {worldY = 0;}
+        
+        spriteCounter++;
+        if (spriteCounter > 10) {
+            if (spriteNum == 1) spriteNum = 2;
+            if (spriteNum == 2) spriteNum = 3;
+            if (spriteNum == 3) spriteNum = 1;
+            spriteCounter = 0;
+        }
     }
     
     public void draw(Graphics2D g2){
         //changes sprite based on direction
         BufferedImage img = null;
         switch (direction) {
-            case "up" -> img = up;
-            case "down" -> img = down;
-            case "left" -> img = left;
-            case "right" -> img = right;
+            case "up" -> {
+                switch (spriteNum) {
+                    case 1 -> img = up_01;
+                    case 2 -> img = up_02;
+                    case 3 -> img = up_03;
+                }
+            }
+            case "down" -> {
+                switch (spriteNum) {
+                    case 1 -> img = down_01;
+                    case 2 -> img = down_02;
+                    case 3 -> img = down_03;
+                }
+            }
+            case "left" -> {
+                switch (spriteNum) {
+                    case 1 -> img = left_01;
+                    case 2 -> img = left_02;
+                    case 3 -> img = left_03;
+                }
+            }
+            case "right" -> {
+                switch (spriteNum) {
+                    case 1 -> img = right_01;
+                    case 2 -> img = right_02;
+                    case 3 -> img = right_03;
+                }
+            }
         }
         
         //draws player character

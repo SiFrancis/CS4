@@ -46,5 +46,8 @@ public class Entity {
         this.direction = dir;
     }
     
+    public int spriteCounter = 0;
+    public int spriteNum = 1;
+    
     public Entity (GamePanel gp) {this.gp = gp;}
 }

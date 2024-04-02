@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
  * @author Acer
  */
 public class StairObject extends SuperObject {
-    // 0 = upstairs to kitchen, 1 = kitchen to upstairs
+    // 0 = upstairs to downstairs, 1 = down to upstairs
     
     public StairObject(int type){
         collision = false;
@@ -21,7 +21,11 @@ public class StairObject extends SuperObject {
         setDialog(0, "Ikaw ay bumaba sa unang palapag.");
         setDialog(1, "Ikaw ay umakyat sa itaas na palapag.");
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/assets/game/tiles/02_wall.png"));
+            switch (type) {
+                case 0 -> image = ImageIO.read(getClass().getResourceAsStream("/assets/game/tiles/render/055.png"));
+                case 1 -> image = ImageIO.read(getClass().getResourceAsStream("/assets/game/tiles/render/070.png"));
+            }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

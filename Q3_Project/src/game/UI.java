@@ -79,7 +79,7 @@ public class UI {
         
         drawSubWindow(x, y, win_w, win_h);
         
-        int dialogX = x + gp.TILE_SIZE/4;
+        int dialogX = x + gp.TILE_SIZE/2;
         int dialogY = y + 3*gp.TILE_SIZE/4;
         g2.setColor(dialog_acc);
         
