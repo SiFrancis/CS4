@@ -4,7 +4,6 @@
  */
 package game;
 
-import game.entity.Entity;
 import game.entity.Player;
 import javax.swing.*;
 import java.awt.*;

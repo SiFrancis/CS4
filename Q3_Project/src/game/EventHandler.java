@@ -15,6 +15,7 @@ public class EventHandler {
     
     GamePanel gp;
     EventRect eventRect[][];
+    Puzzle1 p1 = new Puzzle1();
     
     int prevEventX, prevEventY;
     boolean canTouchEvent;
@@ -94,12 +95,13 @@ public class EventHandler {
                 gp.obj[0][8].talkDialogue(gp, 2); 
                 if (gp.gameState!=gp.DIALOGUE_STATE) eventRect[27][24].eventDone = true;
             } else if(hit(0, 24, 23, "any") == true) {
-                Puzzle1 p1 = new Puzzle1();
                 gp.obj[0][8].talkDialogue(gp, 3);
                 if (gp.gameState!=gp.DIALOGUE_STATE) {
-                    gp.gameState = gp.PAUSE_STATE; 
-                    p1.setVisible(true);
-                    eventRect[24][23].eventDone = true;
+                    gp.gameState = gp.HINT_STATE; 
+                    if (p1.solved == true) {
+                        gp.obj[0][8].talkDialogue(gp, 6);
+                        if (gp.obj[0][8].dialogueIndex > 6) eventRect[24][23].eventDone = true;
+                    } else p1.setVisible(true);
                 }
             }
             

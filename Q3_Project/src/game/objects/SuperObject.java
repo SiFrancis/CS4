@@ -23,10 +23,9 @@ public class SuperObject {
     public int sizeW = 64, sizeH = 64;
     public Rectangle solidArea;
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
-    //used for automation icon for now; might be useful for other things
     public int type = 0;
-    String[] dialogues = new String[20];
-    int dialogueIndex = 0;
+    String[] dialogues = new String[100]; // more than enough hopefully
+    public int dialogueIndex = 0;
     String hintText;
     
     public void placeAndSize(GamePanel gp, int x, int y, int width, int height) {

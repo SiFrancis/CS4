@@ -16,6 +16,6 @@ public class StartDeskObject extends SuperObject {
         collision = true;
         name = "Start Desk";
 //        getImage("table.png");
-        setDialogue(0, "Pindutin ang [E] upang gamitin ang mga\nautomation.");
+        setDialogue(0, "Pindotin ang [E] upang gamitin ang mga\nautomation.");
     }
 }

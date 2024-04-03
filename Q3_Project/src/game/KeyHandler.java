@@ -48,9 +48,10 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_ESCAPE -> {
                 interactPress = false;
                 if (gp.gameState == gp.PLAY_STATE) gp.gameState = gp.PAUSE_STATE;
-                else if (gp.gameState == gp.PAUSE_STATE || gp.gameState == gp.DIALOGUE_STATE || gp.gameState == gp.HINT_STATE) 
+                else if (gp.gameState == gp.PAUSE_STATE || gp.gameState == gp.HINT_STATE) 
                     gp.gameState = gp.PLAY_STATE;
             }
+            case KeyEvent.VK_ENTER -> {if (gp.gameState == gp.DIALOGUE_STATE) gp.gameState = gp.PLAY_STATE;}
         }
     }
     

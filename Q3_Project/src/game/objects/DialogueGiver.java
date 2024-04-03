@@ -14,6 +14,9 @@ public class DialogueGiver extends SuperObject {
         setDialogue(0, "Ano nga yung utos ni Itay sa akin?");
         setDialogue(1, "Ay oo nga! May pinakuha siya mula sa kuwarto\nniya dito sa kabilang pinto.");
         setDialogue(2, "Nasa lamesa lang daw yun ni Itay.");
-        setDialogue(3, "Teka, parang nakakandando ata to...\nPaano ko kaya mabuksan?");
+        setDialogue(3, "Parang nakakandando ata to.\nPaano ko kaya mabuksan?");
+        setDialogue(4, "Ayan, bukas na!");
+        setDialogue(5, "Ano itong libro? Luma at gisi-gisi na, pero\ntingnan ko nga...");
+        setDialogue(6, "ANG KARTILYA NG KATIPUNAN\nni [?????]");
     }
 }
