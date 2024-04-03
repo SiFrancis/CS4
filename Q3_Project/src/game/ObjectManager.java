@@ -46,19 +46,23 @@ public class ObjectManager {
         gp.obj[0][8] = new DialogueGiver();
         gp.obj[0][8].placeAndSize(gp, 0, 0, 0, 0);
         
+        gp.obj[0][9] = new DadObject();
+        gp.obj[0][9].placeAndSize(gp, 23, 22, 1, 2);
+        
+        
         //====================================================================//
         
         //MAP 1 (AUTOMATIONS)
         gp.obj[1][0] = new AutomationIconObject(0);
-        gp.obj[1][0].placeAndSize(gp, 6, 11, 1, 1);
+        gp.obj[1][0].placeAndSize(gp, 6, 13, 1, 1);
         
         gp.obj[1][1] = new AutomationIconObject(1);
-        gp.obj[1][1].placeAndSize(gp, 1, 6, 1, 1);
+        gp.obj[1][1].placeAndSize(gp, 1, 8, 1, 1);
         
         gp.obj[1][2] = new AutomationIconObject(2);
-        gp.obj[1][2].placeAndSize(gp, 6, 1, 1, 1);
+        gp.obj[1][2].placeAndSize(gp, 6, 3, 1, 1);
         
         gp.obj[1][3] = new AutomationIconObject(3);
-        gp.obj[1][3].placeAndSize(gp, 11, 6, 1, 1);
+        gp.obj[1][3].placeAndSize(gp, 11, 8, 1, 1);
     }
 }

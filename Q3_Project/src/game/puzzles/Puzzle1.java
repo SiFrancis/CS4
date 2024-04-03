@@ -77,6 +77,7 @@ public class Puzzle1 extends javax.swing.JFrame {
         jButton1.setFont(getFont());
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("2");
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -171,6 +172,10 @@ public class Puzzle1 extends javax.swing.JFrame {
 
     private void wrongAns() {
         jLabel4.setText("Hindi kasya itong susi...");
+        Timer timer = new Timer(1000, (java.awt.event.ActionEvent e) -> {
+            jLabel4.setText(" ");
+        });
+        timer.start();
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -179,8 +184,8 @@ public class Puzzle1 extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jLabel4.setText("Saktong sakto!");
-        solved = true;
         Timer timer = new Timer(1000, (java.awt.event.ActionEvent e) -> {
+            solved = true;
             dispose();
         });
         timer.start();

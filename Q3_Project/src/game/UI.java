@@ -91,7 +91,7 @@ public class UI {
         if (gp.gameState == gp.DIALOGUE_STATE) {
             g2.setFont(base_font.deriveFont(22f));
             dialogY = y + win_h - 30;
-            g2.drawString("Pindotin ang [Enter] upang ipatuloy ang dayalogo", dialogX, dialogY);
+            g2.drawString("Pindotin ang [Enter] upang ipatuloy ang dayalogo.", dialogX, dialogY);
         }
     }
     

@@ -38,6 +38,14 @@ public class SuperObject {
     
     public void hintDialogue(GamePanel gp, int i) {gp.ui.currentDialog = dialogues[i]; gp.gameState = gp.HINT_STATE;}
     
+    public void talkDialogue(GamePanel gp) {
+        if (dialogues[dialogueIndex] != null) {
+            gp.ui.currentDialog = dialogues[dialogueIndex]; 
+            dialogueIndex++;
+            gp.gameState = gp.DIALOGUE_STATE;
+        }
+    }
+    
     public void talkDialogue(GamePanel gp, int end) {
         if (dialogues[dialogueIndex] != null && dialogueIndex <= end) {
             gp.ui.currentDialog = dialogues[dialogueIndex]; 
@@ -48,7 +56,7 @@ public class SuperObject {
     
     public void getImage(String imageName) {
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/assets/game/objects/"+imageName));
+            image = ImageIO.read(getClass().getResourceAsStream(imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }

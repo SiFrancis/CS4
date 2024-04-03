@@ -54,25 +54,25 @@ public class Player extends Entity {
     public void getImage(){
         // reads the image sprite files
         try {
-            up_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_00.png"));
-            down_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_00.png"));
-            left_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_00.png"));
-            right_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_00.png"));
+            up_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/up_00.png"));
+            down_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/down_00.png"));
+            left_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/left_00.png"));
+            right_00 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/right_00.png"));
             
-            up_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_01.png"));
-            down_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_01.png"));
-            left_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_01.png"));
-            right_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_01.png"));
+            up_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/up_01.png"));
+            down_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/down_01.png"));
+            left_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/left_01.png"));
+            right_01 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/right_01.png"));
             
-            up_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_02.png"));
-            down_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_02.png"));
-            left_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_02.png"));
-            right_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_02.png"));
+            up_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/up_02.png"));
+            down_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/down_02.png"));
+            left_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/left_02.png"));
+            right_02 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/right_02.png"));
             
-            up_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/up_03.png"));
-            down_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/down_03.png"));
-            left_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/left_03.png"));
-            right_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/player/right_03.png"));
+            up_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/up_03.png"));
+            down_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/down_03.png"));
+            left_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/left_03.png"));
+            right_03 = ImageIO.read(getClass().getResourceAsStream("/assets/game/sprites/player/right_03.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

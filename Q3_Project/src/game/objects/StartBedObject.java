@@ -15,6 +15,6 @@ public class StartBedObject extends SuperObject {
     public StartBedObject() {
         collision = true;
         name = "Start Bed";
-        getImage("bed.png");
+        getImage("/assets/game/objects/bed.png");
     }
 }

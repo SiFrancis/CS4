@@ -69,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     public UI ui = new UI(this);
     public EventHandler eventH = new EventHandler(this);
+    public boolean paused = false;
     
     //FPS
     int FPS = 60;
@@ -89,7 +90,8 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
         }
         if (gameState == PAUSE_STATE) {
-            //do nothing
+            paused = true;
+            if (paused == false) gameState = PLAY_STATE;
         }
         if (gameState == HINT_STATE) {
             player.update();

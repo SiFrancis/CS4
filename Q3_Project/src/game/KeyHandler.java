@@ -44,14 +44,16 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_S -> {downPress = true; movePress = true;}
             case KeyEvent.VK_A -> {leftPress = true; movePress = true;}
             case KeyEvent.VK_D -> {rightPress = true; movePress = true;}
-            case KeyEvent.VK_E -> interactPress = true;
             case KeyEvent.VK_ESCAPE -> {
                 interactPress = false;
                 if (gp.gameState == gp.PLAY_STATE) gp.gameState = gp.PAUSE_STATE;
                 else if (gp.gameState == gp.PAUSE_STATE || gp.gameState == gp.HINT_STATE) 
                     gp.gameState = gp.PLAY_STATE;
             }
-            case KeyEvent.VK_ENTER -> {if (gp.gameState == gp.DIALOGUE_STATE) gp.gameState = gp.PLAY_STATE;}
+            case KeyEvent.VK_ENTER -> {
+                if (gp.gameState == gp.DIALOGUE_STATE) gp.gameState = gp.PLAY_STATE;
+                interactPress = true;
+            }
         }
     }
     
@@ -66,7 +68,7 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_S -> {downPress = false; movePress = false;}
             case KeyEvent.VK_A -> {leftPress = false; movePress = false;}
             case KeyEvent.VK_D -> {rightPress = false; movePress = false;}
-            case KeyEvent.VK_E -> interactPress = false;
+            case KeyEvent.VK_ENTER -> interactPress = false;
         }
     } 
 }
