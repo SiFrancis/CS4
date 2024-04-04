@@ -93,7 +93,7 @@ public class Automation2 extends javax.swing.JFrame {
 
         formulaLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         formulaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formulaLabel.setText("jLabel4");
+        formulaLabel.setText("r = C/2π");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,7 +161,7 @@ public class Automation2 extends javax.swing.JFrame {
                 iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/automations/autom_radcirc.png")));
             }
             case 1 -> {
-                formulaLabel.setText("Pormula: r = C/d");
+                formulaLabel.setText("Pormula: d = C/π");
                 iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/automations/autom_diamcirc.png")));
             }
         }

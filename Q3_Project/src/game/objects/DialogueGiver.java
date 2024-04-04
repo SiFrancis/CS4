@@ -33,6 +33,6 @@ public class DialogueGiver extends SuperObject {
         setDialogue(18, "Wow... ito pala ang Kartilya na nagbigay ng\npag-asa sa ating bansa.");
         setDialogue(19, "Ang ganda naman ng pagkasulat nito, nakikita\nko na kung bakit kilalang-kilala\nsi Emilio Jacinto noon.");
         setDialogue(20, "Pfft, dapat pala babasahin to ni Juanita. Ang\nyabang niya sa bukid. Napalakas\nmakipagplastikan.");
-        setDialogue(21, "Mukhang ito lang ang nandito sa kwarto ni Tay. Puntahan ko sunod ang silid-aklatan, baka may mahahanap ako.");
+        setDialogue(21, "Mukhang ito lang ang nandito sa kwarto ni Tay.\nPuntahan ko sunod ang silid-aklatan, baka may\nmahahanap ako.");
     }
 }

@@ -134,9 +134,6 @@ public class UI {
         
         if (gp.gameState == gp.PLAY_STATE) {
             if (showPageCount == true) {drawPageCounter();}
-            g2.setFont(base_font.deriveFont(50f));
-            String text = "("+gp.player.worldX/gp.TILE_SIZE+", "+gp.player.worldY/gp.TILE_SIZE+")";
-            g2.drawString(text, 800, 100);
         }
         if (gp.gameState == gp.PAUSE_STATE) {
             drawPauseScreen();
