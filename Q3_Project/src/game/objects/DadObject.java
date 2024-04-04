@@ -10,6 +10,7 @@ package game.objects;
  */
 public class DadObject extends SuperObject {
     public DadObject() {
+        // conversation with dad
         name = "Dad";
         collision = true;
         getImage("/assets/game/sprites/dadfull/dadfull_0.png");
@@ -18,13 +19,13 @@ public class DadObject extends SuperObject {
         setDialogue(2, "IKAW:\nTatay, nakita ko po itong libro sa silid ninyo.\nAno po ito?");
         setDialogue(3, "TATAY:\nAh, ang Kartilya... lumang luma na yan.");
         setDialogue(4, "TATAY:\nHalos tatlumpung taon na ang lumipas, noong \ntayo'y may pag-asa pa sa kalayaan...");
-        setDialogue(5, "IKAW:\nTalaga? Hindi palaging ganito ang pagtrato \nng mga Kastila sa atin Tay?");
+        setDialogue(5, "IKAW:\nTalaga po? Hindi palaging ganito ang pagtrato\nng mga Kastila sa atin Tay?");
         setDialogue(6, "TATAY:\nMatagal na yun, anak. Mga guni-guni na \nlamang iyan.");
         setDialogue(7, "TATAY:\nMukhang matagal pa bago muling babalik ang \nmga tulad ni Emilio Jacinto...");
-        setDialogue(8, "TATAY:\nO siya, atupagin mo muna yung trabaho mo,\ndadaan nanaman yung mga guardia civil na \nyun dito.");
+        setDialogue(8, "TATAY:\nO siya, atupagin mo muna yung pag-aaral mo,\ndadaan nanaman yung mga guardia civil na \nyun dito.");
         setDialogue(9, "TATAY:\nAyaw naman nating mag-alala yung ina mo \nsa Malolos.");
-        setDialogue(10, "IKAW:\nOpo Tay, alam ko, alam ko., eto na...");
-        setDialogue(11, "IKAW:\n(Emilio Jacinto... siya ba ang nagsulat ng aklat \nna ito? Ang Kartilya?)");
+        setDialogue(10, "IKAW:\nOpo Tay, alam ko, alam ko, eto na...");
+        setDialogue(11, "Emilio Jacinto... siya ba ang nagsulat ng aklat \nna ito? Ang Kartilya?");
         setDialogue(12, " ");
     }
 }

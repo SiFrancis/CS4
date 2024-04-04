@@ -4,7 +4,6 @@
  */
 package game.puzzles;
 
-import game.GamePanel;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;

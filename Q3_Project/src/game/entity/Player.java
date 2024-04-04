@@ -31,7 +31,8 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     
-    public int progress = 0;
+    //number of pages collected
+    public int pageCount = 0;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);

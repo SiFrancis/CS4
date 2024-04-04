@@ -9,10 +9,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -21,10 +23,19 @@ import java.util.logging.Logger;
 public class UI {
     GamePanel gp;
     Graphics2D g2;
+    
+    // custom font
     Font base_font;
+    
+    // for printing text
     public String currentDialog = "";
+    
+    // dialog box colors
     Color dialog_bg = new Color(255, 253, 208, 250);
     Color dialog_acc = new Color(93, 25, 22);
+    
+    //showing/hiding page count
+    public boolean showPageCount = false;
     
     public UI (GamePanel gp) {
         this.gp = gp;
@@ -32,9 +43,7 @@ public class UI {
         try {
             InputStream is = getClass().getResourceAsStream("/assets/font/_bitmap_font____romulus_by_pix3m-d6aokem.ttf");
             base_font = Font.createFont(Font.TRUETYPE_FONT, is);
-        } catch (FontFormatException ex) {
-            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (FontFormatException | IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -68,6 +77,17 @@ public class UI {
         int dialogY = y + 3*gp.TILE_SIZE/4;
         g2.setColor(dialog_acc);
         g2.drawString(customText, dialogX, dialogY);
+    }
+    
+    public void drawPageCounter() {
+        try {
+            BufferedImage page = ImageIO.read(getClass().getResourceAsStream("/assets/game/ui/page.png"));
+            g2.setFont(base_font.deriveFont(50f));
+            g2.drawImage(page, 100, 100, null);
+            g2.drawString(String.format("%d/14", gp.player.pageCount), 160, 130);
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void drawDialogWindow() {
@@ -113,9 +133,10 @@ public class UI {
         g2.setColor(Color.white);
         
         if (gp.gameState == gp.PLAY_STATE) {
+            if (showPageCount == true) {drawPageCounter();}
             g2.setFont(base_font.deriveFont(50f));
-            String text = gp.player.worldX/gp.TILE_SIZE + " " + gp.player.worldY/gp.TILE_SIZE;
-            g2.drawString(text, 100, 100);
+            String text = "("+gp.player.worldX/gp.TILE_SIZE+", "+gp.player.worldY/gp.TILE_SIZE+")";
+            g2.drawString(text, 800, 100);
         }
         if (gp.gameState == gp.PAUSE_STATE) {
             drawPauseScreen();

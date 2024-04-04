@@ -141,19 +141,27 @@ public class EventHandler {
                 gp.obj[0][8].talkDialogue(gp, 14); 
                 if (gp.gameState!=gp.DIALOGUE_STATE) eventRect[3][17].eventDone = true;
                 gp.obj[0][9] = null;
+                gp.gameUI.showPageCount = true;
             //puzzle 2
-            } else if (hit(0, 22, 23, "any") == true
-                    || hit(0, 23, 23, "any") == true
+            } else if ((hit(0, 23, 23, "any") == true
                     || hit(0, 24, 23, "any") == true
+                    || hit(0, 22, 23, "any") == true)
                     && p1.solved == true) {
                 gp.player.direction = "down";
-                gp.obj[0][8].talkDialogue(gp, 16);
+                gp.obj[0][8].talkDialogue(gp, 17);
                 if (gp.gameState != gp.DIALOGUE_STATE) {
                     gp.gameState = gp.HINT_STATE;
                     if (p2.solved == true) {
-                            eventRect[22][23].eventDone = true;
+                        gp.obj[0][10].talkDialogue(gp, 2);
+                        gp.obj[0][8].talkDialogue(gp, 19);
+                        gp.obj[0][10].talkDialogue(gp, 3);
+                        gp.obj[0][8].talkDialogue(gp, 21);
+                        if (gp.obj[0][10].dialogueIndex > 3) {
+                            gp.player.pageCount += 3;
                             eventRect[23][23].eventDone = true;
                             eventRect[24][23].eventDone = true;
+                            eventRect[22][23].eventDone = true;
+                        }
                     } else p2.setVisible(true);
                 }
             }

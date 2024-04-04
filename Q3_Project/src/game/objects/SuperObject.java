@@ -36,11 +36,11 @@ public class SuperObject {
     
     public void setDialogue(int i, String text) {dialogues[i] = text;}
     
-    public void hintDialogue(GamePanel gp, int i) {gp.ui.currentDialog = dialogues[i]; gp.gameState = gp.HINT_STATE;}
+    public void hintDialogue(GamePanel gp, int i) {gp.gameUI.currentDialog = dialogues[i]; gp.gameState = gp.HINT_STATE;}
     
     public void talkDialogue(GamePanel gp) {
         if (dialogues[dialogueIndex] != null) {
-            gp.ui.currentDialog = dialogues[dialogueIndex]; 
+            gp.gameUI.currentDialog = dialogues[dialogueIndex]; 
             dialogueIndex++;
             gp.gameState = gp.DIALOGUE_STATE;
         }
@@ -48,7 +48,7 @@ public class SuperObject {
     
     public void talkDialogue(GamePanel gp, int end) {
         if (dialogues[dialogueIndex] != null && dialogueIndex <= end) {
-            gp.ui.currentDialog = dialogues[dialogueIndex]; 
+            gp.gameUI.currentDialog = dialogues[dialogueIndex]; 
             dialogueIndex++;
             gp.gameState = gp.DIALOGUE_STATE;
         }

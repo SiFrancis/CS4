@@ -49,6 +49,8 @@ public class ObjectManager {
         gp.obj[0][9] = new DadObject();
         gp.obj[0][9].placeAndSize(gp, 23, 22, 1, 2);
         
+        gp.obj[0][10] = new SystemDialog();
+        gp.obj[0][10].placeAndSize(gp, 0, 0, 0, 0);
         
         //====================================================================//
         

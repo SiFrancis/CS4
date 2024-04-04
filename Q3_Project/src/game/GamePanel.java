@@ -67,9 +67,11 @@ public class GamePanel extends JPanel implements Runnable {
     //instantiates new collision handler
     public CollisionHandler collH = new CollisionHandler(this);
     
-    public UI ui = new UI(this);
+    //user interface
+    public UI gameUI = new UI(this);
+    
+    //handles events (dialogue triggers for example)
     public EventHandler eventH = new EventHandler(this);
-    public boolean paused = false;
     
     //FPS
     int FPS = 60;
@@ -90,8 +92,7 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
         }
         if (gameState == PAUSE_STATE) {
-            paused = true;
-            if (paused == false) gameState = PLAY_STATE;
+            // do nothing
         }
         if (gameState == HINT_STATE) {
             player.update();
@@ -99,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     //updates graphics
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -111,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
         
         player.draw(g2);
         
-        ui.draw(g2);
+        gameUI.draw(g2);
         
         g2.dispose();
     }
