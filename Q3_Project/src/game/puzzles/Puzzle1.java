@@ -41,6 +41,8 @@ public class Puzzle1 extends javax.swing.JFrame {
     }
     
     private void click_sound() {
+        // Sound Credit: taken from Interface Sounds by Kenney
+        // https://kenney.nl/assets/interface-sounds
         URL soundURL = getClass().getResource("/assets/game/sound/click.aiff");
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);

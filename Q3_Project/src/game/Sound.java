@@ -18,7 +18,11 @@ public class Sound {
     URL soundURL[] = new URL[10];
 
     public Sound() {
+        // Music Credit: No Worries by Pix
+        // https://youtu.be/Dw6J1EbrzI0
         soundURL[0] = getClass().getResource("/assets/game/sound/no-worries.aiff");
+        // Sound Credit: taken from Interface Sounds by Kenney
+        // https://kenney.nl/assets/interface-sounds
         soundURL[1] = getClass().getResource("/assets/game/sound/click.aiff");
     }
     
