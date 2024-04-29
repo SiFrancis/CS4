@@ -4,6 +4,11 @@
  */
 package main.automations;
 
+import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 /**
  *
  * @author Acer
@@ -15,6 +20,17 @@ public class Automation2 extends javax.swing.JFrame {
      */
     public Automation2() {
         initComponents();
+    }
+    
+    private void click_sound() {
+        URL soundURL = getClass().getResource("/assets/game/sound/click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
+        }
     }
 
     /**
@@ -172,6 +188,7 @@ public class Automation2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        click_sound();
         float val = Float.parseFloat(jTextField1.getText());
         switch (jComboBox1.getSelectedIndex()) {
             case 0 -> {

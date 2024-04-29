@@ -67,6 +67,9 @@ public class GamePanel extends JPanel implements Runnable {
     //instantiates new collision handler
     public CollisionHandler collH = new CollisionHandler(this);
     
+    //handles sound
+    Sound sound = new Sound();
+    
     //user interface
     public UI gameUI = new UI(this);
     
@@ -78,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     public void setup() {
         assetM.placeObjects();
+        playMusic(0);
         gameState = PLAY_STATE;
     }
     
@@ -116,6 +120,21 @@ public class GamePanel extends JPanel implements Runnable {
         gameUI.draw(g2);
         
         g2.dispose();
+    }
+    
+    public void playMusic(int i) {
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    
+    public void stopMusic() {
+        sound.stop();
+    }
+    
+    public void playSE(int i) {
+        sound.setFile(i);
+        sound.play();
     }
     
     public GamePanel() {

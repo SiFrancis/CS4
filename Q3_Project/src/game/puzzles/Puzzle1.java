@@ -8,8 +8,12 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.Timer;
 
 /**
@@ -33,6 +37,17 @@ public class Puzzle1 extends javax.swing.JFrame {
             initComponents();
         } catch (FontFormatException | IOException ex) {
             Logger.getLogger(Puzzle1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void click_sound() {
+        URL soundURL = getClass().getResource("/assets/game/sound/click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
         }
     }
 
@@ -178,10 +193,12 @@ public class Puzzle1 extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        click_sound();
         wrongAns();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        click_sound();
         jLabel4.setText("Saktong sakto!");
         Timer timer = new Timer(1000, (java.awt.event.ActionEvent e) -> {
             solved = true;
@@ -191,6 +208,7 @@ public class Puzzle1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        click_sound();
         wrongAns();
     }//GEN-LAST:event_jButton3ActionPerformed
 

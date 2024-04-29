@@ -53,6 +53,7 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_ENTER -> {
                 if (gp.gameState == gp.DIALOGUE_STATE) gp.gameState = gp.PLAY_STATE;
                 interactPress = true;
+                gp.playSE(1);
             }
         }
     }

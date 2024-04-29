@@ -8,8 +8,12 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JSpinner;
 import javax.swing.Timer;
 
@@ -41,6 +45,17 @@ public class Puzzle2 extends javax.swing.JFrame {
             }
         } catch (FontFormatException | IOException ex) {
             Logger.getLogger(Puzzle1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void click_sound() {
+        URL soundURL = getClass().getResource("/assets/game/sound/click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
         }
     }
 
@@ -185,6 +200,7 @@ public class Puzzle2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jSpinner4StateChanged
 
     private void updateSpinner() {
+        click_sound();
         javax.swing.JSpinner spinList[] = {jSpinner1, jSpinner2, jSpinner3, jSpinner4};
         int pow = 3;
         int result = 0;
