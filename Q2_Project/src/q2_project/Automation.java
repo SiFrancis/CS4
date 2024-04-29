@@ -7,8 +7,12 @@ package q2_project;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.Font;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -31,6 +35,19 @@ public class Automation extends javax.swing.JFrame {
             jTextField2.setFont(myFont.deriveFont(16f));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    private void click_sound() {
+        // Sound Credit: taken from Interface Sounds by Kenney
+        // https://kenney.nl/assets/interface-sounds
+        URL soundURL = getClass().getResource("/assets/click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
         }
     }
     
@@ -203,21 +220,25 @@ public class Automation extends javax.swing.JFrame {
     }
     
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        click_sound();
         a = Integer.parseInt(jTextField1.getText());
         b = Integer.parseInt(jTextField2.getText());
         updateOutputs();
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        click_sound();
         dispose();
         new MainMenu().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void formulaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formulaButtonActionPerformed
+        click_sound();
         new Formulas().setVisible(true);
     }//GEN-LAST:event_formulaButtonActionPerformed
 
     private void solutionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solutionButtonActionPerformed
+        click_sound();
         new Solutions(a,b,jLabelC.getText(),jLabelX.getText(),jLabelY.getText(),jLabelH.getText()).setVisible(true);
     }//GEN-LAST:event_solutionButtonActionPerformed
 

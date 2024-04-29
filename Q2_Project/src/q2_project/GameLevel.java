@@ -5,8 +5,12 @@
 package q2_project;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -26,6 +30,19 @@ public class GameLevel extends javax.swing.JFrame {
         });
         timer.setRepeats(true);
         timer.start();
+    }
+    
+    private void click_sound() {
+        // Sound Credit: taken from Interface Sounds by Kenney
+        // https://kenney.nl/assets/interface-sounds
+        URL soundURL = getClass().getResource("/assets/click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
+        }
     }
     
     Numpad npad = new Numpad();
@@ -91,10 +108,12 @@ public class GameLevel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void numpadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numpadButtonActionPerformed
+        click_sound();
         npad.setVisible(true);
     }//GEN-LAST:event_numpadButtonActionPerformed
 
     private void doorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doorButtonActionPerformed
+        click_sound();
         dispose();
         new WinScreen().setVisible(true);
     }//GEN-LAST:event_doorButtonActionPerformed

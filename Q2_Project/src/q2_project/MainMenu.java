@@ -9,6 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.InputStream;
 import java.awt.Font;
+import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -26,8 +30,36 @@ public class MainMenu extends javax.swing.JFrame {
             Font myFont = Font.createFont(Font.TRUETYPE_FONT, pixelTTF);
             gameButton.setFont(myFont.deriveFont(20f));
             automButton.setFont(myFont.deriveFont(16f));
+            loopMusic();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    private void loopMusic() {
+        // Music credit: Melancholic Walk by Pix
+        // https://youtu.be/dm4kGvOxmjE
+        URL soundURL = getClass().getResource("/assets/melancholic.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception ex) {
+        }
+    }
+    
+    private void click_sound() {
+        // Sound Credit: taken from Interface Sounds by Kenney
+        // https://kenney.nl/assets/interface-sounds
+        URL soundURL = getClass().getResource("/assets/click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
         }
     }
 
@@ -81,11 +113,13 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
+        click_sound();
         dispose();
         new GameLevel().setVisible(true);
     }//GEN-LAST:event_gameButtonActionPerformed
 
     private void automButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_automButtonActionPerformed
+        click_sound();
         dispose();
         new Automation().setVisible(true);
     }//GEN-LAST:event_automButtonActionPerformed

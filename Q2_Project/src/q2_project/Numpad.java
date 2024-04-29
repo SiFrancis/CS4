@@ -8,8 +8,12 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -42,6 +46,19 @@ public class Numpad extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    private void click_sound() {
+        // Sound Credit: taken from Interface Sounds by Kenney
+        // https://kenney.nl/assets/interface-sounds
+        URL soundURL = getClass().getResource("/assets/click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,12 +79,14 @@ public class Numpad extends javax.swing.JFrame {
     }
     
     private void enterNumber(int n) {
+        click_sound();
         String copyString = currentString.concat(Integer.toString(n));
         currentString = copyString.substring(1);
         jTextField1.setText(currentString);
     }
     
     private void checkAns() {
+        click_sound();
         if (jTextField1.getText().equals(answerString)) {
             jTextField1.setForeground(Color.green);
             javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
