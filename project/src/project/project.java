@@ -4,13 +4,42 @@
  */
 package project;
 
+import java.net.URL;
 import java.util.Scanner;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 /**
  *
  * @author d4rkc
  */
 public class project {
+    Clip clip;
+    private void loopMusic(String s) {
+        URL soundURL = getClass().getResource(s);
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception ex) {
+        }
+    }
+    // Sound Credit: taken from Interface Sounds by Kenney
+    // https://kenney.nl/assets/interface-sounds
+    private void click_sound() {
+        URL soundURL = getClass().getResource("click.aiff");
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+            Clip clip = AudioSystem.getClip();  
+            clip.open(ais);
+            clip.start();
+        } catch (Exception ex) {
+        }
+    }
     public static void main(String[] args) {
+        project p = new project();
         Scanner scan = new Scanner(System.in);
         boolean isActive = true;
         boolean automActive = true;
@@ -20,6 +49,8 @@ public class project {
             System.out.println("[0] Exit");
             System.out.print("Choose a thing: ");
             int input = scan.nextInt();
+            p.clip.stop();
+            p.click_sound();
             switch (input) {
                 case 1:
                     do {
@@ -30,13 +61,16 @@ public class project {
                         System.out.println("[0] Exit Automations");
                         System.out.print("Choose automations: ");
                         int input2 = scan.nextInt();
+                        p.click_sound();
                         switch (input2) {
                             case 1:
                                 System.out.print("Enter length of Leg A: ");
                                 int a = scan.nextInt();
+                                p.click_sound();
                                 int a2 = a * a;
                                 System.out.print("Enter length of Leg B: ");
                                 int b = scan.nextInt();
+                                p.click_sound();
                                 int b2 = b * b;
                                 int c2 = a2 + b2;
                                 System.out.println("Computation:");
@@ -81,9 +115,11 @@ public class project {
                             case 2:
                                 System.out.print("Enter Leg A length: ");
                                 int a1 = scan.nextInt();
+                                p.click_sound();
                                 int a1_2 = a1 * a1;
                                 System.out.print("Enter hypotenuse (C) length: ");
                                 int c1 = scan.nextInt();
+                                p.click_sound();
                                 int c1_2 = c1 * c1;
                                 int b1_2 = c1_2 - a1_2;
                                 System.out.println("Computation:");
@@ -138,7 +174,11 @@ public class project {
                     while (automActive == true);
                     break;
                 case 2:
+                    // Music credit: Vanilla Cola by Cody O'Quinn 
+                    // https://youtu.be/dJFbnEY3tzQ
+                    p.loopMusic("chillmusic.aiff");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\n===================[[Welcome to PYGOMON]]===================\n");
                     System.out.println("(pokemon but triangles or something like that)");
                     System.out.println();
@@ -146,30 +186,39 @@ public class project {
                     System.out.println("\n============================================================\n");
                     System.out.print("You're out walking in the grass (for reasons), when you find a mysterious object. ");
                     scan.nextLine(); 
+                    p.click_sound();
                     //this is the "Press Enter to progress" mechanic
                     System.out.println("\nIt's like an odd geometric looking... thing...");
                     System.out.print("\nIf it is what you think it is... there's only one place to go to. ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\n[AT THE PYGOMON CENTER]\n");
                     
                     System.out.print("???: Hello, welcome to the PYGOMON CENTER! How may I help you? ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("\n     Oh, I see... it does appear to be a PYGOMON to me... but it's not fully grown just yet. ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("\n     You wanna take care of it, huh? Well, are you ready to handle the responsibility of having a PYGOMON? ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("\n???: Yes? That's good to hear! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\n???: By the way, my name's PROFESSOR PYTHA, I'm the PYGOMON researcher in this local facility!\n");
                     System.out.print("PROF. PYTHA: Anyways, come to the training area with me, and take the PYGOMON with you! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\n-----[At the TRAINING AREA]-----\n");
                     System.out.print("PROF. PYTHA: Alright, let's get you growing your own PYGOMON! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("\nPROF. PYTHA: Right now, you still have an INCOMPLETE PYGOMON, ");
                     System.out.println("so you'll have to construct its missing geometry to complete it!\n");
                     System.out.print("             You know the basics of the Pythagorean theorem now, don't you? Try it out! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\nPROF. PYTHA: Oh look, this is an easy one! Solve for the missing side to construct the PYGOMON!");
                     int evol_soln = 0;
                     while (evol_soln != 5) {
@@ -182,12 +231,14 @@ public class project {
                         System.out.println("             b = 4\n");
                         System.out.print("Enter the value of c: ");
                         evol_soln = scan.nextInt();
+                        p.click_sound();
                         scan.nextLine();
                         if (evol_soln == 5) break;
                         else {
                             System.out.print("\nPROF. PYTHA: Looks like you constructed it incorrectly... ");
                             System.out.print("Don't worry, you can always try again! ");
                             scan.nextLine();
+                            p.click_sound();
                             System.out.println("\n             Just remember the formula a^2 + b^2 = c^2!");
                         }
                     }
@@ -206,12 +257,15 @@ public class project {
                     System.out.println("|    [2] HYPO-DASH       |");
                     System.out.println("*------------------------*");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("PROF. PYTHA: Oh, hang on, there seems to be something missing... ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\n             Oh right, we need to give your PYGOMON a name!\n");
                     System.out.println("             Well, what would you like to name it?\n");
                     System.out.print("Enter the name of your PYGOMON here: ");
                     String pygo_name = scan.nextLine().toUpperCase();
+                    p.click_sound();
                     System.out.println("\nPROF. PYTHA: " + pygo_name + ", such a nice name! Good job!\n");
                     System.out.println("              Hang on, it should update now...\n");
                     System.out.println(".------------------------.");
@@ -228,22 +282,31 @@ public class project {
                     System.out.println("*------------------------*");
                     System.out.print("\nPROF. PYTHA: There, now that's better! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\n[Someone else enters the training area.]\n");
                     System.out.print("????: Hey Prof, good morning! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\nPROF. PYTHA: Oh, hey Goras! Nice timing, someone new just came in!");
                     System.out.print("\n             This is Goras, by the way; he's the one who trains aspiring PYGOMON champions, like yourself! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\nTRAINER GORAS: Hey there, newbie! I'm Goras, the trainer of this facility.\n");
                     System.out.print("               I'll be teaching you when it comes to your PYGOMON, and battling with it. Got that? ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\nTRAINER GORAS: Good. Alright, let's give your new PYGOMON a little warm-up!\n");
                     System.out.print("               Don't worry! Mine won't hurt you! ");
                     scan.nextLine();
+                    p.click_sound();
                     int enemy_lvl = 1;
                     int enemy_hp = 11;
                     int enemy_atk = 0;
                     System.out.println("\n=======[TIME TO BATTLE!!]=======\n\n");
+                    p.clip.stop();
+                    p.loopMusic("battle_music.aiff");
+                    // Music Credit: This is Our Only Chance! by Cody O'Quinn
+                    // https://youtu.be/FlK1wS94GD0
                     while (enemy_hp > 0) {
                         System.out.println(".------------------------.");
                         System.out.print("|   " + pygo_name);
@@ -275,6 +338,7 @@ public class project {
                             System.out.println("[2] HYPO-DASH");
                             System.out.print("Enter your choice: ");
                             choice = scan.nextInt();
+                            p.click_sound();
                             if (choice != 1 && choice != 2) System.out.println("\nERROR: Invalid input; try again!\n");
                         }
                         switch (choice) {
@@ -291,10 +355,12 @@ public class project {
                                     System.out.println("             b = 8\n");
                                     System.out.print("Enter the value of c: ");
                                     leg_soln = scan.nextInt();
+                                    p.click_sound();
                                     if (leg_soln == 15) break;
                                     else {
                                         System.out.print("\nTRAINER GORAS: Ooh, you missed that one! Come on buddy, you can do it! ");
                                         scan.nextLine();
+                                        p.click_sound();
                                         System.out.println("\n               Just remember the formula a^2 + b^2 = c^2!");
                                     }
                                 }
@@ -315,10 +381,12 @@ public class project {
                                     System.out.println("             b = 8\n");
                                     System.out.print("Enter the value of c: ");
                                     hypo_soln = scan.nextInt();
+                                    p.click_sound();
                                     if (hypo_soln == 17) break;
                                     else {
                                         System.out.print("\nTRAINER GORAS: Ooh, you missed that one! Come on buddy, you can do it! ");
                                         scan.nextLine();
+                                        p.click_sound();
                                         System.out.println("\n               Just remember the formula a^2 + b^2 = c^2!");
                                     }
                                 }
@@ -330,13 +398,18 @@ public class project {
                     }
                     System.out.print("\nTRAINER GORAS: Nice one, kid! Now that you know how to do proper PYGOMON battle, you're ready to go out and explore! ");
                     scan.nextLine();
+                    p.click_sound();
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("\nPROF. PYTHA: That's right! Just keep growing and evolving your PYGOMON, and you'll be winning battles in no time! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("\nPROF. PYTHA: Oh, looks like I'm needed for something.. guess I'll see you again sometime. Bye!! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.print("\nTRAINER GORAS: Alright, now go on and explore with your new PYGOMON! You can do this, kid! ");
                     scan.nextLine();
+                    p.click_sound();
                     System.out.println("\n               Oh, looks like I also have other stuff to take care of... Well, see ya soon!");
                     System.out.println("\n========[GAME END :DD]========\n");
                     break;
