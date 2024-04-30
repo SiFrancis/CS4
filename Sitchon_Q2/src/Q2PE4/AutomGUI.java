@@ -13,11 +13,12 @@ import java.util.logging.Logger;
  * @author user
  */
 public class AutomGUI extends javax.swing.JFrame {
-
+    MusicPlayer mp;
     /**
      * Creates new form AutomGUI
      */
-    public AutomGUI() {
+    public AutomGUI(MusicPlayer mp) {
+        this.mp = mp;
         initComponents();
     }
 
@@ -155,14 +156,17 @@ public class AutomGUI extends javax.swing.JFrame {
 
     private void findLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findLegActionPerformed
         // TODO add your handling code here:
+        mp.click_sound();
     }//GEN-LAST:event_findLegActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new MenuGUI().setVisible(true);
+        new MenuGUI(mp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     public void findHypotenuse(int a, int b, int a2, int b2, int c2) {
+        mp.click_sound();
         int root = (int)Math.sqrt(c2);
         boolean simplifiable = false;
         for (int i = root; i > 1; i--) {
@@ -191,7 +195,7 @@ public class AutomGUI extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new AutomGUI().setVisible(true);
+                    new AutomGUI(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

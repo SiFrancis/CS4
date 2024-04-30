@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author user
  */
 public class GameGUI extends javax.swing.JFrame {
-
+    MusicPlayer mp;
     class_defs defs = new class_defs();
     private void setCurrentPygomon(String name){
         Pygomon[] pygo_arr = {triwhale, trat, obama};
@@ -27,22 +27,30 @@ public class GameGUI extends javax.swing.JFrame {
     Pygomon current_pygomon = triwhale;
     Pygomon enemy = defs.enemy;
     
-    public GameGUI(){
+    public GameGUI(MusicPlayer mp){
+        this.mp = mp;
+        this.mp.clip = mp.clip;
         initComponents();
     }
     
-    public GameGUI(String name) {
+    public GameGUI(String name, MusicPlayer mp) {
+        this.mp = mp;
+        this.mp.clip = mp.clip;
         setCurrentPygomon(name);
         initComponents();
     }
     
-    public GameGUI(String name, int enemy_hp) {
+    public GameGUI(String name, int enemy_hp, MusicPlayer mp) {
+        this.mp = mp;
+        this.mp.clip = mp.clip;
         setCurrentPygomon(name);
         enemy.setCurrentHP(enemy_hp);
         initComponents();
     }
     
-    public GameGUI(String current_pygo, int atk_num, int enemy_hp) {
+    public GameGUI(String current_pygo, int atk_num, int enemy_hp, MusicPlayer mp) {
+        this.mp = mp;
+        this.mp.clip = mp.clip;
         setCurrentPygomon(current_pygo);
         String atk = current_pygomon.getAttackName(atk_num);
         int dmg = current_pygomon.getAttackDmg(atk);
@@ -230,23 +238,28 @@ public class GameGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightBtnActionPerformed
+        mp.click_sound();
         dispose();
-        new moves(current_pygomon.getName(), enemy.getCurrentHP()).setVisible(true);
+        new moves(current_pygomon.getName(), enemy.getCurrentHP(), mp).setVisible(true);
     }//GEN-LAST:event_fightBtnActionPerformed
 
     private void runBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runBtnActionPerformed
+        mp.click_sound();
+        mp.clip.stop();
         dispose();
         new MenuGUI().setVisible(true);
     }//GEN-LAST:event_runBtnActionPerformed
 
     private void bagBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagBtnActionPerformed
+        mp.click_sound();
         dispose();
-        new BagGUI(current_pygomon.getName(), enemy.getCurrentHP()).setVisible(true);
+        new BagGUI(current_pygomon.getName(), enemy.getCurrentHP(), mp).setVisible(true);
     }//GEN-LAST:event_bagBtnActionPerformed
 
     private void pygoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pygoBtnActionPerformed
+        mp.click_sound();
         dispose();
-        new pygo_view(enemy.getCurrentHP()).setVisible(true);
+        new pygo_view(enemy.getCurrentHP(), mp).setVisible(true);
     }//GEN-LAST:event_pygoBtnActionPerformed
 
     /**
@@ -258,7 +271,7 @@ public class GameGUI extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new GameGUI().setVisible(true);
+                    new GameGUI(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

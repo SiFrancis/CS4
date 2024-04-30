@@ -13,11 +13,17 @@ import java.util.logging.Logger;
  * @author user
  */
 public class MenuGUI extends javax.swing.JFrame {
-
+    MusicPlayer mp = new MusicPlayer();
     /**
      * Creates new form MainGUI
      */
     public MenuGUI() {
+        mp.loopMusic("/Audio/chillmusic.aiff");
+        initComponents();
+    }
+    
+    public MenuGUI(MusicPlayer mp) {
+        this.mp = mp;
         initComponents();
     }
 
@@ -105,16 +111,21 @@ public class MenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void automButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_automButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new AutomGUI().setVisible(true);
+        new AutomGUI(mp).setVisible(true);
     }//GEN-LAST:event_automButtonActionPerformed
 
     private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new GameGUI().setVisible(true);
+        mp.clip.stop();
+        mp.loopMusic("/Audio/battle_music.aiff");
+        new GameGUI(mp).setVisible(true);
     }//GEN-LAST:event_gameButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        mp.click_sound();
         dispose();
     }//GEN-LAST:event_quitButtonActionPerformed
 

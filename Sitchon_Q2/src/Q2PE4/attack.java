@@ -13,11 +13,12 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class attack extends javax.swing.JFrame {
-
+    MusicPlayer mp;
     /**
      * Creates new form attack
      */
-    public attack() {
+    public attack(MusicPlayer mp) {
+        this.mp = mp;
         initComponents();
     }
 
@@ -108,13 +109,15 @@ public class attack extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new GameGUI().setVisible(true);
+        new GameGUI(mp).setVisible(true);
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new moves().setVisible(true);
+        new moves(mp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -126,7 +129,7 @@ public class attack extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new attack().setVisible(true);
+                    new attack(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

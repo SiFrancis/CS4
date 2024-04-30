@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  */
 public class moves extends javax.swing.JFrame {
     
+    MusicPlayer mp;
     class_defs defs = new class_defs();
     private void setCurrentPygomon(String name){
         Pygomon[] pygo_arr = {triwhale, trat, obama};
@@ -28,11 +29,13 @@ public class moves extends javax.swing.JFrame {
     
     int enemy_hp;
     
-    public moves() {
+    public moves(MusicPlayer mp) {
+        this.mp = mp;
         initComponents();
     }
     
-    public moves(String name, int hp) {
+    public moves(String name, int hp, MusicPlayer mp) {
+        this.mp = mp;
         enemy_hp = hp;
         setCurrentPygomon(name);
         initComponents();
@@ -102,13 +105,15 @@ public class moves extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void attackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButton1ActionPerformed
+        mp.click_sound();
         dispose();
-        new attack(current_pygomon.getName(), 0, enemy_hp).setVisible(true);
+        new attack(current_pygomon.getName(), 0, enemy_hp, mp).setVisible(true);
     }//GEN-LAST:event_attackButton1ActionPerformed
 
     private void attackButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButton2ActionPerformed
+        mp.click_sound();
         dispose();
-        new attack(current_pygomon.getName(), 1, enemy_hp).setVisible(true);
+        new attack(current_pygomon.getName(), 1, enemy_hp, mp).setVisible(true);
     }//GEN-LAST:event_attackButton2ActionPerformed
 
     /**
@@ -120,7 +125,7 @@ public class moves extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new moves().setVisible(true);
+                    new moves(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

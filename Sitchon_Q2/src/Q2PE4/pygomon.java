@@ -13,11 +13,12 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class pygomon extends javax.swing.JFrame {
-
+    MusicPlayer mp;
     /**
      * Creates new form pygomon
      */
-    public pygomon() {
+    public pygomon(MusicPlayer mp) {
+        this.mp = mp;
         initComponents();
     }
 
@@ -231,8 +232,9 @@ public class pygomon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new GameGUI().setVisible(true);
+        new GameGUI(mp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
@@ -240,8 +242,9 @@ public class pygomon extends javax.swing.JFrame {
          * Yes it currently does the same thing as back but in a functional game
          * this would have extra functionality
          */
+        mp.click_sound();
         dispose();
-        new GameGUI().setVisible(true);
+        new GameGUI(mp).setVisible(true);
     }//GEN-LAST:event_selectButtonActionPerformed
 
     /**
@@ -253,7 +256,7 @@ public class pygomon extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new pygomon().setVisible(true);
+                    new pygomon(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

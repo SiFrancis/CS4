@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  */
 public class attack extends javax.swing.JFrame {
 
+    MusicPlayer mp;
     String pygo_name;
     int num;
     int enemy_hp;
@@ -25,7 +26,8 @@ public class attack extends javax.swing.JFrame {
      * @param hp
      */
     
-    public attack(String name, int n, int hp){
+    public attack(String name, int n, int hp, MusicPlayer mp){
+        this.mp = mp;
         pygo_name = name;
         num = n;
         enemy_hp = hp;
@@ -134,17 +136,19 @@ public class attack extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        mp.click_sound();
         if (jTextField1.getText().equals("15")) {
             dispose();
-            new GameGUI(pygo_name, num, enemy_hp).setVisible(true);
+            new GameGUI(pygo_name, num, enemy_hp, mp).setVisible(true);
         } else {
             jLabelWrong.setText("Not quite right... try again!");
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new moves(pygo_name, enemy_hp).setVisible(true);
+        new moves(pygo_name, enemy_hp, mp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -156,7 +160,7 @@ public class attack extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new attack("TRIWHALE", 0, 25).setVisible(true);
+                    new attack("TRIWHALE", 0, 25, new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

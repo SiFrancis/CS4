@@ -5,19 +5,27 @@
 package Q2PE4;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
  * @author user
  */
 public class GameGUI extends javax.swing.JFrame {
-
+    MusicPlayer mp;
     /**
      * Creates new form GameGUI
      */
-    public GameGUI() {
+    public GameGUI(MusicPlayer mp) {
+        this.mp = mp;
+        this.mp.clip = mp.clip;
+        // Music Credit: This is Our Only Chance! by Cody O'Quinn
+        // https://youtu.be/FlK1wS94GD0
         initComponents();
     }
 
@@ -197,23 +205,28 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField5ActionPerformed
 
     private void fightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightBtnActionPerformed
+        mp.click_sound();
         dispose();
-        new moves().setVisible(true);
+        new moves(mp).setVisible(true);
     }//GEN-LAST:event_fightBtnActionPerformed
 
     private void runBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runBtnActionPerformed
+        mp.click_sound();
+        mp.clip.stop();
         dispose();
         new MenuGUI().setVisible(true);
     }//GEN-LAST:event_runBtnActionPerformed
 
     private void bagBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagBtnActionPerformed
+        mp.click_sound();
         dispose();
-        new BagGUI().setVisible(true);
+        new BagGUI(mp).setVisible(true);
     }//GEN-LAST:event_bagBtnActionPerformed
 
     private void pygoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pygoBtnActionPerformed
+        mp.click_sound();
         dispose();
-        new pygomon().setVisible(true);
+        new pygomon(mp).setVisible(true);
     }//GEN-LAST:event_pygoBtnActionPerformed
 
     /**
@@ -225,7 +238,7 @@ public class GameGUI extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new GameGUI().setVisible(true);
+                    new GameGUI(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

@@ -13,11 +13,12 @@ import java.util.logging.Logger;
  * @author user
  */
 public class AutomGUI extends javax.swing.JFrame {
-
+    MusicPlayer mp;
     /**
      * Creates new form AutomGUI
      */
-    public AutomGUI() {
+    public AutomGUI(MusicPlayer mp) {
+        this.mp = mp;
         initComponents();
     }
 
@@ -145,6 +146,7 @@ public class AutomGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void findHypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findHypActionPerformed
+        mp.click_sound();
         int a = Integer.parseInt(jTextField1.getText());
         int a2 = a * a;
         int b = Integer.parseInt(jTextField2.getText());
@@ -154,6 +156,7 @@ public class AutomGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_findHypActionPerformed
 
     private void findLegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findLegActionPerformed
+        mp.click_sound();
         int hyp = Integer.parseInt(jTextField1.getText());
         int hyp2 = hyp * hyp;
         int leg = Integer.parseInt(jTextField2.getText());
@@ -163,8 +166,9 @@ public class AutomGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_findLegActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new MenuGUI().setVisible(true);
+        new MenuGUI(mp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     public void sqrtize(int c2, String part) {
@@ -196,7 +200,7 @@ public class AutomGUI extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new AutomGUI().setVisible(true);
+                    new AutomGUI(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

@@ -13,14 +13,16 @@ import java.util.logging.Logger;
  * @author user
  */
 public class BagGUI extends javax.swing.JFrame {
-
+    
+    MusicPlayer mp;
     String current_pygo;
     int enemy_hp;
     
     /**
      * Creates new form BagGUI
      */
-    public BagGUI(String name, int hp) {
+    public BagGUI(String name, int hp, MusicPlayer mp) {
+        this.mp = mp;
         current_pygo = name;
         enemy_hp = hp;
         initComponents();
@@ -152,8 +154,9 @@ public class BagGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new GameGUI(current_pygo, enemy_hp).setVisible(true);
+        new GameGUI(current_pygo, enemy_hp, mp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -165,7 +168,7 @@ public class BagGUI extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new BagGUI("TRIWHALE", 25).setVisible(true);
+                    new BagGUI("TRIWHALE", 25, new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {

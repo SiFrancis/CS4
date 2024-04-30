@@ -5,19 +5,24 @@
 package Q2PE4;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
  * @author user
  */
 public class BagGUI extends javax.swing.JFrame {
-
+    MusicPlayer mp;
     /**
      * Creates new form BagGUI
      */
-    public BagGUI() {
+    public BagGUI(MusicPlayer mp) {
+        this.mp = mp;
         initComponents();
     }
 
@@ -182,8 +187,9 @@ public class BagGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        mp.click_sound();
         dispose();
-        new GameGUI().setVisible(true);
+        new GameGUI(mp).setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -195,7 +201,7 @@ public class BagGUI extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new BagGUI().setVisible(true);
+                    new BagGUI(new MusicPlayer()).setVisible(true);
                 }
             });
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
