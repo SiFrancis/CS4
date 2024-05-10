@@ -30,6 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
             Font myFont = Font.createFont(Font.TRUETYPE_FONT, pixelTTF);
             gameButton.setFont(myFont.deriveFont(20f));
             automButton.setFont(myFont.deriveFont(16f));
+            helpButton.setFont(myFont.deriveFont(20f));
             loopMusic();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,6 +73,7 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        helpButton = new javax.swing.JButton();
         gameButton = new javax.swing.JButton();
         automButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -79,6 +81,19 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CS4 Project (Bicbic, Rosalejos, Sitchon)");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        helpButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        helpButton.setForeground(new java.awt.Color(255, 255, 255));
+        helpButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/HOME_Automation.png"))); // NOI18N
+        helpButton.setText("HELP");
+        helpButton.setContentAreaFilled(false);
+        helpButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(helpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 140, 60));
 
         gameButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         gameButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,6 +139,11 @@ public class MainMenu extends javax.swing.JFrame {
         new Automation().setVisible(true);
     }//GEN-LAST:event_automButtonActionPerformed
 
+    private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
+        click_sound();
+        new Help().setVisible(true);
+    }//GEN-LAST:event_helpButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -144,6 +164,7 @@ public class MainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton automButton;
     private javax.swing.JButton gameButton;
+    private javax.swing.JButton helpButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
