@@ -87,7 +87,7 @@ public class Automation3 extends javax.swing.JFrame {
 
         titleLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setText("RADIUS AT DIYAMETRO");
+        titleLabel1.setText("SIRKUMPERENSIYA");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

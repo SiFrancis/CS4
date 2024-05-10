@@ -55,13 +55,18 @@ public class UI {
         g2.setColor(Color.white);
         String maintxt = "NAKAHINTO";
         String subtxt = "Pindotin ang [Esc] upang magpatuloy";
+        String guidetxt = "Pindotin ang [G] upang makakuha ng gabay";
         int x = getCenteredX(maintxt);
-        int y = gp.SCREEN_H/2;
+        int y = gp.SCREEN_H/2 - 100;
         g2.drawString(maintxt, x, y);
 
         g2.setFont(base_font.deriveFont(35f));
         int x2 = getCenteredX(subtxt);
         g2.drawString(subtxt, x2, y+50);
+        
+        g2.setFont(base_font.deriveFont(30f));
+        int x3 = getCenteredX(guidetxt);
+        g2.drawString(guidetxt, x3, y+170);
     }
     
     public void drawDialogWindow(String customText) {

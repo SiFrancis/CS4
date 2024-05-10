@@ -23,6 +23,9 @@ public class KeyHandler implements KeyListener {
     
     //sprite animation trigger
     public boolean movePress;
+    
+    //guide menu trigger
+    public boolean guidePress;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -40,12 +43,14 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
         
         switch (code) {
+            // note: no key sounds on movement because they get weird when you hold them down
             case KeyEvent.VK_W -> {upPress = true; movePress = true;}
             case KeyEvent.VK_S -> {downPress = true; movePress = true;}
             case KeyEvent.VK_A -> {leftPress = true; movePress = true;}
             case KeyEvent.VK_D -> {rightPress = true; movePress = true;}
             case KeyEvent.VK_ESCAPE -> {
                 interactPress = false;
+                gp.playSE(1);
                 if (gp.gameState == gp.PLAY_STATE) gp.gameState = gp.PAUSE_STATE;
                 else if (gp.gameState == gp.PAUSE_STATE || gp.gameState == gp.HINT_STATE) 
                     gp.gameState = gp.PLAY_STATE;
@@ -54,6 +59,9 @@ public class KeyHandler implements KeyListener {
                 if (gp.gameState == gp.DIALOGUE_STATE) gp.gameState = gp.PLAY_STATE;
                 interactPress = true;
                 gp.playSE(1);
+            }
+            case KeyEvent.VK_G -> {
+                if (gp.gameState == gp.PAUSE_STATE) {guidePress = true; gp.playSE(1);}
             }
         }
     }
@@ -69,6 +77,7 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_S -> {downPress = false; movePress = false;}
             case KeyEvent.VK_A -> {leftPress = false; movePress = false;}
             case KeyEvent.VK_D -> {rightPress = false; movePress = false;}
+            case KeyEvent.VK_G -> guidePress = false;
             case KeyEvent.VK_ENTER -> interactPress = false;
         }
     } 

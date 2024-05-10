@@ -5,6 +5,7 @@
 package game;
 
 import game.entity.Player;
+import game.guides.*;
 import javax.swing.*;
 import java.awt.*;
 import game.objects.SuperObject;
@@ -76,6 +77,10 @@ public class GamePanel extends JPanel implements Runnable {
     //handles events (dialogue triggers for example)
     public EventHandler eventH = new EventHandler(this);
     
+    //guide menus
+    AutomGuide ag = new AutomGuide();
+    GameGuide gg = new GameGuide();
+    
     //FPS
     int FPS = 60;
     
@@ -96,7 +101,11 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
         }
         if (gameState == PAUSE_STATE) {
-            // do nothing
+            if (keyH.guidePress) {
+                keyH.guidePress = false;
+                JFrame[] guides = {gg, ag};
+                guides[currentMap].setVisible(true);
+            }
         }
         if (gameState == HINT_STATE) {
             player.update();
