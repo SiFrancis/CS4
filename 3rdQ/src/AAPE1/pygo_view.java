@@ -230,7 +230,6 @@ public class pygo_view extends javax.swing.JFrame {
         mp.click_sound();
         dispose();
         GameGUI ggui = new GameGUI(((javax.swing.JButton) evt.getSource()).getName(), enemy_hp, mp);
-        ggui.setVisible(true);
     }//GEN-LAST:event_selectButtonActionPerformed
 
     /**

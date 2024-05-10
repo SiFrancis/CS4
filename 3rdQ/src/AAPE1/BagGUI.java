@@ -156,7 +156,7 @@ public class BagGUI extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         mp.click_sound();
         dispose();
-        new GameGUI(current_pygo, enemy_hp, mp).setVisible(true);
+        new GameGUI(current_pygo, enemy_hp, mp);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**

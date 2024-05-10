@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  */
 public class GameGUI extends javax.swing.JFrame {
     MusicPlayer mp;
+    boolean done = false;
     class_defs defs = new class_defs();
     private void setCurrentPygomon(String name){
         Pygomon[] pygo_arr = {triwhale, trat, obama};
@@ -30,14 +31,14 @@ public class GameGUI extends javax.swing.JFrame {
     public GameGUI(MusicPlayer mp){
         this.mp = mp;
         this.mp.clip = mp.clip;
-        initComponents();
+        if (done == false) {initComponents(); setVisible(true);}
     }
     
     public GameGUI(String name, MusicPlayer mp) {
         this.mp = mp;
         this.mp.clip = mp.clip;
         setCurrentPygomon(name);
-        initComponents();
+        if (done == false) {initComponents(); setVisible(true);}
     }
     
     public GameGUI(String name, int enemy_hp, MusicPlayer mp) {
@@ -45,7 +46,7 @@ public class GameGUI extends javax.swing.JFrame {
         this.mp.clip = mp.clip;
         setCurrentPygomon(name);
         enemy.setCurrentHP(enemy_hp);
-        initComponents();
+        if (done == false) {initComponents(); setVisible(true);}
     }
     
     public GameGUI(String current_pygo, int atk_num, int enemy_hp, MusicPlayer mp) {
@@ -55,14 +56,15 @@ public class GameGUI extends javax.swing.JFrame {
         String atk = current_pygomon.getAttackName(atk_num);
         int dmg = current_pygomon.getAttackDmg(atk);
         enemy.setCurrentHP(Math.max(0, enemy_hp - dmg));
-        initComponents();
-        if (enemy.getCurrentHP() == 0) {
+        if (done == false) {initComponents(); setVisible(true);}
+        if (enemy.getCurrentHP() <= 0) {
+            done = true;
+            dispose();
             javax.swing.JOptionPane.showMessageDialog(
                     null, "You defeated " + enemy.getName() + "!", 
                     "YOU WIN!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            dispose();
             new MenuGUI().setVisible(true);
-            
+            mp.clip.stop();
         } else {
             jTextField.setText(
                 String.format("%1$s used %2$s, dealing %3$d damage!", 

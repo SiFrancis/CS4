@@ -139,7 +139,7 @@ public class attack extends javax.swing.JFrame {
         mp.click_sound();
         if (jTextField1.getText().equals("15")) {
             dispose();
-            new GameGUI(pygo_name, num, enemy_hp, mp).setVisible(true);
+            new GameGUI(pygo_name, num, enemy_hp, mp);
         } else {
             jLabelWrong.setText("Not quite right... try again!");
         }
@@ -148,7 +148,7 @@ public class attack extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         mp.click_sound();
         dispose();
-        new moves(pygo_name, enemy_hp, mp).setVisible(true);
+        new moves(pygo_name, enemy_hp, mp);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**

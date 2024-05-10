@@ -134,7 +134,7 @@ public class MenuGUI extends javax.swing.JFrame {
         dispose();
         mp.clip.stop();
         mp.loopMusic("/Audio/battle_music.aiff");
-        new GameGUI(mp).setVisible(true);
+        new GameGUI(mp);
     }//GEN-LAST:event_gameButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
