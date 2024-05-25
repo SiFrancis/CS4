@@ -30,24 +30,33 @@ public class GamePanel extends JPanel implements Runnable {
     int pathRadius = 100; int ballRadius = 10; int pathArc = 90;
     double rotateSpeed = 1;
     
+    // distance between player and spotter
     int groundDistance;
     
+    // spotter coordinates
     int spotterX;
     int spotterY;
     
+    // coordinates of target
+    // target coordinates are used for angle computation
+    // targetPoint coordinates are used for drawing
     double targetX;
     double targetPointX;
     double targetY;
     double targetPointY;
     
+    // 
     int spotterAngle;
     int spotterDistance;
     int spotterDrawAngle;
     
+    int targetAngle;
+    
     int goalAngle;
     double goalDrawAngle;
+    int goalDistance;
     
-    int targetAngle;
+    double hitThresh = 10.51;
     
     double angleDiff, percentAngleDiff;
     
@@ -56,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void generateTriangle() {
         // generating points
         groundDistance = rand.nextInt(10, 30) * 20;
-        targetX = rand.nextDouble((0.25*groundDistance), (0.75*groundDistance));
+        targetX = rand.nextDouble(150, 500);
         targetY = rand.nextInt(50, 90) * 5;
         
         // calculating spotter angle
@@ -66,14 +75,21 @@ public class GamePanel extends JPanel implements Runnable {
         spotterDistance = (int)Math.sqrt((spotterY-targetPointY)*(spotterY-targetPointY)+(spotterX-targetPointX)*(spotterX-targetPointX));
         spotterDrawAngle = -1 * (90 + spotterAngle);
         
-        // calculating goal angle
+        // calculating goal angle and distance
         goalAngle = (int)Math.toDegrees(Math.atan(targetY/targetX));
         goalDrawAngle = -1*goalAngle;
+        goalDistance = (int)Math.sqrt(targetX*targetX + targetY*targetY);
         
         // calculating angle on target point
         targetPointX = origX + targetX;
         targetPointY = origY - targetY;
-        int targetAngle = 180 - spotterAngle - goalAngle;
+        
+        System.out.println("Target Angle: " + targetAngle);
+        System.out.println("Ground Ditance: " + groundDistance);
+        System.out.println("Spotter Angle: " + spotterAngle);
+        System.out.println("Spotter Distance: " + spotterDistance + "\n");
+        System.out.println("Goal Angle: " + goalAngle);
+        System.out.println("Goal Distance: " + goalDistance);
     }
     
     public void update() {
@@ -88,7 +104,7 @@ public class GamePanel extends JPanel implements Runnable {
             System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", 
                     -1*hitAngle, angleDiff, percentAngleDiff));
             input.hitPress = false;
-            if (Math.abs(angleDiff) < 6) {generateTriangle(); rotateSpeed += 0.2;}
+            if (Math.abs(angleDiff) < hitThresh) {generateTriangle();}
         }
     }
     
@@ -140,7 +156,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
         
-        this.generateTriangle();
+        generateTriangle();
 
         //sets screen dimension
         this.setPreferredSize(new Dimension(SCREEN_W, SCREEN_H));
@@ -156,12 +172,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         //setting focusable to true makes the window able to accept key input
         this.setFocusable(true);
-        
-        
-        System.out.println("Target Angle: " + targetAngle);
-        System.out.println("Ground Ditance: " + groundDistance);
-        System.out.println("Spotter Angle: " + spotterAngle);
-        System.out.println("Spotter Distance: " + spotterDistance);
     }        
             
     @Override
