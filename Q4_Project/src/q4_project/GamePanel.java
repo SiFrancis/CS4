@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 import javax.swing.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +28,9 @@ public class GamePanel extends JPanel implements Runnable {
     
     // measurements of player object
     int origX = 100; int origY = 500; 
-    double initAngle = -45; double currentAngle = initAngle; double hitAngle = 9999; // arbitrary start value
+    double initAngle = -45; double currentAngle = initAngle; 
+    double hitAngle = 9999; // arbitrary start value
+    int hitDistance = 400;
     int pathRadius = 100; int ballRadius = 10; int pathArc = 90;
     double rotateSpeed = 1;
     
@@ -56,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
     double goalDrawAngle;
     int goalDistance;
     
-    double hitThresh = 10.51;
+    double hitThresh = 10;
     
     double angleDiff, percentAngleDiff;
     
@@ -92,7 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
         System.out.println("Goal Distance: " + goalDistance);
     }
     
-    public void update() {
+    public void update(){
         if (rotateBack) currentAngle -= rotateSpeed;
         else currentAngle += rotateSpeed;
         if (currentAngle >= 0 || currentAngle <= -1*pathArc) rotateBack = !rotateBack;
@@ -104,7 +108,10 @@ public class GamePanel extends JPanel implements Runnable {
             System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", 
                     -1*hitAngle, angleDiff, percentAngleDiff));
             input.hitPress = false;
-            if (Math.abs(angleDiff) < hitThresh) {generateTriangle();}
+            if (Math.abs(angleDiff) <= hitThresh) {
+                System.out.println("\nYOU DID IRT\n\n");
+//                generateTriangle();
+            }
         }
     }
     
@@ -124,12 +131,6 @@ public class GamePanel extends JPanel implements Runnable {
         g.setColor(Color.red);
         g.fillOval(origX + ballX - ballRadius, origY + ballY - ballRadius, ballRadius*2, ballRadius*2);
         
-        if (hitAngle != 9999) {
-            g.drawLine(origX, origY,
-                origX + (int)(150 * Math.cos(hitAngle * Math.PI / 180)),
-                origY + (int)(150 * Math.sin(hitAngle * Math.PI / 180)));
-        }
-        
         // drawing spotter ball and line
         g.setColor(Color.CYAN);
         g.fillOval(spotterX - ballRadius, origY - ballRadius, ballRadius*2, ballRadius*2);
@@ -137,9 +138,11 @@ public class GamePanel extends JPanel implements Runnable {
                 spotterX, spotterY);
         
         // drawing target
+        int targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
+        
         g.setColor(new Color(150, 0, 255));
-        g.fillOval((int)targetPointX - ballRadius, (int)targetPointY - ballRadius, ballRadius*2, ballRadius*2);
-        //g.drawLine((int)targetPointX, (int)targetPointY, origX, origY);
+        g.drawOval((int)targetPointX - targetRadius, (int)targetPointY - targetRadius, targetRadius*2, targetRadius*2);
+        g.drawLine((int)targetPointX, (int)targetPointY, origX, origY);
         
          
         // drawing target line
@@ -148,11 +151,20 @@ public class GamePanel extends JPanel implements Runnable {
                 origX + (int)(150 * Math.cos(goalDrawAngle * Math.PI / 180)),
                 origY + (int)(150 * Math.sin(goalDrawAngle * Math.PI / 180))
         );
+        
+        // drawing hit line
+        if (hitAngle != 9999) {
+            g.setColor(Color.red);
+            int hitX = (int) (goalDistance * Math.cos(hitAngle * Math.PI / 180));
+            int hitY = (int) (goalDistance * Math.sin(hitAngle * Math.PI / 180));
+            g.drawLine(origX, origY,
+                origX + (int)(150 * Math.cos(hitAngle * Math.PI / 180)),
+                origY + (int)(150 * Math.sin(hitAngle * Math.PI / 180)));
+            g.fillOval(origX + hitX - ballRadius, origY + hitY - ballRadius, ballRadius*2, ballRadius*2);
+        }
     }
     
     public GamePanel() {
-
-        
         gameThread = new Thread(this);
         gameThread.start();
         
