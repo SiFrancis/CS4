@@ -19,6 +19,8 @@ import javax.sound.sampled.Clip;
  */
 public class Numpad extends javax.swing.JFrame {
 
+    public int val = 300;
+    
     /**
      * Creates new form Numpad
      */
@@ -69,7 +71,7 @@ public class Numpad extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
-    String defaultString = "000";
+    String defaultString = Integer.toString(val);
     String currentString = defaultString; //what is displayed
     
     private void resetScreen() {
@@ -93,9 +95,10 @@ public class Numpad extends javax.swing.JFrame {
         });
         timer.setRepeats(false);
         timer.start();
-        System.out.println("Entered value: "+Integer.valueOf(currentString));
+        val = Integer.valueOf(currentString);
+        System.out.println("Entered value: "+ val);
         dispose();
-        return Integer.parseInt(currentString);
+        return val;
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
