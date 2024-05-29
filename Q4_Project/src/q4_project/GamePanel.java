@@ -5,11 +5,8 @@
 package q4_project;
 
 import java.awt.*;
-import java.awt.geom.Line2D;
 import javax.swing.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -54,11 +51,13 @@ public class GamePanel extends JPanel implements Runnable {
     int spotterDistance;
     int spotterDrawAngle;
     
-    int targetAngle;
+    int targetAngle, targetRadius;
     
     int goalAngle;
     double goalDrawAngle;
     int goalDistance;
+    
+    int hitX, hitY, hitPointX, hitPointY;
     
     double hitThresh = 10;
     
@@ -88,12 +87,15 @@ public class GamePanel extends JPanel implements Runnable {
         targetPointX = origX + targetX;
         targetPointY = origY - targetY;
         
+        targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
+        
         System.out.println("Target Angle: " + targetAngle);
         System.out.println("Ground Ditance: " + groundDistance);
         System.out.println("Spotter Angle: " + spotterAngle);
         System.out.println("Spotter Distance: " + spotterDistance + "\n");
         System.out.println("Goal Angle: " + goalAngle);
         System.out.println("Goal Distance: " + goalDistance);
+        System.out.println("Target Radius: " + targetRadius);
     }
     
     public void update(){
@@ -105,12 +107,16 @@ public class GamePanel extends JPanel implements Runnable {
             hitAngle = currentAngle;
             angleDiff = goalDrawAngle - hitAngle;
             percentAngleDiff = (-1*angleDiff/goalDrawAngle)*100;
-            System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", 
-                    -1*hitAngle, angleDiff, percentAngleDiff));
+            //System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", -1*hitAngle, angleDiff, percentAngleDiff));
             input.hitPress = false;
-            if (Math.abs(angleDiff) <= hitThresh) {
-                System.out.println("\nYOU DID IRT\n\n");
-//                generateTriangle();
+            hitX = (int) (goalDistance * Math.cos(hitAngle * Math.PI / 180));
+            hitY = (int) (goalDistance * Math.sin(hitAngle * Math.PI / 180));
+            hitPointX = origX + hitX - ballRadius;
+            hitPointY = origY + hitY - ballRadius;
+            int distance = (int)Math.sqrt(Math.abs(targetX - hitX)*Math.abs(targetX - hitX) + Math.abs(targetY + hitY)*Math.abs(targetY + hitY));
+            System.out.println("Distance from Target Center: " + distance);
+            if (distance <= targetRadius) {
+                generateTriangle();
             }
         }
     }
@@ -138,11 +144,11 @@ public class GamePanel extends JPanel implements Runnable {
                 spotterX, spotterY);
         
         // drawing target
-        int targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
+        
         
         g.setColor(new Color(150, 0, 255));
         g.drawOval((int)targetPointX - targetRadius, (int)targetPointY - targetRadius, targetRadius*2, targetRadius*2);
-        g.drawLine((int)targetPointX, (int)targetPointY, origX, origY);
+        //g.drawLine((int)targetPointX, (int)targetPointY, origX, origY);
         
          
         // drawing target line
@@ -155,12 +161,11 @@ public class GamePanel extends JPanel implements Runnable {
         // drawing hit line
         if (hitAngle != 9999) {
             g.setColor(Color.red);
-            int hitX = (int) (goalDistance * Math.cos(hitAngle * Math.PI / 180));
-            int hitY = (int) (goalDistance * Math.sin(hitAngle * Math.PI / 180));
+            
             g.drawLine(origX, origY,
                 origX + (int)(150 * Math.cos(hitAngle * Math.PI / 180)),
                 origY + (int)(150 * Math.sin(hitAngle * Math.PI / 180)));
-            g.fillOval(origX + hitX - ballRadius, origY + hitY - ballRadius, ballRadius*2, ballRadius*2);
+            g.fillOval(hitPointX, hitPointY, ballRadius*2, ballRadius*2);
         }
     }
     
