@@ -119,7 +119,6 @@ public class Numpad extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButtonEnter = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(48, 103, 110));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
