@@ -76,7 +76,7 @@ public class Automation extends javax.swing.JFrame {
             }
         });
 
-        angleLabel2.setText("Angle 2:");
+        angleLabel2.setText("Angle 3:");
 
         sideLabel3.setText("Side 3:");
 
@@ -192,15 +192,15 @@ public class Automation extends javax.swing.JFrame {
     private void compute(){
         double angle1 = Math.toRadians(Double.parseDouble(angleField1.getText()));
         double angle2 = Math.toRadians(Double.parseDouble(angleField2.getText()));
-        double side3 = Double.parseDouble(sideField3.getText());
+        double side2 = Double.parseDouble(sideField3.getText());
         
         double angle3 = Math.PI - angle1 - angle2;
-        double side1 = side3 * Math.sin(angle1) / Math.sin(angle2);
-        double side2 = side3 * Math.sin(angle3) / Math.sin(angle2);
+        double side1 = side2 * Math.sin(angle1) / Math.sin(angle2);
+        double side3 = side2 * Math.sin(angle3) / Math.sin(angle2);
         
         angleLabel3.setText(String.format("Angle 3: %.2f", Math.toDegrees(angle3)));
         sideLabel1.setText(String.format("Side 1: %.2f", side1));
-        sideLabel2.setText(String.format("Side 2: %.2f", side2));
+        sideLabel2.setText(String.format("Side 3: %.2f", side3));
     }
     
     /**

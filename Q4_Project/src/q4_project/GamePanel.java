@@ -29,8 +29,6 @@ public class GamePanel extends JPanel implements Runnable {
     double initAngle = -45; double currentAngle = initAngle;
     // measures angle of launched projectile
     double aimAngle = 9999; // arbitrary start value
-    // distance traveled by projectile
-    int aimDistance = 400;
     // used to draw guide lines
     int pathRadius = 100; int ballRadius = 10; int pathArc = 90;
     // catapult rotation speed
@@ -54,7 +52,6 @@ public class GamePanel extends JPanel implements Runnable {
     // 
     int spotterAngle;
     int spotterDistance;
-    int spotterDrawAngle;
     
     int targetAngle, targetRadius;
     
@@ -66,47 +63,43 @@ public class GamePanel extends JPanel implements Runnable {
     
     double hitThresh = 10;
     
-    double angleDiff, percentAngleDiff;
-    
     boolean rotateBack = false;
     
     // score
     int score = 0;
     int scoreChange;
     
-    Numpad numpad = new Numpad();
+    public int numpadVal = 200;
+    Numpad numpad = new Numpad(this);
     
     public void generateTriangle() {
         // generating points
-        groundDistance = rand.nextInt(10, 30) * 20;
-        targetX = rand.nextDouble(150, 500);
+        groundDistance = rand.nextInt(40, 120) * 5;
+        targetX = rand.nextDouble(0.2*groundDistance, 0.8*groundDistance);
         targetY = rand.nextInt(50, 70) * 5;
+        
+        targetPointX = origX + targetX;
+        targetPointY = origY - targetY;
         
         // calculating spotter angle
         spotterX = origX + groundDistance;
         spotterY = origY;
         spotterAngle = (int)Math.toDegrees(Math.atan(Math.abs(spotterY-targetPointY)/Math.abs(spotterX-targetPointX)));
         spotterDistance = (int)Math.sqrt((spotterY-targetPointY)*(spotterY-targetPointY)+(spotterX-targetPointX)*(spotterX-targetPointX));
-        spotterDrawAngle = -1 * (90 + spotterAngle);
         
         // calculating goal angle and distance
         goalAngle = (int)Math.toDegrees(Math.atan(targetY/targetX));
         goalDrawAngle = -1*goalAngle;
-        goalDistance = (int)Math.sqrt(targetX*targetX + targetY*targetY);
+        goalDistance = (int)Math.sqrt(targetX*targetX+targetY*targetY);
         
-        // calculating angle on target point
-        targetPointX = origX + targetX;
-        targetPointY = origY - targetY;
         
         targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
+        targetAngle = 180 - spotterAngle - goalAngle;
         
-        System.out.println("Target Angle: " + targetAngle);
-        System.out.println("Ground Ditance: " + groundDistance);
-        System.out.println("Spotter Angle: " + spotterAngle);
-        System.out.println("Spotter Distance: " + spotterDistance + "\n");
-        System.out.println("Goal Angle: " + goalAngle);
         System.out.println("Goal Distance: " + goalDistance);
-        System.out.println("Target Radius: " + targetRadius);
+        System.out.println("Target Angle: " + targetAngle);
+        System.out.println("Spotter Angle: " + spotterAngle);
+        System.out.println("Distance: " + groundDistance);
     }
     
     public void update(){
@@ -115,20 +108,17 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentAngle >= 0 || currentAngle <= -1*pathArc) rotateBack = !rotateBack;
         
         if (input.hitPress) {
-            scoreChange = 0;
-            aimAngle = currentAngle;
-            angleDiff = goalDrawAngle - aimAngle;
-            percentAngleDiff = (-1*angleDiff/goalDrawAngle)*100;
-            //System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", -1*aimAngle, angleDiff, percentAngleDiff));
             input.hitPress = false;
-            hitX = (int) (numpad.val * Math.cos(aimAngle * Math.PI / 180));
-            hitY = (int) (numpad.val * Math.sin(aimAngle * Math.PI / 180));
+            aimAngle = currentAngle;
+            scoreChange = 0;
+            //System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", -1*aimAngle, angleDiff, percentAngleDiff));
+            hitX = (int) (numpadVal * Math.cos(aimAngle * Math.PI / 180));
+            hitY = (int) (numpadVal * Math.sin(aimAngle * Math.PI / 180));
             hitPointX = origX + hitX - ballRadius;
             hitPointY = origY + hitY - ballRadius;
             int ddist = (int)Math.sqrt(Math.abs(targetX - hitX)*Math.abs(targetX - hitX) + Math.abs(targetY + hitY)*Math.abs(targetY + hitY));
-            System.out.println("Distance from Target Center: " + ddist);
             if (ddist <= targetRadius) {
-                //generateTriangle();
+                generateTriangle();
                 if (ddist <= 0.25*targetRadius) scoreChange = 110;
                 else if (ddist <= 0.75*targetRadius) scoreChange = 100;
                 else scoreChange = 70;
@@ -171,7 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
                 spotterX, spotterY);
         
         // drawing target
-        int targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
+        targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
         
         g.setColor(new Color(150, 0, 255));
         g.drawOval((int)targetPointX - targetRadius, (int)targetPointY - targetRadius, targetRadius*2, targetRadius*2);
@@ -204,11 +194,14 @@ public class GamePanel extends JPanel implements Runnable {
         g.drawString("Press [N] to open the numpad (change catapult distance)       Press [A] to open automation", origX, origY + 50);
     }
     
-    public GamePanel() {
+    public void setup() {
         gameThread = new Thread(this);
         gameThread.start();
         
         generateTriangle();
+    }
+    
+    public GamePanel() {
 
         //sets screen dimension
         this.setPreferredSize(new Dimension(SCREEN_W, SCREEN_H));

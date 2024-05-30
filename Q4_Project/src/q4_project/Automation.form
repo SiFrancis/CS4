@@ -183,7 +183,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="angleLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Angle 2:"/>
+        <Property name="text" type="java.lang.String" value="Angle 3:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="sideLabel3">

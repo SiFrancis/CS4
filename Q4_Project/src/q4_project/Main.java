@@ -22,7 +22,7 @@ public class Main extends JFrame {
         GamePanel gp = new GamePanel();
         frame.add(gp);
         frame.pack();
-        
+        gp.setup();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
