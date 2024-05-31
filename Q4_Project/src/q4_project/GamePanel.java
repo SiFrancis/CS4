@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     // used to draw guide lines
     int pathRadius = 100; int ballRadius = 10; int pathArc = 90;
     // catapult rotation speed
-    double rotateSpeed = 1;
+    double rotateSpeed = 1.5;
     
     // distance between player and spotter
     int groundDistance;
@@ -69,13 +69,8 @@ public class GamePanel extends JPanel implements Runnable {
     int score = 0;
     int scoreChange;
     
-    // accuracy
-    double addedAcc = 1;
-    double hitCounter = 1;
-    double avgAcc = addedAcc/hitCounter;
-    
     // timer
-    int maxTime = 100;
+    int maxTime = 120;
     int currentTime = maxTime;
     
     public int numpadVal = 200;
@@ -103,14 +98,13 @@ public class GamePanel extends JPanel implements Runnable {
         goalDrawAngle = -1*goalAngle;
         goalDistance = (int)Math.sqrt(targetX*targetX+targetY*targetY);
         
-        
         targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
         targetAngle = 180 - spotterAngle - goalAngle;
         
         System.out.println("Goal Distance: " + goalDistance);
         System.out.println("Spotter Angle: " + spotterAngle);
-        System.out.println("Target Angle: " + targetAngle);
-        System.out.println("Distance: " + groundDistance);
+        System.out.println("Goal Angle: " + goalAngle);
+        System.out.println("Spotter Distance: " + spotterDistance);
     }
     
     public void update(){
@@ -128,18 +122,13 @@ public class GamePanel extends JPanel implements Runnable {
             hitPointX = origX + hitX - ballRadius;
             hitPointY = origY + hitY - ballRadius;
             int ddist = (int)Math.sqrt(Math.abs(targetX - hitX)*Math.abs(targetX - hitX) + Math.abs(targetY + hitY)*Math.abs(targetY + hitY));
-            addedAcc += (1 - (double)ddist/(double)targetRadius*1.5);
-            hitCounter += 1;
-            avgAcc = addedAcc/hitCounter;
-            System.out.println("Accuracy: "+avgAcc);
+            System.out.println("Score: "+score);
             if (ddist <= targetRadius) {
-                //generateTriangle();
-            }
-//                if (ddist <= 0.25*targetRadius) scoreChange = 110;
-//                else if (ddist <= 0.75*targetRadius) scoreChange = 100;
-//                else scoreChange = 70;
-//            } else scoreChange = -10;
-//            score += scoreChange;
+                generateTriangle();
+                if (ddist <= 0.25*targetRadius) scoreChange = 110;
+                else scoreChange = 100;
+            } else scoreChange = -15;
+            score += scoreChange;
         }
         
         if (input.automPress) {
@@ -203,8 +192,7 @@ public class GamePanel extends JPanel implements Runnable {
         // drawing score
         g.setColor(Color.WHITE);
         g.setFont(g.getFont().deriveFont(20f));
-        g.drawString("Accuracy: " + avgAcc, origX, 50);
-        //g.drawString(String.format("Score: %1$d (%2$d)", score, scoreChange), origX, 50);
+        g.drawString(String.format("Score: %1$d (%2$d)", score, scoreChange), origX, 50);
         g.drawString("Time: "+Integer.toString(currentTime), origX, 80);
         
         // skibidi]

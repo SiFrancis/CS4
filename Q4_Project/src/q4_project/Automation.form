@@ -29,34 +29,32 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="241" pref="241" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="angleLabel2" min="-2" pref="55" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="angleField2" min="-2" pref="130" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="sideLabel3" min="-2" pref="55" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="sideField3" min="-2" pref="130" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="angleLabel2" min="-2" pref="79" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="angleField2" min="-2" pref="106" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel3" min="-2" pref="235" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="submitButton" max="32767" attributes="0"/>
-                          <Component id="angleLabel3" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="angleLabel1" min="-2" pref="55" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="angleField1" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="sideLabel2" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="sideField2" min="-2" pref="106" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="sideLabel1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="sideLabel3" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="angleLabel1" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="angleField1" min="-2" pref="106" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Component id="sideLabel1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="sideLabel2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="angleLabel3" min="-2" pref="191" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -83,20 +81,20 @@
               <Component id="jScrollPane1" min="-2" pref="73" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="sideField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="sideLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="angleField1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="angleLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="angleLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="angleField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="sideField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="sideLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="submitButton" min="-2" max="-2" attributes="0"/>
@@ -105,17 +103,16 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="sideLabel1" min="-2" pref="24" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="sideLabel2" min="-2" pref="25" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="sideLabel3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -147,7 +144,7 @@
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="1"/>
             <Property name="tabSize" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="This program solves an oblique triangle given two angles and a non-included side. (A non-included side is a side that is not located between two angles with known values.)"/>
+            <Property name="text" type="java.lang.String" value="This program uses the Law of Sines to solve an oblique triangle given two angles and a non-included side. (A non-included side is a side that is not located between two angles with known values.)"/>
             <Property name="wrapStyleWord" type="boolean" value="true"/>
             <Property name="autoscrolls" type="boolean" value="false"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -168,11 +165,6 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="angleLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Angle 1:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Details"/>
@@ -183,12 +175,16 @@
     </Component>
     <Component class="javax.swing.JLabel" name="angleLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Angle 3:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="String.format(&quot;Angle %1$s: &quot;, angleNames[shuffleIndex[1]])" type="code"/>
+        </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="sideLabel3">
+    <Component class="javax.swing.JLabel" name="sideLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Side 3:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="String.format(&quot;Side %1$s: &quot;, sideNames[shuffleIndex[1]])" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="submitButton">
@@ -201,23 +197,22 @@
     </Component>
     <Component class="javax.swing.JLabel" name="angleLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Angle 3:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="String.format(&quot;Angle %1$s: &quot;, angleNames[shuffleIndex[2]])" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="sideLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Side 1:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="String.format(&quot;Side %1$s: &quot;, sideNames[shuffleIndex[0]])" type="code"/>
+        </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="sideLabel2">
+    <Component class="javax.swing.JLabel" name="sideLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Side 2:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="angleField1">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="#0.###" subtype="-1" type="0"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="String.format(&quot;Side %1$s: &quot;, sideNames[shuffleIndex[2]])" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -228,10 +223,27 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="sideField3">
+    <Component class="javax.swing.JFormattedTextField" name="sideField2">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
           <Format subtype="0" type="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sideField2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="angleLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="String.format(&quot;Angle %1$s: &quot;, angleNames[shuffleIndex[0]])" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="angleField1">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.###" subtype="-1" type="0"/>
         </Property>
       </Properties>
     </Component>

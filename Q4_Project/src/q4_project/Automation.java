@@ -4,6 +4,8 @@
  */
 package q4_project;
 
+import java.util.Random;
+
 /**
  *
  * @author user
@@ -16,7 +18,24 @@ public class Automation extends javax.swing.JFrame {
     public Automation() {
         initComponents();
     }
+    
+    private int[] shuffleArray(int[] array) {
+        Random rand = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            int j = rand.nextInt(i + 1);
 
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+    
+    int[] baseIndex = {0, 1, 2};
+    int[] shuffleIndex = shuffleArray(baseIndex);
+    String[] angleNames = {"α", "β", "γ"};
+    String[] sideNames = {"a", "b", "c"};
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,17 +49,17 @@ public class Automation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        angleLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         angleLabel2 = new javax.swing.JLabel();
-        sideLabel3 = new javax.swing.JLabel();
+        sideLabel2 = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
         angleLabel3 = new javax.swing.JLabel();
         sideLabel1 = new javax.swing.JLabel();
-        sideLabel2 = new javax.swing.JLabel();
-        angleField1 = new javax.swing.JFormattedTextField();
+        sideLabel3 = new javax.swing.JLabel();
         angleField2 = new javax.swing.JFormattedTextField();
-        sideField3 = new javax.swing.JFormattedTextField();
+        sideField2 = new javax.swing.JFormattedTextField();
+        angleLabel1 = new javax.swing.JLabel();
+        angleField1 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -55,7 +74,7 @@ public class Automation extends javax.swing.JFrame {
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(1);
         jTextArea1.setTabSize(4);
-        jTextArea1.setText("This program solves an oblique triangle given two angles and a non-included side. (A non-included side is a side that is not located between two angles with known values.)");
+        jTextArea1.setText("This program uses the Law of Sines to solve an oblique triangle given two angles and a non-included side. (A non-included side is a side that is not located between two angles with known values.)");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setAutoscrolls(false);
         jTextArea1.setBorder(null);
@@ -67,8 +86,6 @@ public class Automation extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/law_of_sines.png"))); // NOI18N
 
-        angleLabel1.setText("Angle 1:");
-
         jButton1.setText("Details");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,9 +93,9 @@ public class Automation extends javax.swing.JFrame {
             }
         });
 
-        angleLabel2.setText("Angle 3:");
+        angleLabel2.setText(String.format("Angle %1$s: ", angleNames[shuffleIndex[1]]));
 
-        sideLabel3.setText("Side 3:");
+        sideLabel2.setText(String.format("Side %1$s: ", sideNames[shuffleIndex[1]]));
 
         submitButton.setText("SUBMIT");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -87,17 +104,24 @@ public class Automation extends javax.swing.JFrame {
             }
         });
 
-        angleLabel3.setText("Angle 3:");
+        angleLabel3.setText(String.format("Angle %1$s: ", angleNames[shuffleIndex[2]]));
 
-        sideLabel1.setText("Side 1:");
+        sideLabel1.setText(String.format("Side %1$s: ", sideNames[shuffleIndex[0]]));
 
-        sideLabel2.setText("Side 2:");
-
-        angleField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.###"))));
+        sideLabel3.setText(String.format("Side %1$s: ", sideNames[shuffleIndex[2]]));
 
         angleField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
-        sideField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        sideField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        sideField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sideField2ActionPerformed(evt);
+            }
+        });
+
+        angleLabel1.setText(String.format("Angle %1$s: ", angleNames[shuffleIndex[0]]));
+
+        angleField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.###"))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,29 +132,28 @@ public class Automation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(241, 241, 241)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(angleLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(angleField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(sideLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sideField3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(angleLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(angleField2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(angleLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(angleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(angleField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(sideLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(sideLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(sideLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sideField2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(sideLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(sideLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(angleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(angleField1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(angleLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
@@ -149,18 +172,18 @@ public class Automation extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sideField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sideLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(angleField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(angleLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(angleLabel2)
                             .addComponent(angleField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sideField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sideLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(submitButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,39 +191,42 @@ public class Automation extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sideLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sideLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(sideLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel3)
-                        .addGap(32, 32, 32))))
+                        .addComponent(jLabel3)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new AutomDetails().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         compute();
     }//GEN-LAST:event_submitButtonActionPerformed
 
+    private void sideField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sideField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sideField2ActionPerformed
+
     private void compute(){
         double angle1 = Math.toRadians(Double.parseDouble(angleField1.getText()));
         double angle2 = Math.toRadians(Double.parseDouble(angleField2.getText()));
-        double side2 = Double.parseDouble(sideField3.getText());
+        double side2 = Double.parseDouble(sideField2.getText());
         
         double angle3 = Math.PI - angle1 - angle2;
         double side1 = side2 * Math.sin(angle1) / Math.sin(angle2);
         double side3 = side2 * Math.sin(angle3) / Math.sin(angle2);
         
-        angleLabel3.setText(String.format("Angle 3: %.2f", Math.toDegrees(angle3)));
-        sideLabel1.setText(String.format("Side 1: %.2f", side1));
-        sideLabel2.setText(String.format("Side 3: %.2f", side3));
+        angleLabel3.setText(String.format("Angle %1$s: %2$.2f", angleNames[shuffleIndex[2]], Math.toDegrees(angle3)));
+        sideLabel1.setText(String.format("Side %1$s: %2$.2f", sideNames[shuffleIndex[0]], side1));
+        sideLabel3.setText(String.format("Side %1$s: %2$.2f", sideNames[shuffleIndex[2]],side3));
     }
     
     /**
@@ -281,7 +307,7 @@ public class Automation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JFormattedTextField sideField3;
+    private javax.swing.JFormattedTextField sideField2;
     private javax.swing.JLabel sideLabel1;
     private javax.swing.JLabel sideLabel2;
     private javax.swing.JLabel sideLabel3;
