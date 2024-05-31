@@ -5,6 +5,9 @@
 package q4_project;
 
 import java.awt.HeadlessException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -13,7 +16,7 @@ import javax.swing.*;
  */
 public class Main extends JFrame {
 
-    public Main() {
+    public Main() throws IOException {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -32,9 +35,13 @@ public class Main extends JFrame {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main();
+                try {
+                    new Main();
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
-    
 }
+    

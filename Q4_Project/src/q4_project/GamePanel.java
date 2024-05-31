@@ -5,8 +5,14 @@
 package q4_project;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -49,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     double targetY;
     double targetPointY;
     
-    // 
+    // spotter
     int spotterAngle;
     int spotterDistance;
     
@@ -70,14 +76,23 @@ public class GamePanel extends JPanel implements Runnable {
     int scoreChange;
     
     // timer
-    int maxTime = 120;
+    int maxTime = 5;
     int currentTime = maxTime;
     
-    public int numpadVal = 200;
+    // numpad
+    public int numpadVal = 100;
     Numpad numpad = new Numpad(this);
     
+    // loading pics
+    BufferedImage catimg, bg_img;
+    Image portal_img;
     
-    public void generateTriangle() {
+    // game done or not
+    boolean isPlaying = true;
+    ScoreDialog sd = new ScoreDialog(new JFrame(), true);
+    
+    public void generateTriangle() throws IOException {
+        
         // generating points
         groundDistance = rand.nextInt(40, 120) * 5;
         targetX = rand.nextDouble(40, 120) * 5;
@@ -101,53 +116,71 @@ public class GamePanel extends JPanel implements Runnable {
         targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
         targetAngle = 180 - spotterAngle - goalAngle;
         
-        System.out.println("Goal Distance: " + goalDistance);
-        System.out.println("Spotter Angle: " + spotterAngle);
-        System.out.println("Goal Angle: " + goalAngle);
-        System.out.println("Spotter Distance: " + spotterDistance);
     }
     
-    public void update(){
-        if (rotateBack) currentAngle -= rotateSpeed;
-        else currentAngle += rotateSpeed;
-        if (currentAngle >= 0 || currentAngle <= -1*pathArc) rotateBack = !rotateBack;
-        
-        if (input.hitPress) {
-            input.hitPress = false;
-            aimAngle = currentAngle;
-            scoreChange = 0;
-            //System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", -1*aimAngle, angleDiff, percentAngleDiff));
-            hitX = (int) (numpadVal * Math.cos(aimAngle * Math.PI / 180));
-            hitY = (int) (numpadVal * Math.sin(aimAngle * Math.PI / 180));
-            hitPointX = origX + hitX - ballRadius;
-            hitPointY = origY + hitY - ballRadius;
-            int ddist = (int)Math.sqrt(Math.abs(targetX - hitX)*Math.abs(targetX - hitX) + Math.abs(targetY + hitY)*Math.abs(targetY + hitY));
-            System.out.println("Score: "+score);
-            if (ddist <= targetRadius) {
-                generateTriangle();
-                if (ddist <= 0.25*targetRadius) scoreChange = 110;
-                else scoreChange = 100;
-            } else scoreChange = -15;
-            score += scoreChange;
-        }
-        
-        if (input.automPress) {
-            new Automation().run();
-            input.automPress = false;
-        }
-        
-        if (input.numpadPress) {
-            numpad.setVisible(true);
-            input.numpadPress = false;
-        }
+    public void update() throws IOException{
+        if (isPlaying) {
+            if (rotateBack) {
+                currentAngle -= rotateSpeed;
+            } else {
+                currentAngle += rotateSpeed;
+            }
+            if (currentAngle >= 0 || currentAngle <= -1 * pathArc) {
+                rotateBack = !rotateBack;
+            }
+            if (input.hitPress) {
+                System.out.println(numpadVal);
+                aimAngle = currentAngle;
+                scoreChange = 0;
+                catimg = ImageIO.read(getClass().getResourceAsStream("/assets/catpics/cat" + rand.nextInt(8) + ".png"));
+                //System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", -1*aimAngle, angleDiff, percentAngleDiff));
+                hitX = (int) (numpadVal * Math.cos(aimAngle * Math.PI / 180));
+                hitY = (int) (numpadVal * Math.sin(aimAngle * Math.PI / 180));
+                hitPointX = origX + hitX - ballRadius;
+                hitPointY = origY + hitY - ballRadius;
+                int ddist = (int) Math.sqrt(Math.abs(targetX - hitX) * Math.abs(targetX - hitX) + Math.abs(targetY + hitY) * Math.abs(targetY + hitY));
+                if (ddist <= targetRadius) {
+                    generateTriangle();
+                    if (ddist <= 0.25 * targetRadius) {
+                        scoreChange = 110;
+                    } else {
+                        scoreChange = 100;
+                    }
+                } else {
+                    scoreChange = -15;
+                }
+                score += scoreChange;
+                input.hitPress = false;
+            }
 
+            if (input.automPress) {
+                new Automation().run();
+                input.automPress = false;
+            }
+
+            if (input.numpadPress) {
+                numpad.run();
+                input.numpadPress = false;
+            }
+        }
     }
     
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
         
+        if (currentTime == maxTime) {
+            try {
+                bg_img = ImageIO.read(getClass().getResourceAsStream("/assets/background.png"));
+                portal_img = ImageIO.read(getClass().getResourceAsStream("/assets/portal2.gif"));
+            } catch (IOException ex) {
+                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        g.drawImage(bg_img, 0, 0, null);
+        
         // drawing guide lines
-        g.setColor(Color.white);
+        g.setColor(Color.black);
         g.drawArc(origX - pathRadius, origY - pathRadius, pathRadius*2, pathRadius*2, 0, pathArc);
         g.drawLine(origX, origY, spotterX, origY);
         g.drawLine(origX, origY, origX, origY-150);
@@ -157,10 +190,11 @@ public class GamePanel extends JPanel implements Runnable {
         int ballY = (int) (pathRadius * Math.sin(currentAngle * Math.PI / 180));
         
         g.setColor(Color.red);
-        g.fillOval(origX + ballX - ballRadius, origY + ballY - ballRadius, ballRadius*2, ballRadius*2);
+        //g.fillOval(origX + ballX - ballRadius, origY + ballY - ballRadius, ballRadius*2, ballRadius*2);
+        g.drawImage(catimg, origX + ballX - 30, origY + ballY - 30, 60, 60, null);
         
         // drawing spotter ball and line
-        g.setColor(Color.CYAN);
+        g.setColor(new Color(255, 153, 0));
         g.fillOval(spotterX - ballRadius, origY - ballRadius, ballRadius*2, ballRadius*2);
         g.drawLine((int)targetPointX, (int)targetPointY, 
                 spotterX, spotterY);
@@ -168,8 +202,9 @@ public class GamePanel extends JPanel implements Runnable {
         // drawing target
         targetRadius = ballRadius + (int)(targetY - goalDistance*Math.sin(Math.toRadians(goalAngle-hitThresh)));
         
-        g.setColor(new Color(150, 0, 255));
-        g.drawOval((int)targetPointX - targetRadius, (int)targetPointY - targetRadius, targetRadius*2, targetRadius*2);
+        g.drawImage(portal_img, (int)targetPointX - targetRadius, (int)targetPointY - targetRadius, targetRadius*2, targetRadius*2, null);
+        //g.setColor(new Color(102, 102, 255));
+        //g.drawOval((int)targetPointX - targetRadius, (int)targetPointY - targetRadius, targetRadius*2, targetRadius*2);
         //g.drawLine((int)targetPointX, (int)targetPointY, origX, origY);
         
          
@@ -186,21 +221,27 @@ public class GamePanel extends JPanel implements Runnable {
             g.drawLine(origX, origY,
                 origX + (int)(150 * Math.cos(aimAngle * Math.PI / 180)),
                 origY + (int)(150 * Math.sin(aimAngle * Math.PI / 180)));
-            g.fillOval(hitPointX, hitPointY, ballRadius*2, ballRadius*2);
+            //g.fillOval(hitPointX, hitPointY, ballRadius*2, ballRadius*2);
+            g.drawImage(catimg, hitPointX, hitPointY, 60, 60, null);
         }
         
         // drawing score
-        g.setColor(Color.WHITE);
+        g.setColor(Color.black);
         g.setFont(g.getFont().deriveFont(20f));
         g.drawString(String.format("Score: %1$d (%2$d)", score, scoreChange), origX, 50);
         g.drawString("Time: "+Integer.toString(currentTime), origX, 80);
         
         // skibidi]
+        g.setFont(g.getFont().deriveFont(17f));
+        g.drawString(String.format("Angle to Target: %1$d°  |  Angle of Spotter: %2$d°  |  Spotter Distance: %3$d", goalAngle, spotterAngle, spotterDistance), origX, origY + 30);
         g.setFont(g.getFont().deriveFont(15f));
-        g.drawString("Press [N] to open the numpad (change catapult distance)       Press [A] to open automation", origX, origY + 50);
+        g.drawString("Press [N] to open the numpad (change catapult distance)       Press [A] to open automation", origX, origY + 60);
     }
     
-    public void setup() {
+    public void setup() throws IOException{
+        catimg = ImageIO.read(getClass().getResourceAsStream("/assets/catpics/cat" + rand.nextInt(8) + ".png"));
+            
+        
         gameThread = new Thread(this);
         gameThread.start();
         
@@ -211,9 +252,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         //sets screen dimension
         this.setPreferredSize(new Dimension(SCREEN_W, SCREEN_H));
-
-        //sets black background
-        this.setBackground(Color.black);
 
         //for graphics optimization apparently
         this.setDoubleBuffered(true);
@@ -239,12 +277,20 @@ public class GamePanel extends JPanel implements Runnable {
             secondCounter += (timeNow - timePrev) / drawInterval;
             timePrev = timeNow;
             if (delta >= 1) {
-                update();
+                try {
+                    update();
+                } catch (IOException ex) {
+                    Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 repaint();
                 delta--;
             }
             if (secondCounter >= FPS) {
-                currentTime--;
+                if (isPlaying) currentTime--;
+                if (currentTime <= 0) {
+                    isPlaying = false;
+                    if (!sd.entered) sd.setVisible(true);
+                }
                 secondCounter -= FPS;
             }
         }

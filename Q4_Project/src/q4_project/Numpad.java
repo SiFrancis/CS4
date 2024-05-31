@@ -6,6 +6,7 @@ package q4_project;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.logging.Logger;
@@ -82,7 +83,7 @@ public class Numpad extends javax.swing.JFrame {
         jTextField1.setText(currentString);
     }
     
-    public int submitVal() {
+    public void submitVal() {
         click_sound();
         jTextField1.setForeground(Color.green);
         javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
@@ -91,9 +92,8 @@ public class Numpad extends javax.swing.JFrame {
         timer.setRepeats(false);
         timer.start();
         gp.numpadVal = Integer.parseInt(currentString);
-        System.out.println("Entered value: "+ gp.numpadVal);
+        System.out.println(gp.numpadVal);
         dispose();
-        return gp.numpadVal;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,6 +120,7 @@ public class Numpad extends javax.swing.JFrame {
         jButtonEnter = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(48, 103, 110));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -133,6 +134,11 @@ public class Numpad extends javax.swing.JFrame {
         jTextField1.setText("000");
         jTextField1.setCaretColor(new java.awt.Color(28, 61, 65));
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
@@ -381,9 +387,59 @@ public class Numpad extends javax.swing.JFrame {
         jTextField1.setText(currentString);
     }//GEN-LAST:event_jButtonClearActionPerformed
 
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+        int code = evt.getKeyCode();
+        switch (code) {
+            case KeyEvent.VK_0 -> enterNumber(0);
+            case KeyEvent.VK_1 -> enterNumber(1);
+            case KeyEvent.VK_2 -> enterNumber(2);
+            case KeyEvent.VK_3 -> enterNumber(3);
+            case KeyEvent.VK_4 -> enterNumber(4);
+            case KeyEvent.VK_5 -> enterNumber(5);
+            case KeyEvent.VK_6 -> enterNumber(6);
+            case KeyEvent.VK_7 -> enterNumber(7);
+            case KeyEvent.VK_8 -> enterNumber(8);
+            case KeyEvent.VK_9 -> enterNumber(9);
+            case KeyEvent.VK_ENTER -> submitVal();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
     /**
      * @param args the command line arguments
      */
+    
+    public void run() {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Numpad(gp).setVisible(true);
+            }
+        });
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
