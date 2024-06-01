@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
     int scoreChange;
     
     // timer
-    int maxTime = 5;
+    int maxTime = 120;
     int currentTime = maxTime;
     
     // numpad
@@ -89,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     // game done or not
     boolean isPlaying = true;
-    ScoreDialog sd = new ScoreDialog(new JFrame(), true);
+    ScoreDialog sd;
     
     public void generateTriangle() throws IOException {
         
@@ -129,7 +129,6 @@ public class GamePanel extends JPanel implements Runnable {
                 rotateBack = !rotateBack;
             }
             if (input.hitPress) {
-                System.out.println(numpadVal);
                 aimAngle = currentAngle;
                 scoreChange = 0;
                 catimg = ImageIO.read(getClass().getResourceAsStream("/assets/catpics/cat" + rand.nextInt(8) + ".png"));
@@ -162,6 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
                 numpad.run();
                 input.numpadPress = false;
             }
+            sd.setScore(score);
         }
     }
     
@@ -186,12 +186,11 @@ public class GamePanel extends JPanel implements Runnable {
         g.drawLine(origX, origY, origX, origY-150);
         
         // drawing player object
-        int ballX = (int) (pathRadius * Math.cos(currentAngle * Math.PI / 180));
-        int ballY = (int) (pathRadius * Math.sin(currentAngle * Math.PI / 180));
+        int catX = (int) (pathRadius * Math.cos(currentAngle * Math.PI / 180));
+        int catY = (int) (pathRadius * Math.sin(currentAngle * Math.PI / 180));
         
         g.setColor(Color.red);
-        //g.fillOval(origX + ballX - ballRadius, origY + ballY - ballRadius, ballRadius*2, ballRadius*2);
-        g.drawImage(catimg, origX + ballX - 30, origY + ballY - 30, 60, 60, null);
+        g.drawImage(catimg, origX + catX - 30, origY + catY - 30, 60, 60, null);
         
         // drawing spotter ball and line
         g.setColor(new Color(255, 153, 0));
@@ -209,7 +208,7 @@ public class GamePanel extends JPanel implements Runnable {
         
          
         // drawing target line
-        g.setColor(Color.yellow);
+        g.setColor(Color.red);
         g.drawLine(origX, origY,
                 origX + (int)(150 * Math.cos(goalDrawAngle * Math.PI / 180)),
                 origY + (int)(150 * Math.sin(goalDrawAngle * Math.PI / 180))
@@ -221,7 +220,6 @@ public class GamePanel extends JPanel implements Runnable {
             g.drawLine(origX, origY,
                 origX + (int)(150 * Math.cos(aimAngle * Math.PI / 180)),
                 origY + (int)(150 * Math.sin(aimAngle * Math.PI / 180)));
-            //g.fillOval(hitPointX, hitPointY, ballRadius*2, ballRadius*2);
             g.drawImage(catimg, hitPointX, hitPointY, 60, 60, null);
         }
         
@@ -248,7 +246,8 @@ public class GamePanel extends JPanel implements Runnable {
         generateTriangle();
     }
     
-    public GamePanel() {
+    public GamePanel() throws IOException {
+        this.sd = new ScoreDialog(new JFrame(), false);
 
         //sets screen dimension
         this.setPreferredSize(new Dimension(SCREEN_W, SCREEN_H));
@@ -289,7 +288,9 @@ public class GamePanel extends JPanel implements Runnable {
                 if (isPlaying) currentTime--;
                 if (currentTime <= 0) {
                     isPlaying = false;
-                    if (!sd.entered) sd.setVisible(true);
+                    if (!sd.entered) {
+                        sd.setVisible(true);
+                    }
                 }
                 secondCounter -= FPS;
             }
