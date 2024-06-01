@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author user
  */
 public class ScoreDialog extends javax.swing.JDialog {
-    
+    MusicPlayer mp = new MusicPlayer();
     public boolean entered = false;
     int score;
     
@@ -24,7 +24,6 @@ public class ScoreDialog extends javax.swing.JDialog {
      */
     public ScoreDialog(java.awt.Frame parent, boolean modal) throws IOException {
         super(parent, modal);
-        fw = new FileWriter("scores.txt");
         initComponents();
     }
     
@@ -102,13 +101,16 @@ public class ScoreDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            fw.write(score+" by "+jTextField1.getText());
+            mp.click_sound();
+            fw = new FileWriter("scores.txt", true);
+            fw.write("\n"+jTextField1.getText()+": "+score);
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(ScoreDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
         entered = true;
         dispose();
+        new Menu().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -1,1 +1,2 @@
-0 by test
+skibdi: 1000
+franzo: 1310

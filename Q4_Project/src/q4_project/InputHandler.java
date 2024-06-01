@@ -16,12 +16,12 @@ public class InputHandler implements KeyListener {
     public boolean hitPress;
     public boolean numpadPress;
     public boolean automPress;
-    public boolean pausePress;
+    public boolean helpPress;
     
     final int hitKey = KeyEvent.VK_SPACE;
     final int numpadKey = KeyEvent.VK_N;
     final int automKey = KeyEvent.VK_A;
-    final int pauseKey = KeyEvent.VK_ESCAPE;
+    final int helpKey = KeyEvent.VK_H;
     
     public void keyTyped(KeyEvent e) {
     }
@@ -33,7 +33,8 @@ public class InputHandler implements KeyListener {
             case hitKey -> hitPress = true;
             case numpadKey -> numpadPress = true;
             case automKey -> automPress = true;
-            case pauseKey -> pausePress = true;
+            case helpKey -> helpPress = true;
+
         }
     }
 
@@ -44,7 +45,8 @@ public class InputHandler implements KeyListener {
             case hitKey -> hitPress = false;
             case numpadKey -> numpadPress = false;
             case automKey -> automPress = false;
-            case pauseKey -> pausePress = false;
+            case helpKey -> helpPress = false;
+
         }
     }
     

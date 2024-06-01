@@ -7,8 +7,10 @@ package q4_project;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -33,27 +35,6 @@ public class Numpad extends javax.swing.JFrame {
         defaultString = Integer.toString(gp.numpadVal);
         currentString = defaultString;
         initComponents();
-        /*
-        try {
-            InputStream pixelTTF = MainMenu.class.getResourceAsStream("fonts/DalekPinpoint.ttf");
-            Font myFont = Font.createFont(Font.TRUETYPE_FONT, pixelTTF);
-            jButton1.setFont(myFont.deriveFont(20f));
-            jButton2.setFont(myFont.deriveFont(20f));
-            jButton3.setFont(myFont.deriveFont(20f));
-            jButton4.setFont(myFont.deriveFont(20f));
-            jButton5.setFont(myFont.deriveFont(20f));
-            jButton6.setFont(myFont.deriveFont(20f));
-            jButton7.setFont(myFont.deriveFont(20f));
-            jButton8.setFont(myFont.deriveFont(20f));
-            jButton9.setFont(myFont.deriveFont(20f));
-            jButton10.setFont(myFont.deriveFont(20f));
-            jButtonClear.setFont(myFont.deriveFont(20f));
-            jButtonEnter.setFont(myFont.deriveFont(20f));
-            jTextField1.setFont(myFont.deriveFont(30f));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
     }
     
     
@@ -92,7 +73,6 @@ public class Numpad extends javax.swing.JFrame {
         timer.setRepeats(false);
         timer.start();
         gp.numpadVal = Integer.parseInt(currentString);
-        System.out.println(gp.numpadVal);
         dispose();
     }
     /**
@@ -336,6 +316,7 @@ public class Numpad extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -468,7 +449,11 @@ public class Numpad extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Numpad(new GamePanel()).setVisible(true);
+                try {
+                    new Numpad(new GamePanel(new MusicPlayer())).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Numpad.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

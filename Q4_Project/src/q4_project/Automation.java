@@ -11,7 +11,7 @@ import java.util.Random;
  * @author user
  */
 public class Automation extends javax.swing.JFrame {
-    
+    MusicPlayer mp = new MusicPlayer();
     /**
      * Creates new form Automation
      */
@@ -201,13 +201,16 @@ public class Automation extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        mp.click_sound();
         new AutomDetails().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        mp.click_sound();
         compute();
     }//GEN-LAST:event_submitButtonActionPerformed
 
