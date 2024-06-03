@@ -1,2 +1,4 @@
-skibdi: 1000
-franzo: 1310
+skibdi:1000
+franzor:1590
+plsplswork:2140
+toilet:1850

@@ -15,6 +15,11 @@ import javax.sound.sampled.Clip;
  */
 public class MusicPlayer {
     Clip clip;
+    // Music Credits:
+    // Menu Music: MeowSynth cover of HOME by Resonance (cover by Tori Kenyon)
+    // https://www.youtube.com/watch?v=oq7aGYmxUvw
+    // Game Music: MeowSynth cover of Night of Nights by COOL&CREATE/beatMARIO (cover by Zahmbie02)
+    // https://www.youtube.com/watch?v=YFj33iuWMXQ
     public void loopMusic(String s) {
         URL soundURL = getClass().getResource(s);
         try {

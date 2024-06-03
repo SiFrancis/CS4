@@ -16,6 +16,7 @@ public class ScoreDialog extends javax.swing.JDialog {
     MusicPlayer mp = new MusicPlayer();
     public boolean entered = false;
     int score;
+    final String RESOURCES_DIR = System.getProperty("user.dir") + File.separator;
     
     FileWriter fw;
     
@@ -102,8 +103,8 @@ public class ScoreDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             mp.click_sound();
-            fw = new FileWriter("scores.txt", true);
-            fw.write("\n"+jTextField1.getText()+": "+score);
+            fw = new FileWriter(new File(RESOURCES_DIR+"scores.txt"), true);
+            fw.write(jTextField1.getText()+":"+score);
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(ScoreDialog.class.getName()).log(Level.SEVERE, null, ex);

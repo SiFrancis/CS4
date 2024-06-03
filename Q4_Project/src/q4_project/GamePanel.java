@@ -74,9 +74,10 @@ public class GamePanel extends JPanel implements Runnable {
     int score = 0;
     int scoreChange;
     ArrayList<Integer> scoresList = new ArrayList<>();
+    final String RESOURCES_DIR = System.getProperty("user.dir") + File.separator;
     
     // timer
-    int maxTime = 2;
+    int maxTime = 120;
     int currentTime = maxTime;
     
     // numpad
@@ -138,10 +139,11 @@ public class GamePanel extends JPanel implements Runnable {
                 rotateBack = !rotateBack;
             }
             if (input.hitPress) {
-                //mp.click_sound();
+                mp.click_sound();
                 aimAngle = currentAngle;
                 scoreChange = 0;
                 catimg = ImageIO.read(getClass().getResourceAsStream("/assets/catpics/cat" + rand.nextInt(10) + ".png"));
+                
                 //System.out.println(String.format("Current Angle: %1$.2f | Difference: %2$.2f (%3$.2f%%)", -1*aimAngle, angleDiff, percentAngleDiff));
                 hitX = (int) (numpadVal * Math.cos(aimAngle * Math.PI / 180));
                 hitY = (int) (numpadVal * Math.sin(aimAngle * Math.PI / 180));
@@ -249,18 +251,33 @@ public class GamePanel extends JPanel implements Runnable {
         catimg = ImageIO.read(getClass().getResourceAsStream("/assets/catpics/cat"+ rand.nextInt(10)+".png"));
         catapult_img = ImageIO.read(getClass().getResourceAsStream("/assets/catapult.png"));
         
-        InputStream inp = getClass().getResourceAsStream("scores.txt");
-        BufferedReader bf = new BufferedReader(new FileReader("scores.txt"));
-        File scores = new File("scores.txt");
-        Scanner scan = new Scanner(scores);
-        String line = bf.readLine();
-        int lineScore = Integer.parseInt(line.substring(line.indexOf(": ")+2));
-        while (line != null) {
-            scoresList.add(lineScore);
-            lineScore = Integer.parseInt(line.substring(line.indexOf(": ")+2));
-            line = bf.readLine();
+        //reading default file
+        InputStream inp = getClass().getResourceAsStream("/assets/scores_default.txt");
+        BufferedReader bf_def = new BufferedReader(new InputStreamReader(inp));
+        
+        // copying default file to a .txt file outside the .jar
+        if (new File(RESOURCES_DIR+"scores.txt").exists()) {
+            String line = "placeholder:1";
+            BufferedReader bf_actual = new BufferedReader(new FileReader(new File(RESOURCES_DIR+"scores.txt")));
+            while (line != null) {
+                System.out.println(line);
+                int lineScore = Integer.parseInt(line.substring(line.indexOf(":")+1));
+                line = bf_actual.readLine();
+                scoresList.add(lineScore);
+            }
+        } else {
+            File scoresActual = new File(RESOURCES_DIR+"scores.txt");
+            FileWriter fw = new FileWriter(scoresActual, true);
+            String line = "placeholder:0";
+            while (line != null) {
+                int lineScore = Integer.parseInt(line.substring(line.indexOf(":")+1));
+                fw.append(line+"\n");
+                line = bf_def.readLine();
+                scoresList.add(lineScore);
+            }
+            fw.close();
         }
-        scan.close();
+        bf_def.close();
         Collections.sort(scoresList, Collections.reverseOrder());
         
         gameThread = new Thread(this);
@@ -270,6 +287,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     public GamePanel(MusicPlayer mp) throws IOException {
+        this.mp = mp;
+        this.mp.clip = mp.clip;
+        
+        System.out.println();
+        
         this.sd = new ScoreDialog(new JFrame(), false);
 
         //sets screen dimension
@@ -284,8 +306,6 @@ public class GamePanel extends JPanel implements Runnable {
         //setting focusable to true makes the window able to accept key input
         this.setFocusable(true);
         
-        this.mp = mp;
-        this.mp.clip = mp.clip;
     }        
             
     @Override
